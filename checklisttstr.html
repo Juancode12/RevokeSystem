@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="images/logo RS.png">
+    <title>Testosterone Optimization Checklist</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d3748;
+            --accent: #e53e3e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --success: #38a169;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .print-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .print-btn:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .habit-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.3s;
+        }
+        
+        .habit-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .habit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .habit-checkbox {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+        
+        .habit-content {
+            flex: 1;
+        }
+        
+        .habit-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .habit-description {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        
+        .impact-high {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .impact-moderate {
+            border-left: 4px solid #ed8936;
+        }
+        
+        .impact-low {
+            border-left: 4px solid #38a169;
+        }
+        
+        .impact-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .impact-high .impact-tag {
+            background-color: #fed7d7;
+            color: #c53030;
+        }
+        
+        .impact-moderate .impact-tag {
+            background-color: #feebc8;
+            color: #dd6b20;
+        }
+        
+        .impact-low .impact-tag {
+            background-color: #c6f6d5;
+            color: #276749;
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .motivation-quote {
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .print-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 15px;
+            }
+        }
+        
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            
+            .progress-container {
+                break-inside: avoid;
+            }
+            
+            .section {
+                break-inside: avoid;
+            }
+            
+            body {
+                background-color: white;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Testosterone Optimization Checklist</h1>
+            <p class="subtitle">Based on "Testosterone: The Full Guide" by RevokesSystem</p>
+            <button class="print-btn" onclick="window.print()">Print Checklist</button>
+        </header>
+        
+        <div class="intro">
+            <p>This checklist contains 36 evidence-based strategies to naturally increase your testosterone levels. Check off each habit you implement and track your progress.</p>
+        </div>
+        
+        <div class="progress-container">
+            <h2>Your Progress</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text">You've completed <span id="progressPercent">0</span>% of the habits</p>
+            <p id="completedCount">0 of 36 habits completed</p>
+        </div>
+        
+        <div class="motivation-quote">
+            "Masculinity is like steel—it only takes shape through fire and pressure. Strength is earned, forged in adversity, and polished through relentless discipline"
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Fundamental Habits (High Impact)</h2>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit1">
+                <div class="habit-content">
+                    <div class="habit-title">Sleep at least 7-8 hours each night</div>
+                    <div class="habit-description">Testosterone is produced mainly during deep sleep. Lack of sleep significantly reduces levels.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit2">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid plastics (especially when heating food)</div>
+                    <div class="habit-description">Plastics release xenoestrogens that mimic estrogen and reduce testosterone.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit3">
+                <div class="habit-content">
+                    <div class="habit-title">Reduce sugar consumption</div>
+                    <div class="habit-description">Sugar spikes insulin, which negatively affects hormone production.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit4">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid alcohol</div>
+                    <div class="habit-description">Alcohol directly interferes with testosterone production and affects sleep quality.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit5">
+                <div class="habit-content">
+                    <div class="habit-title">Walk in the sun every day</div>
+                    <div class="habit-description">Sunlight improves natural vitamin D production, key for testosterone.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit6">
+                <div class="habit-content">
+                    <div class="habit-title">Exercise regularly</div>
+                    <div class="habit-description">Moving every day activates your hormonal system and takes you out of sedentary mode.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit7">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid porn</div>
+                    <div class="habit-description">Excessive porn consumption reduces dopamine receptors and disrupts natural libido.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit8">
+                <div class="habit-content">
+                    <div class="habit-title">Drink enough water</div>
+                    <div class="habit-description">Chronic dehydration affects physical and hormonal performance.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit9">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid ultra-processed foods</div>
+                    <div class="habit-description">Many packaged products contain chemicals and oils that affect hormonal health.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Lifestyle Habits (Moderate Impact)</h2>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit10">
+                <div class="habit-content">
+                    <div class="habit-title">Don't wear tight underwear</div>
+                    <div class="habit-description">Excessive heat in the testicles reduces testosterone production and fertility.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit11">
+                <div class="habit-content">
+                    <div class="habit-title">Maintain good posture</div>
+                    <div class="habit-description">Expansive postures can increase testosterone and reduce cortisol.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit12">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid chronic stress</div>
+                    <div class="habit-description">Cortisol and testosterone have an inverse relationship in the body.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit13">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid excess digital dopamine</div>
+                    <div class="habit-description">TikTok, Reels, games... too much easy pleasure kills your natural motivation.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit14">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid refined carbohydrates</div>
+                    <div class="habit-description">High intake of refined carbs negatively impacts testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit15">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid refined vegetable fats</div>
+                    <div class="habit-description">Oils like soybean, corn, and canola lower your testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit16">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid vaping</div>
+                    <div class="habit-description">Vaping can affect testosterone levels and testicular function.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit17">
+                <div class="habit-content">
+                    <div class="habit-title">Avoid abdominal excess weight</div>
+                    <div class="habit-description">Abdominal fat produces estrogen and lowers testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit18">
+                <div class="habit-content">
+                    <div class="habit-title">Fast from time to time</div>
+                    <div class="habit-description">Intermittent fasting can boost testosterone and improve insulin sensitivity.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Social & Mental Habits (Variable Impact)</h2>
+            
+            <div class="habit-item impact-low">
+                <input type="checkbox" class="habit-checkbox" id="habit19">
+                <div class="habit-content">
+                    <div class="habit-title">Laugh and share with other men</div>
+                    <div class="habit-description">Laughter and male camaraderie increase natural dopamine and reduce stress.</div>
+                    <span class="impact-tag">LOW IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-low">
+                <input type="checkbox" class="habit-checkbox" id="habit20">
+                <div class="habit-content">
+                    <div class="habit-title">Control your environment</div>
+                    <div class="habit-description">What you see, hear, and follow affects your hormonal status.</div>
+                    <span class="impact-tag">LOW IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit21">
+                <div class="habit-content">
+                    <div class="habit-title">Compete against other men</div>
+                    <div class="habit-description">Competing increases testosterone, as in ancient times.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Specific Training (High Impact)</h2>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit22">
+                <div class="habit-content">
+                    <div class="habit-title">Train with heavy weights</div>
+                    <div class="habit-description">Lifting heavy weights powerfully activates testosterone production.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit23">
+                <div class="habit-content">
+                    <div class="habit-title">Do compound exercises</div>
+                    <div class="habit-description">Movements that use multiple muscle groups are more hormonally effective.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit24">
+                <div class="habit-content">
+                    <div class="habit-title">Do HIIT training</div>
+                    <div class="habit-description">High-intensity interval training improves testosterone and insulin sensitivity.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit25">
+                <div class="habit-content">
+                    <div class="habit-title">Lose extra weight</div>
+                    <div class="habit-description">Extra weight affects testosterone, especially abdominal weight.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Specific Nutrition (High Impact)</h2>
+            
+            <div class="habit-item impact-high">
+                <input type="checkbox" class="habit-checkbox" id="habit26">
+                <div class="habit-content">
+                    <div class="habit-title">Eat more healthy fats</div>
+                    <div class="habit-description">A diet with enough fat promotes greater testosterone production.</div>
+                    <span class="impact-tag">HIGH IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit27">
+                <div class="habit-content">
+                    <div class="habit-title">Brief sexual abstinence</div>
+                    <div class="habit-description">Short-term abstaining from ejaculation can transiently elevate testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit28">
+                <div class="habit-content">
+                    <div class="habit-title">Consume Zinc</div>
+                    <div class="habit-description">Zinc is directly involved in testosterone production.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit29">
+                <div class="habit-content">
+                    <div class="habit-title">Consume magnesium daily</div>
+                    <div class="habit-description">This mineral improves sleep quality and hormone production.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Supplementation (Moderate Impact)</h2>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit30">
+                <div class="habit-content">
+                    <div class="habit-title">Use proven herbs like ashwagandha or fenugreek</div>
+                    <div class="habit-description">Some natural herbs have been shown to improve testosterone and reduce cortisol.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit31">
+                <div class="habit-content">
+                    <div class="habit-title">Incorporate ginger into your diet</div>
+                    <div class="habit-description">Ginger supplementation has been shown to enhance testosterone production.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit32">
+                <div class="habit-content">
+                    <div class="habit-title">Consume pomegranate juice</div>
+                    <div class="habit-description">Studies indicate that pomegranate juice can significantly increase testosterone levels.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit33">
+                <div class="habit-content">
+                    <div class="habit-title">Ensure adequate vitamin B12 intake</div>
+                    <div class="habit-description">Low serum vitamin B12 is associated with higher risk of testosterone deficiency.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit34">
+                <div class="habit-content">
+                    <div class="habit-title">Tongkat Ali (Eurycoma longifolia) supplementation</div>
+                    <div class="habit-description">Standardized extracts have been shown in clinical trials to raise testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit35">
+                <div class="habit-content">
+                    <div class="habit-title">Mucuna pruriens (Velvet Bean) supplementation</div>
+                    <div class="habit-description">Provides the precursor L-DOPA and improves steroid hormone levels.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+            
+            <div class="habit-item impact-moderate">
+                <input type="checkbox" class="habit-checkbox" id="habit36">
+                <div class="habit-content">
+                    <div class="habit-title">Boron supplementation</div>
+                    <div class="habit-description">Boron is a trace mineral that can raise free testosterone.</div>
+                    <span class="impact-tag">MODERATE IMPACT</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="motivation-quote">
+            "Train like a beast. Eat like a warrior. Sleep like a king. Act like a man."
+        </div>
+        
+        <footer>
+            <p>Checklist based on "Testosterone: The Full Guide" by RevokesSystem</p>
+            <p>Implement these habits consistently to naturally optimize your testosterone levels.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.habit-checkbox');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const completedCount = document.getElementById('completedCount');
+            
+            // Load saved state from localStorage
+            checkboxes.forEach(checkbox => {
+                const habitId = checkbox.id;
+                const isChecked = localStorage.getItem(habitId) === 'true';
+                checkbox.checked = isChecked;
+                
+                checkbox.addEventListener('change', function() {
+                    localStorage.setItem(habitId, this.checked);
+                    updateProgress();
+                });
+            });
+            
+            function updateProgress() {
+                const checkedCount = document.querySelectorAll('.habit-checkbox:checked').length;
+                const totalCount = checkboxes.length;
+                const percentage = Math.round((checkedCount / totalCount) * 100);
+                
+                progressFill.style.width = percentage + '%';
+                progressPercent.textContent = percentage;
+                completedCount.textContent = `${checkedCount} of ${totalCount} habits completed`;
+            }
+            
+            // Initialize progress
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

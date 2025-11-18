@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="images/logo RS.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>REVOKE SYSTEM - Transform Your Mind, Master Your Body</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="RevokeSystem.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iron: {
+                            900: '#0a0a0a',
+                            800: '#1a1a1a',
+                            700: '#2a2a2a',
+                            600: '#3a3a3a',
+                        },
+                        accent: {
+                            500: '#d4af37',
+                            600: '#b8860b',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'display': ['Oswald', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+</head>
+<body class="bg-iron-900 text-gray-100">
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 md:mr-4 flex-1">
+                <p class="text-gray-300">
+                    We use cookies to improve your experience. By continuing to browse, you accept our use of cookies.
+                    <a href="#" class="text-accent-500 hover:underline">Privacy Policy</a>
+                </p>
+            </div>
+            <div class="flex space-x-3">
+                <button id="cookie-accept" class="btn-primary px-6 py-2 text-sm font-bold rounded">Accept</button>
+                <button id="cookie-reject" class="px-6 py-2 text-sm font-medium text-gray-300 border border-gray-600 rounded hover:bg-iron-700">Decline</button>
+            </div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="fixed w-full bg-iron-900 bg-opacity-90 backdrop-blur-sm z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo moved to the left -->
+            <a href="#inicio" class="flex items-center">
+                
+                <h1 class="text-2xl md:text-3xl font-display font-bold tracking-wider">
+                    <span class="text-white">REVOKE</span><span class="text-accent-500">SYSTEM</span>
+                </h1>
+            </a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#inicio" class="nav-link font-medium hover:text-accent-500">Home</a></li>
+                    <li><a href="#about" class="nav-link font-medium hover:text-accent-500">About Me</a></li>
+                    <li><a href="#ebooks" class="nav-link font-medium hover:text-accent-500">E-books</a></li>
+                    <li><a href="#articulos" class="nav-link font-medium hover:text-accent-500">Articles</a></li>
+                    <li><a href="#valores" class="nav-link font-medium hover:text-accent-500">Values</a></li>
+                    <li><a href="#soporte" class="nav-link font-medium hover:text-accent-500">Support</a></li>
+                    
+                </ul>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="p-6">
+            <div class="flex justify-end mb-8">
+                <button id="close-mobile-menu" class="text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <nav class="mt-8">
+                <ul class="space-y-6">
+                    <li><a href="#inicio" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">Home</a></li>
+                    <li><a href="#about" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">About Me</a></li>
+                    <li><a href="#ebooks" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">E-books</a></li>
+                    <li><a href="#articulos" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">Articles</a></li>
+                    <li><a href="#valores" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">Values</a></li>
+                    <li><a href="#soporte" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">Support</a></li>
+                    <li><a href="#contacto" class="block py-3 text-xl font-medium hover:text-accent-500 border-b border-iron-700">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-20 text-center">
+            <div class="max-w-3xl mx-auto animate-fade-in">
+                <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+                    Transform Your Mind.<br><span class="text-accent-500">Master Your Body.</span><br>Live Without Excuses.
+                </h2>
+                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                    Discover the principles that separate champions from followers.
+                    Our e-books will guide you toward extreme discipline and physical and mental excellence.
+                </p>
+                <a href="#ebooks" class="btn-primary inline-block px-8 py-4 text-lg font-bold rounded-full shadow-lg">
+                    Explore E-books
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-iron-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">About Me</h2>
+                    <p class="text-lg text-accent-500 mb-4">Juan - Founder of REVOKESYSTEM</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-64 h-64 flex items-center justify-center text-gray-500">
+                            <i class="fas fa-user text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 md:pl-12">
+                        <p class="text-gray-300 mb-6">
+                           I'm Juan, founder of REVOKE SYSTEM: a doctrine of masculine transformation where every product, every code, and every interaction is a ritual phase.
+                        </p>
+                        <p class="text-gray-300 mb-6">
+                           I don't come with decades of experience. I come with something more valuable: a proven system, based on scientific principles, designed to activate your most powerful version.
+                        </p>
+                        <p class="text-gray-300">
+                          Every module you see here was built with intention, backed by neuroscience, evolutionary psychology, and technical design. It's not empty motivation. It's structure.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                    <div class="bg-iron-700 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-medal text-xl text-iron-900"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 text-center">Proven methods</h3>
+                        <p class="text-gray-300 text-center">
+                           Methods based on science, not promises
+                        </p>
+                    </div>
+                    <div class="bg-iron-700 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-xl text-iron-900"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 text-center">Great results</h3>
+                        <p class="text-gray-300 text-center">
+                            Visible results from the first phase
+
+                        </p>
+                    </div>
+                    <div class="bg-iron-700 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-xl text-iron-900"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 text-center"> E-books</h3>
+                        <p class="text-gray-300 text-center">
+                             Each product is a tool of personal conquest
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- E-books Section -->
+    <section id="ebooks" class="py-20 bg-iron-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Our E-books</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    Complete guides to develop the mindset and body of a champion.
+                    Each book is a step toward personal transformation.
+                </p>
+            </div>
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="all">All</button>
+                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="disciplina">Discipline</button>
+                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="cuerpo">Body</button>
+                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="mentalidad">Mindset</button>
+                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="nutricion">Nutrition</button>
+            </div>
+            <!-- E-books Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- E-book 1 - Testosterone Guide -->
+    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="cuerpo,nutricion">
+        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center relative">
+            <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                BEST SELLER
+            </div>
+            <div class="text-center p-4">
+                <i class="fas fa-dumbbell text-5xl text-accent-500 mb-3"></i>
+                <h3 class="text-2xl font-display font-bold">Testosterone Supreme Guide</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-gray-300 mb-4">
+                The definitive protocol to naturally increase your testosterone. 36 scientifically-backed habits to unleash your hormonal potential.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Body</span>
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Nutrition</span>
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Science</span>
+            </div>
+            
+            <!-- Precios y countdown -->
+            <div class="pricing-container">
+                <div class="original-price">$45</div>
+                <div class="discount-price">$7</div>
+            </div>
+            
+            <div class="countdown-badge">
+                <div>Limited time offer!</div>
+                <div class="countdown-timer" id="countdown-ebook1">72:00:00</div>
+            </div>
+            
+            <div class="mt-6 space-y-3">
+                <div class="flex gap-3 justify-between">
+                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal1')">
+                        <i class="fas fa-info-circle mr-1"></i> Details
+                    </a>
+                    <a href="https://payhip.com/b/h2nNu" class="btn-primary px-4 py-2 rounded text-sm font-bold">
+                        <i class="fas fa-shopping-cart mr-1"></i> Buy Now
+                    </a>
+                </div>
+                <div class="flex gap-2">
+                    <a href="paypal.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fab fa-paypal mr-1"></i> PayPal
+                    </a>
+                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fas fa-coins mr-1"></i> Crypto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- E-book 2 -->
+    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="mentalidad,disciplina">
+        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center">
+            <div class="text-center p-4">
+                <i class="fas fa-brain text-5xl text-accent-500 mb-3"></i>
+                <h3 class="text-2xl font-display font-bold">Face the full guide</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-gray-300 mb-4">
+                Improve your facial attractiveness with this guide.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
+            </div>
+            
+            <!-- Precios -->
+            <div class="pricing-container mt-4">
+                <div class="original-price">$25</div>
+                <div class="discount-price">$7</div>
+            </div>
+            
+            <div class="mt-6 space-y-3">
+                <div class="flex gap-3 justify-between">
+                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal2')">
+                        <i class="fas fa-info-circle mr-1"></i> Details
+                    </a>
+                    <a href="#" class="btn-primary px-4 py-2 rounded text-sm font-bold">
+                        <i class="fas fa-shopping-cart mr-1"></i> Buy Now
+                    </a>
+                </div>
+                <div class="flex gap-2">
+                    <a href="paypal.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fab fa-paypal mr-1"></i> PayPal
+                    </a>
+                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fas fa-coins mr-1"></i> Crypto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- E-book 3 -->
+    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="disciplina,mentalidad">
+        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center">
+            <div class="text-center p-4">
+                <i class="fas fa-bullseye text-5xl text-accent-500 mb-3"></i>
+                <h3 class="text-2xl font-display font-bold">Forearm the full guide</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-gray-300 mb-4">
+                Build strong, big and powerful forearms
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
+                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
+            </div>
+            
+            <!-- Precios -->
+            <div class="pricing-container mt-4">
+                <div class="original-price">$25</div>
+                <div class="discount-price">$7</div>
+            </div>
+            
+            <div class="mt-6 space-y-3">
+                <div class="flex gap-3 justify-between">
+                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal3')">
+                        <i class="fas fa-info-circle mr-1"></i> Details
+                    </a>
+                    <a href="#" class="btn-primary px-4 py-2 rounded text-sm font-bold">
+                        <i class="fas fa-shopping-cart mr-1"></i> Buy Now
+                    </a>
+                </div>
+                <div class="flex gap-2">
+                    <a href="paypal.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fab fa-paypal mr-1"></i> PayPal
+                    </a>
+                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                        <i class="fas fa-coins mr-1"></i> Crypto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- MODALES -->
+    <!-- Modal 1 - Testosterone Guide -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal1')">&times;</button>
+            <div class="modal-badge">EXCLUSIVE OFFER</div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/5 flex items-center justify-center">
+                    <div class="w-48 h-48 bg-gradient-to-r from-gray-800 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border-4 border-dashed border-accent-500">
+                        <i class="fas fa-dumbbell text-6xl text-accent-500"></i>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="modal-header">
+                        <h2 class="text-3xl font-display font-bold mb-2">Testosterone Supreme Guide</h2>
+                        <p class="text-gray-400">The ultimate guide to maximize your masculine potential</p>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Discover the most comprehensive protocol ever created to optimize your testosterone levels 100% naturally. 
+                        This isn't another generic ebook, it's a proven system with demonstrated results.
+                    </p>
+                    
+                    <div class="pricing-container">
+                        <div class="original-price">$25.00</div>
+                        <div class="discount-price">$14.99</div>
+                    </div>
+                    
+                    <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
+                    <ul class="feature-list">
+                        <li><strong>+36 Science-Based Habits</strong> - Protocols backed by studies to increase testosterone</li>
+                        <li><strong>Theoretical-Practical Content</strong> - Detailed explanations + action plans</li>
+                        <li><strong>Daily Checklist</strong> - To implement all habits effortlessly</li>
+                        <li><strong>Supplement Guide</strong> - What to take, when and why</li>
+                        <li><strong>Exercise Routines</strong> - Specific workouts to maximize testosterone</li>
+                        <li><strong>Nutrition Plan</strong> - Specific diet with recipes and meal plan</li>
+                        <li><strong>Access to Updates</strong> - New content regularly at no additional cost</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <a href="https://payhip.com/your-link" class="btn-primary text-center flex-1">
+                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $14.99
+                        </a>
+                        <button class="btn-outline flex-1" onclick="closeModal('modal1')">
+                            <i class="fas fa-info-circle mr-2"></i> More Info
+                        </button>
+                    </div>
+                    
+                    <div class="guarantee-section">
+                        <p class="text-gray-300">
+                            <i class="fas fa-lock mr-2 text-accent-500"></i> Secure payment guaranteed | 
+                            <i class="fas fa-sync-alt mr-2 text-accent-500"></i> 30-day guarantee |
+                            <i class="fas fa-shipping-fast mr-2 text-accent-500"></i> Immediate access
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 - Iron Mindset -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal2')">&times;</button>
+            <div class="modal-badge">POPULAR</div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/5 flex items-center justify-center">
+                    <div class="w-48 h-48 bg-gradient-to-r from-gray-800 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border-4 border-dashed border-accent-500">
+                        <i class="fas fa-brain text-6xl text-accent-500"></i>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="modal-header">
+                        <h2 class="text-3xl font-display font-bold mb-2">Face the full guide</h2>
+                        <p class="text-gray-400">Forge an Attractive face</p>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                       Develop an irresistible presence with proven principles to enhance your facial structure, charisma, and overall attractiveness — building the kind of confidence that naturally commands attention and respect wherever you go.
+                    </p>
+                    
+                    <div class="pricing-container">
+                        <div class="discount-price">$7</div>
+                    </div>
+                    
+                    <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
+                    <ul class="feature-list">
+                        <li><strong>Facial Exercises </strong> - Build an atractive face</li>
+                        <li><strong>Checklist</strong> - Track your habits</li>
+                        <li><strong>Theorical knowledge</strong> -  Understand the theory behind the appeal</li>
+                        <li><strong>Skin care</strong> - Your skin is the presentation of your face</li>
+                        <li><strong>Scientifically proven habits</strong> - Science is a key weapon</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="btn-primary text-center flex-1">
+                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - 7$
+                        </a>
+                        <button class="btn-outline flex-1" onclick="closeModal('modal2')">
+                            <i class="fas fa-info-circle mr-2"></i> More Info
+                        </button>
+                    </div>
+                    
+                    <div class="guarantee-section">
+                        <p class="text-gray-300">
+                            <i class="fas fa-lock mr-2 text-accent-500"></i> Secure payment guaranteed | 
+                            <i class="fas fa-sync-alt mr-2 text-accent-500"></i> 30-day guarantee |
+                            <i class="fas fa-shipping-fast mr-2 text-accent-500"></i> Immediate access
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 - Extreme Discipline -->
+    <div id="modal3" class="modal">
+        <div class="modal-content"> 
+            <button class="close-modal" onclick="closeModal('modal3')">&times;</button>
+            <div class="modal-badge">NEW</div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/5 flex items-center justify-center">
+                    <div class="w-48 h-48 bg-gradient-to-r from-gray-800 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border-4 border-dashed border-accent-500">
+                        <i class="fas fa-bullseye text-6xl text-accent-500"></i>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="modal-header">
+                        <h2 class="text-3xl font-display font-bold mb-2">Forearm the full guide</h2>
+                        <p class="text-gray-400">Get a strong and aesthetic forearm</p>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Build unstoppable forearm strength with advanced techniques to maximize grip, endurance, and power. Transform your daily training into a ritual that sculpts your arms and elevates your physical dominance.
+                    
+                    <div class="pricing-container">
+                        <div class="discount-price">$7</div>
+                    </div>
+                    
+                    <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
+                    <ul class="feature-list">
+                        <li><strong> Formation System</strong> - Scientifically proven methods</li>
+                        <li><strong>Create strength</strong> - Strength training is different from aesthetic training.</li>
+                        <li><strong>Create aesthetic</strong> - achieve a beautiful aesthetic</li>
+                        <li><strong>creates resistance</strong> - A resistance allows you to climb. To be held on a bar for longer.</li>
+                        <li><strong>Progress Tracking Tools</strong> - Monitor and optimize your growth</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="btn-primary text-center flex-1">
+                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $7
+                        </a>
+                        <button class="btn-outline flex-1" onclick="closeModal('modal3')">
+                            <i class="fas fa-info-circle mr-2"></i> More Info
+                        </button>
+                    </div>
+                    
+                    <div class="guarantee-section">
+                        <p class="text-gray-300">
+                            <i class="fas fa-lock mr-2 text-accent-500"></i> Secure payment guaranteed | 
+                            <i class="fas fa-sync-alt mr-2 text-accent-500"></i> 30-day guarantee |
+                            <i class="fas fa-shipping-fast mr-2 text-accent-500"></i> Immediate access
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+    <!-- Articles Section -->
+    <section id="articulos" class="py-20 bg-iron-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Recent Articles</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    Discover tips, techniques, and principles to elevate your life to the next level.
+                </p>
+            </div>
+            <!-- Search -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <input type="text" id="article-search" placeholder="Search articles..." class="w-full px-4 py-3 rounded-lg bg-iron-700 border border-iron-600 focus:border-accent-500 focus:outline-none">
+                    <button class="absolute right-3 top-3 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Articles Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Article 1 -->
+    <div class="bg-iron-700 rounded-xl overflow-hidden shadow-lg">
+        <div class="h-48 bg-gradient-to-r from-gray-700 to-iron-800 flex items-center justify-center">
+            <div class="text-center p-4">
+                <i class="fas fa-mars text-4xl text-accent-500 mb-3"></i>
+                <h3 class="text-xl font-display font-bold">The Testosterone Problem</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center text-sm text-gray-400 mb-3">
+                <span>May 15, 2023</span>
+                <span class="mx-2">•</span>
+                <span>5 min read</span>
+            </div>
+            <p class="text-gray-300 mb-4">
+                Understand how habits are formed and how you can use this science to build an unbeatable life.
+            </p>
+            <a href="Testosterone.html" class="text-accent-500 font-medium hover:underline">Read More</a>
+        </div>
+    </div>
+    <!-- Article 2 -->
+    <div class="bg-iron-700 rounded-xl overflow-hidden shadow-lg">
+        <div class="h-48 bg-gradient-to-r from-gray-700 to-iron-800 flex items-center justify-center">
+            <div class="text-center p-4">
+                <i class="fas fa-heart text-4xl text-accent-500 mb-3"></i>
+                <h3 class="text-xl font-display font-bold">Attractive Problem</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center text-sm text-gray-400 mb-3">
+                <span>April 28, 2023</span>
+                <span class="mx-2">•</span>
+                <span>8 min read</span>
+            </div>
+            <p class="text-gray-300 mb-4">
+                Discover the fundamental principles of nutrition that separate champions from the rest.
+            </p>
+            <a href="#" class="text-accent-500 font-medium hover:underline">Read More</a>
+        </div>
+    </div>
+    <!-- Article 3 -->
+    <div class="bg-iron-700 rounded-xl overflow-hidden shadow-lg">
+        <div class="h-48 bg-gradient-to-r from-gray-700 to-iron-800 flex items-center justify-center">
+            <div class="text-center p-4">
+                <i class="fas fa-dumbbell text-4xl text-accent-500 mb-3"></i>
+                <h3 class="text-xl font-display font-bold">Advantages of Having a Strong Forearm</h3>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center text-sm text-gray-400 mb-3">
+                <span>April 10, 2023</span>
+                <span class="mx-2">•</span>
+                <span>6 min read</span>
+            </div>
+            <p class="text-gray-300 mb-4">
+                Learn proven techniques to eliminate procrastination and take immediate action toward your goals.
+            </p>
+            <a href="Testosterone.html" class="text-accent-500 font-medium hover:underline">Read More</a>
+        </div>
+    </div>
+</div>
+    </section>
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+    <!-- Values Section -->
+    <section id="valores" class="py-20 bg-iron-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Our Core Values</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    Principles that guide everything we do at REVOKESYSTEM.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="value-card bg-iron-700 p-8 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-iron-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-fist-raised text-2xl text-accent-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Extreme Discipline</h3>
+                    <p class="text-gray-300">
+                        Unwavering commitment to constant action, even when motivation is lacking.
+                    </p>
+                </div>
+                <!-- Value 2 -->
+                <div class="value-card bg-iron-700 p-8 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-iron-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-check text-2xl text-accent-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Radical Responsibility</h3>
+                    <p class="text-gray-300">
+                        Take 100% responsibility for your results, without excuses or victimization.
+                    </p>
+                </div>
+                <!-- Value 3 -->
+                <div class="value-card bg-iron-700 p-8 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-iron-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-medal text-2xl text-accent-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Physical and Mental Excellence</h3>
+                    <p class="text-gray-300">
+                        Constant pursuit of improvement in all aspects of life, both physical and mental.
+                    </p>
+                </div>
+                <!-- Value 4 -->
+                <div class="value-card bg-iron-700 p-8 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-iron-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lock text-2xl text-accent-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Self-Control</h3>
+                    <p class="text-gray-300">
+                        Absolute mastery over your impulses and decisions to achieve your highest goals.
+                    </p>
+                </div>
+                <!-- Value 5 -->
+                <div class="value-card bg-iron-700 p-8 rounded-xl text-center md:col-span-2 lg:col-span-1 lg:col-start-2">
+                    <div class="w-16 h-16 bg-iron-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-ban text-2xl text-accent-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Rejection of Mediocrity</h3>
+                    <p class="text-gray-300">
+                        Commitment to greatness, rejecting any behavior that doesn't lead to excellence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+    
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+    <!-- Support Section -->
+    <section id="soporte" class="py-20 bg-iron-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Technical Support</h2>
+                    <p class="max-w-2xl mx-auto text-gray-300">
+                        Find answers to frequently asked questions or contact our team directly.
+                    </p>
+                </div>
+                <!-- FAQ -->
+                <div class="bg-iron-700 rounded-2xl p-6 mb-12">
+                    <h3 class="text-2xl font-display font-bold mb-6">Frequently Asked Questions</h3>
+                    <div class="faq-item py-4">
+                        <div class="faq-question flex justify-between items-center">
+                            <h4 class="text-lg font-medium">How do I access my e-books after purchase?</h4>
+                            <i class="fas fa-chevron-down text-accent-500"></i>
+                        </div>
+                        <div class="faq-answer mt-3 pl-2 text-gray-300">
+                            <p>After completing your purchase, you'll receive an email with a download link. You can also access your e-books from your account on our website.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item py-4">
+                        <div class="faq-question flex justify-between items-center">
+                            <h4 class="text-lg font-medium">Do you offer refunds?</h4>
+                            <i class="fas fa-chevron-down text-accent-500"></i>
+                        </div>
+                        <div class="faq-answer mt-3 pl-2 text-gray-300">
+                            <p>Yes, we offer a 100% refund within 30 days of purchase if you're not satisfied with our products.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item py-4">
+                        <div class="faq-question flex justify-between items-center">
+                            <h4 class="text-lg font-medium">How often are new articles published?</h4>
+                            <i class="fas fa-chevron-down text-accent-500"></i>
+                        </div>
+                        <div class="faq-answer mt-3 pl-2 text-gray-300">
+                            <p>We publish new articles twice a week. Subscribe to our newsletter to receive notifications when we publish new content.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item py-4">
+                        <div class="faq-question flex justify-between items-center">
+                            <h4 class="text-lg font-medium">Can I share my e-books with others?</h4>
+                            <i class="fas fa-chevron-down text-accent-500"></i>
+                        </div>
+                        <div class="faq-answer mt-3 pl-2 text-gray-300">
+                            <p>E-books are protected by copyright and cannot be shared. Each purchase is for individual personal use.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Support CTA -->
+                <div class="bg-gradient-to-r from-iron-700 to-iron-800 rounded-2xl p-8 text-center">
+                    <h3 class="text-2xl font-display font-bold mb-4">Having trouble with your purchase?</h3>
+                    <p class="text-gray-300 mb-6">Our support team is ready to help you. Contact us directly to resolve any issues.</p>
+                    <a href="#contacto" class="btn-primary inline-block px-8 py-3 font-bold rounded-lg">
+                        <i class="fas fa-headset mr-2"></i> Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-iron-800 border-t border-iron-700 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <h2 class="text-2xl font-display font-bold mb-4">
+                        <span class="text-white">REVOKE</span><span class="text-accent-500">SYSTEM</span>
+                    </h2>
+                    <p class="text-gray-400 mb-4">
+                        Transforming minds and bodies through extreme discipline and personal excellence.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-accent-500 transition">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent-500 transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent-500 transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-display font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-400 hover:text-accent-500 transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-accent-500 transition">About Me</a></li>
+                        <li><a href="#ebooks" class="text-gray-400 hover:text-accent-500 transition">E-books</a></li>
+                        <li><a href="#articulos" class="text-gray-400 hover:text-accent-500 transition">Articles</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-accent-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-display font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="terms.html" class="text-gray-400 hover:text-accent-500 transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-accent-500 transition">Privacy Policy</a></li>
+                        <li><a href="refunds.html" class="text-gray-400 hover:text-accent-500 transition">Refund Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-500 transition">Legal Notice</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-display font-bold mb-4">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-accent-500"></i>
+                            <span>contacto@REVOKESYSTEM.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent-500"></i>
+                            <span>123 Success Street, Discipline City</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-iron-700 mt-12 pt-8 text-center text-gray-500">
+                <p>© REVOKESYSTEM 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="RevokeSystem.js"></script>
+ </body>
+ </html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="icon" href="images/logo RS.png">
+  <title>PayPal Direct | RevokeSystem</title>
+  <style>
+    /* Variables globales - Paleta negro, dorado, gris y blanco */
+    :root {
+      --primary-color: #D4AF37; /* Dorado principal */
+      --primary-dark: #B8860B; /* Dorado oscuro */
+      --secondary-color: #FFD700; /* Dorado brillante */
+      --text-color: #E5E5E5; /* Texto claro */
+      --text-light: #A0A0A0; /* Texto secundario */
+      --bg-color: #0A0A0A; /* Fondo negro */
+      --card-bg: #1A1A1A; /* Fondo de tarjetas gris oscuro */
+      --border-color: #333333; /* Bordes gris oscuro */
+      --success-color: #D4AF37; /* Usamos dorado para éxito */
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.7);
+      --border-radius: 12px;
+      --gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%); /* Gradiente dorado */
+    }
+
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: var(--bg-color);
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    header img {
+      width: 90px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      margin-bottom: 1rem;
+      filter: brightness(0) saturate(100%) invert(76%) sepia(39%) saturate(625%) hue-rotate(5deg) brightness(90%) contrast(90%);
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+    }
+
+    /* Texto y párrafos */
+    p, li {
+      color: var(--text-color);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Lista ordenada */
+    ol {
+      counter-reset: item;
+      list-style-type: none;
+      padding-left: 0;
+      margin: 1.5rem 0;
+    }
+
+    ol li {
+      counter-increment: item;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      position: relative;
+    }
+
+    ol li:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+      border-color: rgba(212, 175, 55, 0.2);
+      transform: translateY(-2px);
+    }
+
+    ol li::before {
+      content: counter(item);
+      background: var(--gradient);
+      color: #000;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Elementos de énfasis */
+    strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    /* Código/email de PayPal */
+    code {
+      display: block;
+      background-color: #0F0F0F;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      word-break: break-all;
+      border: 1px solid var(--border-color);
+      position: relative;
+      transition: all 0.3s ease;
+      color: var(--text-color);
+    }
+
+    code:hover {
+      background-color: #1A1A1A;
+      border-color: var(--primary-color);
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    code::after {
+      content: "📋 Copy";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gradient);
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    code:hover::after {
+      opacity: 1;
+    }
+
+    /* Email */
+    .email {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-align: center;
+      padding: 1rem;
+      width: 100%;
+      max-width: 600px;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .container {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      code::after {
+        position: static;
+        transform: none;
+        display: block;
+        margin-top: 8px;
+        opacity: 1;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container, header {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="rs.PNG" alt="RevokeSystem Logo" />
+    <h1>Pay with PayPal Direct</h1>
+  </header>
+
+  <div class="container">
+    <p>
+      If you prefer not to use PayHIP, you can also complete your purchase directly via PayPal.  
+      This method is processed manually but ensures full delivery of your product.
+    </p>
+
+    <p>To pay with PayPal:</p>
+    <ol>
+      <li>Send <strong>the price of the ebook you wish to buy</strong> to our official PayPal address:</li>
+      <code><div>linkmortal@gmail11.com</div></code>
+      <li>In the message section, write the name of the eBook you're buying.</li>
+      <li>After completing the payment, email us at <span class="email">ironmindtm@gmail.com</span>.</li>
+    </ol>
+
+    <p>
+      You'll receive your download link shortly after your payment is verified.  
+      We operate under <strong>Washington D.C. time</strong>, so please allow a few hours for confirmation.
+    </p>
+  </div>
+
+  <footer>© 2025 RevokeSystem™. All rights reserved.</footer>
+
+  <script>
+    // Agregar funcionalidad para copiar dirección de PayPal
+    document.querySelectorAll('code').forEach(code => {
+      code.addEventListener('click', function() {
+        const textToCopy = this.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = this.textContent;
+          this.textContent = '¡Copied!';
+          this.style.background = 'var(--gradient)';
+          this.style.color = '#000';
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '#0F0F0F';
+            this.style.color = 'var(--text-color)';
+          }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

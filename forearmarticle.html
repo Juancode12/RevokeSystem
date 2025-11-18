@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevokeSystem - Forearm: Your Secret Weapon</title>
+     <link rel="icon" href="images/logo RS.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Custom Properties for our color scheme */
+        :root {
+            --color-black: #0a0a0a;
+            --color-dark-gray: #1a1a1a;
+            --color-gray: #2a2a2a;
+            --color-light-gray: #888888;
+            --color-gold: #d4af37;
+            --color-light-gold: #f4e4a6;
+            --color-dark-gold: #b8941f;
+            --color-gold-transparent: rgba(212, 175, 55, 0.1);
+            --color-gold-transparent-2: rgba(212, 175, 55, 0.05);
+        }
+
+        /* CSS Houdini Paint API - Vertical Gradient Animation */
+        @property --gradient-pos {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+        }
+
+        @keyframes gradient-flow {
+            0%, 100% {
+                --gradient-pos: 0%;
+            }
+            50% {
+                --gradient-pos: 100%;
+            }
+        }
+
+        .houdini-gradient {
+            --gradient-pos: 0%;
+            position: relative;
+            animation: gradient-flow 8s ease-in-out infinite;
+        }
+
+        .houdini-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 3px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                var(--color-gold) 20%,
+                var(--color-light-gold) 40%,
+                var(--color-gold) 60%,
+                transparent 100%
+            );
+            background-position: 0% var(--gradient-pos);
+            background-size: 100% 300%;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Cascading background animation */
+        .cascading-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                linear-gradient(135deg, var(--color-black) 0%, var(--color-dark-gray) 100%);
+            overflow: hidden;
+        }
+
+        .cascade-layer {
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                var(--color-gold-transparent) 25%,
+                var(--color-gold-transparent-2) 50%,
+                var(--color-gold-transparent) 75%,
+                transparent 100%
+            );
+            animation: cascade-flow 15s linear infinite;
+            opacity: 0.3;
+        }
+
+        .cascade-layer:nth-child(1) {
+            top: -100%;
+            animation-delay: 0s;
+            background-size: 200% 100%;
+        }
+
+        .cascade-layer:nth-child(2) {
+            top: -150%;
+            animation-delay: -5s;
+            background-size: 300% 100%;
+            opacity: 0.2;
+        }
+
+        .cascade-layer:nth-child(3) {
+            top: -200%;
+            animation-delay: -10s;
+            background-size: 400% 100%;
+            opacity: 0.15;
+        }
+
+        @keyframes cascade-flow {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(50%);
+            }
+        }
+
+        /* Gold particles effect */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--color-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-float 8s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(to bottom, 
+                rgba(26, 26, 26, 0.9), 
+                rgba(10, 10, 10, 0.8));
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            color: var(--color-light-gray);
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+            position: relative;
+            background: rgba(10, 10, 10, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: var(--color-gold);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--color-light-gray);
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .highlight {
+            color: var(--color-light-gold);
+            font-weight: 600;
+        }
+
+        /* Forearm section */
+        .forearm-section {
+            padding: 60px 20px;
+            background: rgba(26, 26, 26, 0.8);
+            margin-bottom: 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .forearm-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-black), var(--color-gold), var(--color-black));
+            border-radius: 15px 15px 0 0;
+        }
+
+        .forearm-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--color-gold);
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .forearm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .forearm-card {
+            background: linear-gradient(to bottom, 
+                rgba(42, 42, 42, 0.8), 
+                rgba(26, 26, 26, 0.9));
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(3px);
+        }
+
+        .forearm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .forearm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .forearm-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .forearm-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-black);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .forearm-card h3 {
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .forearm-card p {
+            color: var(--color-light-gray);
+            font-weight: 400;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Solution section */
+        .solution-section {
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            background: rgba(10, 10, 10, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .solution-section h2 {
+            margin-bottom: 40px;
+            color: var(--color-gold);
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .solution-section p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            color: var(--color-light-gray);
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to bottom, var(--color-gold), var(--color-dark-gold));
+            color: var(--color-black);
+            padding: 18px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, 
+                rgba(26, 26, 26, 0.9), 
+                rgba(10, 10, 10, 0.8));
+            padding: 40px 0;
+            text-align: center;
+            color: var(--color-light-gray);
+            margin-top: 80px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .forearm-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .forearm-section h2, .solution-section h2 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cascading Background -->
+    <div class="cascading-background">
+        <div class="cascade-layer"></div>
+        <div class="cascade-layer"></div>
+        <div class="cascade-layer"></div>
+    </div>
+    
+    <!-- Gold Particles -->
+    <div class="gold-particles" id="particles"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo">RevokeSystem</div>
+            <p class="tagline">Redefining Personal Excellence</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero houdini-gradient">
+            <h1>Forearm: Your Secret Weapon</h1>
+            <p>In the subtle language of body language, your forearm speaks volumes before you even utter a word. It's not just a functional limb—it's a statement of strength, capability, and presence.</p>
+            <p>A well-developed forearm can transform your entire silhouette, create powerful first impressions, and give you that <span class="highlight">unshakeable confidence</span> that comes from knowing you possess genuine physical capability.</p>
+        </section>
+
+        <section class="forearm-section">
+            <h2>The Three Pillars of Forearm Dominance</h2>
+            <div class="forearm-grid">
+                <div class="forearm-card">
+                    <div class="forearm-icon">💪</div>
+                    <h3>Aesthetic Impact</h3>
+                    <p>Developed forearms create the illusion of overall strength and fitness. They're constantly visible in short sleeves, making them one of the most noticeable muscle groups. A defined forearm suggests discipline, training, and attention to physical development that commands respect in any setting.</p>
+                </div>
+                <div class="forearm-card">
+                    <div class="forearm-icon">🔥</div>
+                    <h3>Raw Strength</h3>
+                    <p>Your forearm is your primary tool for grip strength—the foundation of all upper body power. From crushing handshakes that establish dominance to the functional strength needed for daily tasks, forearm development translates directly to real-world capability. Strong forearms mean you can handle whatever life throws at you.</p>
+                </div>
+                <div class="forearm-card">
+                    <div class="forearm-icon">🛡️</div>
+                    <h3>Endurance & Resilience</h3>
+                    <p>Forearm endurance separates the occasional gym-goer from the truly capable. It's what allows you to maintain a firm grip during prolonged activities, from carrying groceries to sports performance. This endurance translates to mental toughness—the knowledge that you can persist when others would quit.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-section houdini-gradient">
+            <h2>Forge Your Weapon</h2>
+            <p>The forearm is often the most overlooked muscle group, yet it delivers the highest return on investment for your overall presence. While others focus on mirror muscles, you'll be developing the foundation of true functional strength.</p>
+            <p>Imagine walking into any room knowing your handshake communicates strength and reliability. Picture the confidence of having visible muscular development that's always on display. This isn't just about aesthetics—it's about building the physical foundation for a more commanding presence.</p>
+            <p>Ready to transform your forearms from ordinary to extraordinary?</p>
+            <a href="index.html#ebooks" class="cta-button">Unlock Forearm Mastery</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 RevokeSystem. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create gold particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 10 + 5;
+                const animationDelay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Register the Houdini Paint Worklet for vertical gradient animation
+        if ('paintWorklet' in CSS) {
+            CSS.paintWorklet.addModule(URL.createObjectURL(new Blob([`
+                registerPaint('vertical-gradient', class {
+                    static get inputProperties() { return ['--gradient-pos']; }
+                    
+                    paint(ctx, size, props) {
+                        const pos = props.get('--gradient-pos').value;
+                        
+                        // Create vertical gradient
+                        const gradient = ctx.createLinearGradient(0, 0, 0, size.height);
+                        gradient.addColorStop(0, 'transparent');
+                        gradient.addColorStop(0.2, '#d4af37');
+                        gradient.addColorStop(0.4, '#f4e4a6');
+                        gradient.addColorStop(0.6, '#d4af37');
+                        gradient.addColorStop(0.8, 'transparent');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.globalAlpha = 0.7;
+                        ctx.fillRect(0, 0, size.width, size.height);
+                    }
+                });
+            `], {type: 'application/javascript'})));
+        }
+        
+        // Fallback for browsers that don't support Houdini
+        if (!('paintWorklet' in CSS)) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .houdini-gradient::before {
+                    animation: gradient-flow 8s ease-in-out infinite;
+                }
+                
+                @keyframes gradient-flow {
+                    0%, 100% {
+                        background-position: 0% 0%;
+                    }
+                    50% {
+                        background-position: 0% 100%;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+</body>
+</html>

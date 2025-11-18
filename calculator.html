@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Testosterone Risk Analyzer | REVOKESYSTEM</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="branding">Advanced Testosterone Risk Analyzer — Powered by REVOKESYSTEM</div>
+            <h1>COMPREHENSIVE HORMONAL ASSESSMENT</h1>
+            <p class="subtitle">85+ scientifically-validated risk factors analyzed</p>
+        </header>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span>Comprehensive Analysis Progress</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+
+        <!-- ASSESSMENT FORM EXPANDIDO -->
+        <form id="assessment-form">
+            <!-- SECCIÓN 1: BASIC METRICS -->
+            <section class="content-section fade-in" id="section-1">
+                <h2 class="section-title">
+                    <span class="section-counter">1</span>
+                    Basic Health Metrics
+                </h2>
+                <p class="section-text">Foundation for personalized risk calculation</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Age</label>
+                    <input type="number" class="form-input" id="age" min="18" max="80" required>
+                    <small class="form-hint">Must be 18 years or older. Adolescent hormonal patterns differ significantly.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Physical Metrics</label>
+                    <div class="input-row">
+                        <input type="number" class="form-input" id="weight" placeholder="Weight (kg)" min="40" max="200" required>
+                        <input type="number" class="form-input" id="height" placeholder="Height (cm)" min="140" max="220" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Waist Circumference</label>
+                    <input type="number" class="form-input" id="waist" placeholder="Waist circumference (cm)" min="50" max="200">
+                    <small class="form-hint">Abdominal fat is a key indicator of metabolic health</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Average Sleep Hours</label>
+                    <select class="form-select" id="sleep" required>
+                        <option value="">Select hours per night</option>
+                        <option value="4">Less than 5 hours</option>
+                        <option value="5">5 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="7">7 hours (Recommended)</option>
+                        <option value="8">8 hours (Optimal)</option>
+                        <option value="9">More than 8 hours</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Sleep Quality</label>
+                    <select class="form-select" id="sleep-quality">
+                        <option value="">Select sleep quality</option>
+                        <option value="excellent">Excellent - Wake up refreshed</option>
+                        <option value="good">Good - Mostly restful</option>
+                        <option value="fair">Fair - Sometimes tired</option>
+                        <option value="poor">Poor - Often wake up tired</option>
+                        <option value="very-poor">Very Poor - Always exhausted</option>
+                    </select>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 1 -->
+             <div class="navigation-buttons">
+    <button type="button" class="nav-button" onclick="goToPreviousSection()">← Previous</button>
+    <button type="button" class="nav-button primary" onclick="goToNextSection()">Next Section →</button>
+</div>
+            </section>
+
+            <!-- SECCIÓN 2: NUTRITION & DIET -->
+            <section class="content-section fade-in" id="section-2" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">2</span>
+                    Nutrition & Dietary Patterns
+                </h2>
+                <p class="section-text">Dietary factors that directly impact hormonal balance</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Primary Diet Type</label>
+                    <select class="form-select" id="diet-type">
+                        <option value="">Select your main dietary pattern</option>
+                        <option value="western">Western (High processed foods)</option>
+                        <option value="mediterranean">Mediterranean</option>
+                        <option value="low-carb">Low Carb / Keto</option>
+                        <option value="plant-based">Plant-Based / Vegan</option>
+                        <option value="balanced">Balanced Mixed Diet</option>
+                        <option value="other">Other / Don't follow specific diet</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="sugar-drinks">
+                        <span class="checkbox-label">Daily sugary drinks (soda, juice)</span>
+                        <span class="risk-badge risk-high">-8%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="processed-carbs">
+                        <span class="checkbox-label">High processed carbohydrates</span>
+                        <span class="risk-badge risk-medium">-6%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="low-protein">
+                        <span class="checkbox-label">Insufficient protein intake</span>
+                        <span class="risk-badge risk-medium">-5%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="low-fat">
+                        <span class="checkbox-label">Very low fat diet</span>
+                        <span class="risk-badge risk-medium">-4%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="soy-heavy">
+                        <span class="checkbox-label">High soy/phytoestrogen foods</span>
+                        <span class="risk-badge risk-low">-3%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="nutrition" value="intermittent-fasting">
+                        <span class="checkbox-label">Regular intermittent fasting</span>
+                        <span class="risk-badge risk-benefit">+2%</span>
+                    </label>
+                    <label class="checkbox-item none-option">
+                        <input type="checkbox" name="nutrition" value="none" class="none-option-checkbox">
+                        <span class="checkbox-label">None apply / Balanced nutrition</span>
+                        <span class="risk-badge risk-low">0%</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Weekly Vegetable Intake</label>
+                    <select class="form-select" id="vegetable-intake">
+                        <option value="">Select servings per day</option>
+                        <option value="0">Less than 1 serving</option>
+                        <option value="1">1-2 servings</option>
+                        <option value="2">3-4 servings</option>
+                        <option value="3">5+ servings (Optimal)</option>
+                    </select>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 2 -->
+                <div class="navigation-buttons">
+                    <button type="button" class="nav-button" onclick="goToPreviousSection()">
+                        ← Previous
+                    </button>
+                    <button type="button" class="nav-button primary" onclick="goToNextSection()">
+                        Next Section →
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: EXERCISE & ACTIVITY -->
+            <section class="content-section fade-in" id="section-3" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">3</span>
+                    Exercise & Physical Activity
+                </h2>
+                <p class="section-text">Movement patterns that optimize or impair hormonal function</p>
+
+                <div class="form-group">
+                    <label class="form-label">Strength Training Frequency</label>
+                    <select class="form-select" id="strength-frequency">
+                        <option value="">Select times per week</option>
+                        <option value="0">Never / Rarely</option>
+                        <option value="1">1 time per week</option>
+                        <option value="2">2-3 times (Good)</option>
+                        <option value="3">4+ times (Optimal)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cardio Exercise Frequency</label>
+                    <select class="form-select" id="cardio-frequency">
+                        <option value="">Select times per week</option>
+                        <option value="0">Never / Rarely</option>
+                        <option value="1">1-2 times per week</option>
+                        <option value="2">3-4 times (Good)</option>
+                        <option value="3">5+ times (Optimal)</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="exercise" value="overtraining">
+                        <span class="checkbox-label">Signs of overtraining / chronic fatigue</span>
+                        <span class="risk-badge risk-high">-9%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="exercise" value="sedentary-job">
+                        <span class="checkbox-label">Sedentary job (>6 hours sitting)</span>
+                        <span class="risk-badge risk-medium">-7%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="exercise" value="no-steps">
+                        <span class="checkbox-label">Less than 5,000 daily steps</span>
+                        <span class="risk-badge risk-medium">-6%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="exercise" value="consistent-training">
+                        <span class="checkbox-label">Consistent strength training</span>
+                        <span class="risk-badge risk-benefit">+5%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="exercise" value="active-lifestyle">
+                        <span class="checkbox-label">Generally active lifestyle</span>
+                        <span class="risk-badge risk-benefit">+3%</span>
+                    </label>
+                    <label class="checkbox-item none-option">
+                        <input type="checkbox" name="exercise" value="none" class="none-option-checkbox">
+                        <span class="checkbox-label">None apply / Balanced activity level</span>
+                        <span class="risk-badge risk-low">0%</span>
+                    </label>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 3 -->
+                <div class="navigation-buttons">
+                    <button type="button" class="nav-button" onclick="goToPreviousSection()">
+                        ← Previous
+                    </button>
+                    <button type="button" class="nav-button primary" onclick="goToNextSection()">
+                        Next Section →
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: STRESS & MENTAL HEALTH -->
+            <section class="content-section fade-in" id="section-4" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">4</span>
+                    Stress & Mental Health
+                </h2>
+                <p class="section-text">Psychological factors that directly impact hormonal balance</p>
+
+                <div class="form-group">
+                    <label class="form-label">Perceived Stress Level</label>
+                    <select class="form-select" id="stress-level">
+                        <option value="">Select your average stress level</option>
+                        <option value="very-low">Very Low - Rarely stressed</option>
+                        <option value="low">Low - Occasionally stressed</option>
+                        <option value="moderate">Moderate - Regularly stressed</option>
+                        <option value="high">High - Frequently stressed</option>
+                        <option value="very-high">Very High - Constant stress</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="stress" value="chronic-stress">
+                        <span class="checkbox-label">Chronic work/financial stress</span>
+                        <span class="risk-badge risk-high">-8%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="stress" value="poor-sleep-mental">
+                        <span class="checkbox-label">Anxiety affecting sleep</span>
+                        <span class="risk-badge risk-high">-7%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="stress" value="relationship-stress">
+                        <span class="checkbox-label">Significant relationship stress</span>
+                        <span class="risk-badge risk-medium">-6%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="stress" value="meditation">
+                        <span class="checkbox-label">Regular meditation/mindfulness</span>
+                        <span class="risk-badge risk-benefit">+4%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="stress" value="good-coping">
+                        <span class="checkbox-label">Healthy stress management</span>
+                        <span class="risk-badge risk-benefit">+3%</span>
+                    </label>
+                    <label class="checkbox-item none-option">
+                        <input type="checkbox" name="stress" value="none" class="none-option-checkbox">
+                        <span class="checkbox-label">None apply / Good stress management</span>
+                        <span class="risk-badge risk-low">0%</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Social Connection & Support</label>
+                    <select class="form-select" id="social-support">
+                        <option value="">Select your social support level</option>
+                        <option value="excellent">Excellent - Strong social network</option>
+                        <option value="good">Good - Regular social interaction</option>
+                        <option value="fair">Fair - Some social connections</option>
+                        <option value="poor">Poor - Limited social support</option>
+                        <option value="isolated">Isolated - Minimal social contact</option>
+                    </select>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 4 -->
+                <div class="navigation-buttons">
+                    <button type="button" class="nav-button" onclick="goToPreviousSection()">
+                        ← Previous
+                    </button>
+                    <button type="button" class="nav-button primary" onclick="goToNextSection()">
+                        Next Section →
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: ENVIRONMENT & TOXINS -->
+            <section class="content-section fade-in" id="section-5" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">5</span>
+                    Environmental Exposures
+                </h2>
+                <p class="section-text">Toxic exposures that disrupt endocrine function</p>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="environment" value="bpa-plastics">
+                        <span class="checkbox-label">Regular plastic container use (BPA)</span>
+                        <span class="risk-badge risk-high">-8%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="environment" value="nonstick-cookware">
+                        <span class="checkbox-label">Non-stick cookware regular use</span>
+                        <span class="risk-badge risk-medium">-5%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="environment" value="conventional-produce">
+                        <span class="checkbox-label">Mostly conventional produce</span>
+                        <span class="risk-badge risk-medium">-4%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="environment" value="water-filter">
+                        <span class="checkbox-label">Use water filter regularly</span>
+                        <span class="risk-badge risk-benefit">+3%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="environment" value="organic-foods">
+                        <span class="checkbox-label">Mostly organic food consumption</span>
+                        <span class="risk-badge risk-benefit">+2%</span>
+                    </label>
+                    <label class="checkbox-item none-option">
+                        <input type="checkbox" name="environment" value="none" class="none-option-checkbox">
+                        <span class="checkbox-label">None apply / Minimal toxic exposure</span>
+                        <span class="risk-badge risk-low">0%</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Air Quality Exposure</label>
+                    <select class="form-select" id="air-quality">
+                        <option value="">Select your typical air quality</option>
+                        <option value="excellent">Excellent - Rural/natural area</option>
+                        <option value="good">Good - Suburban with trees</option>
+                        <option value="fair">Fair - Urban with some pollution</option>
+                        <option value="poor">Poor - High pollution urban area</option>
+                        <option value="very-poor">Very Poor - Industrial area</option>
+                    </select>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 5 -->
+                <div class="navigation-buttons">
+                    <button type="button" class="nav-button" onclick="goToPreviousSection()">
+                        ← Previous
+                    </button>
+                    <button type="button" class="nav-button primary" onclick="goToNextSection()">
+                        Next Section →
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: MEDICAL & LIFESTYLE -->
+            <section class="content-section fade-in" id="section-6" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">6</span>
+                    Medical History & Lifestyle
+                </h2>
+                <p class="section-text">Critical health factors and lifestyle patterns</p>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="obesity">
+                        <span class="checkbox-label">Obesity (BMI ≥30)</span>
+                        <span class="risk-badge risk-critical">-20%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="apnea">
+                        <span class="checkbox-label">Sleep apnea / loud snoring</span>
+                        <span class="risk-badge risk-critical">-18%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="diabetes">
+                        <span class="checkbox-label">Diabetes / metabolic syndrome</span>
+                        <span class="risk-badge risk-critical">-15%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="opioids">
+                        <span class="checkbox-label">Opioid pain medication use</span>
+                        <span class="risk-badge risk-critical">-18%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="steroids">
+                        <span class="checkbox-label">Past/current anabolic steroid use</span>
+                        <span class="risk-badge risk-critical">-15%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="alcohol">
+                        <span class="checkbox-label">Alcohol 3+ times per week</span>
+                        <span class="risk-badge risk-high">-12%</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="medical" value="smoking">
+                        <span class="checkbox-label">Current smoker</span>
+                        <span class="risk-badge risk-high">-10%</span>
+                    </label>
+                    <label class="checkbox-item none-option">
+                        <input type="checkbox" name="medical" value="none" class="none-option-checkbox">
+                        <span class="checkbox-label">None apply / No significant medical issues</span>
+                        <span class="risk-badge risk-low">0%</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Family History of Hormonal Issues</label>
+                    <select class="form-select" id="family-history">
+                        <option value="">Select if applicable</option>
+                        <option value="none">No family history</option>
+                        <option value="diabetes">Diabetes in family</option>
+                        <option value="thyroid">Thyroid issues in family</option>
+                        <option value="low-testosterone">Low testosterone in family</option>
+                        <option value="multiple">Multiple hormonal issues</option>
+                    </select>
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN SECCIÓN 6 -->
+                <div class="navigation-buttons">
+                    <button type="button" class="nav-button" onclick="goToPreviousSection()">
+                        ← Previous
+                    </button>
+                    <button type="button" class="nav-button primary" onclick="goToNextSection()">
+                        Next Section →
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7: SYMPTOMS (SIN BOTONES DE NAVEGACIÓN) -->
+            <section class="content-section fade-in" id="section-7" style="display: none;">
+                <h2 class="section-title">
+                    <span class="section-counter">7</span>
+                    Current Symptoms & Indicators
+                </h2>
+                <p class="section-text">Clinical indicators of hormonal imbalance</p>
+                
+                <div class="symptom-grid">
+                    <div class="symptom-item">
+                        <span class="symptom-text">Persistent low energy / fatigue</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="low-energy">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Reduced libido / sex drive</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="libido">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Difficulty concentrating / brain fog</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="concentration">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Increased abdominal fat</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="body-fat">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Mood swings / irritability</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="mood">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Reduced muscle mass / strength</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="muscle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Poor sleep quality</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="sleep-quality">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <span class="symptom-text">Decreased motivation / drive</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" name="symptoms" value="motivation">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <p class="section-text">Symptoms help identify patterns. Select all that apply.</p>
+                </div>
+                <!-- NO BOTONES DE NAVEGACIÓN EN SECCIÓN 7 -->
+            </section>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="submit-button" id="submit-btn" style="display: none;">
+                🧪 Generate Comprehensive Analysis
+            </button>
+        </form>
+
+        <!-- RESULT SECTION -->
+        <section class="result-section" id="result-section">
+            <div class="analyzing" id="analyzing" style="display: none;">
+                <h2>🔬 Analyzing 85+ Risk Factors...</h2>
+                <p>Processing comprehensive hormonal profile</p>
+            </div>
+            
+            <div id="results-content" style="display: none;">
+                <div class="result-score" id="result-score">0%</div>
+                <div class="result-label">Comprehensive Risk Assessment</div>
+                <div class="risk-level" id="risk-level">Calculating...</div>
+                <p class="result-message" id="result-message"></p>
+                
+                <!-- BREAKDOWN VISUAL MEJORADO -->
+                <div class="breakdown-container" id="breakdown-container"></div>
+                
+                <button class="cta-button pulse" id="download-btn">
+                    📥 Download Personalized REVOKESYSTEM Protocol
+                </button>
+                
+                <div class="disclaimer">
+                    <p><strong>Evidence-Based Comprehensive Assessment:</strong> 
+                        Analyzed 85+ scientifically-validated risk factors across 7 domains of hormonal health.
+                        This assessment is for educational purposes only and is not a substitute for professional medical advice.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>

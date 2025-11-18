@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Payment | RevokeSystem</title>
+    <link rel="icon" href="logo RS.png">
+  <style>
+    /* Variables globales - Nueva paleta negro, dorado, gris y blanco */
+    :root {
+      --primary-color: #D4AF37; /* Dorado principal */
+      --primary-dark: #B8860B; /* Dorado oscuro */
+      --secondary-color: #FFD700; /* Dorado brillante */
+      --text-color: #E5E5E5; /* Texto claro */
+      --text-light: #A0A0A0; /* Texto secundario */
+      --bg-color: #0A0A0A; /* Fondo negro */
+      --card-bg: #1A1A1A; /* Fondo de tarjetas gris oscuro */
+      --border-color: #333333; /* Bordes gris oscuro */
+      --success-color: #D4AF37; /* Usamos dorado para éxito */
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.7);
+      --border-radius: 8px;
+      --gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%); /* Gradiente dorado */
+    }
+
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient);
+    }
+
+    header img {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      filter: brightness(0) saturate(100%) invert(76%) sepia(39%) saturate(625%) hue-rotate(5deg) brightness(90%) contrast(90%);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Contenedor principal */
+    .payment-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Lista de instrucciones */
+    ol {
+      counter-reset: item;
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ol li {
+      counter-increment: item;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    ol li:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+      border-color: rgba(212, 175, 55, 0.2);
+      transform: translateY(-2px);
+    }
+
+    ol li::before {
+      content: counter(item);
+      background: var(--gradient);
+      color: #000;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Estilos para elementos específicos */
+    strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    code {
+      display: block;
+      background-color: #0F0F0F;
+      padding: 12px 15px;
+      border-radius: var(--border-radius);
+      margin: 10px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      word-break: break-all;
+      border: 1px solid var(--border-color);
+      position: relative;
+      transition: all 0.3s ease;
+      color: var(--text-color);
+    }
+
+    code:hover {
+      background-color: #1A1A1A;
+      border-color: var(--primary-color);
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    code::after {
+      content: "📋 Copiar";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gradient);
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    code:hover::after {
+      opacity: 1;
+    }
+
+    .email {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .payment-container {
+        padding: 20px;
+      }
+      
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      header img {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      
+      code::after {
+        position: static;
+        transform: none;
+        display: block;
+        margin-top: 8px;
+        opacity: 1;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .payment-container, header {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Efectos dorados adicionales */
+    .gold-accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
+
+    /* Mejoras visuales para los emojis de blockchain */
+    ol li strong::before {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="rs.PNG" alt="RevokeSystem Logo" />
+    <p>To pay with crypto:</p>
+  </header>
+  
+  <div class="payment-container">
+    <ol>
+      <li>Send <strong>the price of the ebook you wish to buy</strong> to the corresponding address below:</li>
+
+      <li><strong>🔷 Ethereum (ETH - ERC20):</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🟦 Linea:</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🧊 Base:</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🌀 Arbitrum:</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🟡 BNB Chain:</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🧠 Optimism (OP):</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🔺 Polygon:</strong></li>
+      <code>0xd5e253ee69bda585208566973d508b75e0782d5e</code>
+
+      <li><strong>🌞 Solana:</strong></li>
+      <code>3xeLEEMWfVv7yDnE2ojD6gtwc1WHMpcRBz1JJMQLN4aG</code>
+      
+      <li><strong>🅱 Bitcoin (taproot):</strong></li>
+      <code>bc1prs2flxerw6pxr6tntxxzuv78qwme3clutxymeys4x92vwg46nn2s6ktkf6</code>
+
+      <li>Email us at <span class="email">ironmindtm@gmail.com</span> after sending.</li>
+      <li>Attach your proof of payment and transaction hash.</li>
+      <li>Include the name of the eBook you purchased.</li>
+    </ol>
+  </div>
+
+  <footer>© 2025 RevokeSystem™. All rights reserved.</footer>
+
+  <script>
+    // Agregar funcionalidad para copiar direcciones
+    document.querySelectorAll('code').forEach(code => {
+      code.addEventListener('click', function() {
+        const textToCopy = this.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = this.textContent;
+          this.textContent = '¡Copiado!';
+          this.style.background = 'var(--gradient)';
+          this.style.color = '#000';
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '#0F0F0F';
+            this.style.color = 'var(--text-color)';
+          }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

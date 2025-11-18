@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Problema de la Testosterona</title>
+<script>
+// CSS Houdini Properties - Solo propiedades sin animaciones
+if ('registerProperty' in CSS) {
+  CSS.registerProperty({
+    name: '--gradient-angle',
+    syntax: '<angle>',
+    inherits: false,
+    initialValue: '45deg'
+  });
+  
+  CSS.registerProperty({
+    name: '--gold-shine',
+    syntax: '<number>',
+    inherits: false,
+    initialValue: '0.3'
+  });
+}
+
+// Paint Worklet estático
+if ('paintWorklet' in CSS) {
+  CSS.paintWorklet.addModule(URL.createObjectURL(new Blob([`
+    class GoldGradientPainter {
+      static get inputProperties() { 
+        return ['--gradient-angle', '--gold-color-1', '--gold-color-2'] 
+      }
+      
+      paint(ctx, geometry, properties) {
+        const angle = properties.get('--gradient-angle').value;
+        const color1 = properties.get('--gold-color-1')?.toString() || '#d4af37';
+        const color2 = properties.get('--gold-color-2')?.toString() || '#b8941f';
+        
+        const radians = angle * Math.PI / 180;
+        const x1 = geometry.width / 2 + Math.cos(radians) * geometry.width / 2;
+        const y1 = geometry.height / 2 + Math.sin(radians) * geometry.height / 2;
+        const x2 = geometry.width / 2 - Math.cos(radians) * geometry.width / 2;
+        const y2 = geometry.height / 2 - Math.sin(radians) * geometry.height / 2;
+        
+        const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+        gradient.addColorStop(0, color1);
+        gradient.addColorStop(1, color2);
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, geometry.width, geometry.height);
+      }
+    }
+    
+    class GoldBorderPainter {
+      static get inputProperties() { 
+        return ['--gradient-angle'] 
+      }
+      
+      paint(ctx, geometry, properties) {
+        const angle = properties.get('--gradient-angle').value;
+        
+        const radians = angle * Math.PI / 180;
+        const x1 = geometry.width / 2 + Math.cos(radians) * geometry.width / 2;
+        const y1 = geometry.height / 2 + Math.sin(radians) * geometry.height / 2;
+        const x2 = geometry.width / 2 - Math.cos(radians) * geometry.width / 2;
+        const y2 = geometry.height / 2 - Math.sin(radians) * geometry.height / 2;
+        
+        const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+        gradient.addColorStop(0, '#d4af37');
+        gradient.addColorStop(0.5, '#ffd700');
+        gradient.addColorStop(1, '#b8941f');
+        
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(1.5, 1.5, geometry.width - 3, geometry.height - 3);
+      }
+    }
+    
+    registerPaint('gold-gradient', GoldGradientPainter);
+    registerPaint('gold-border', GoldBorderPainter);
+  `], {type: 'application/javascript'})));
+}
+</script>
+<style>
+/* Propiedades CSS Houdini estáticas */
+@property --gradient-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 45deg;
+}
+
+@property --gold-shine {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.3;
+}
+
+@property --gold-color-1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #d4af37;
+}
+
+@property --gold-color-2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #b8941f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* === CARD CON HOUDINI ESTÁTICO === */
+.pinterest-card {
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(145deg, #0f0f0f, #181818);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+  
+  /* Borde Houdini estático */
+  border: 3px solid transparent;
+  background-image: 
+    paint(gold-border),
+    linear-gradient(145deg, #0f0f0f, #181818);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  --gradient-angle: 45deg;
+}
+
+/* Fondo dorado sutil con Houdini */
+.pinterest-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: paint(gold-gradient);
+  --gold-color-1: rgba(212, 175, 55, 0.08);
+  --gold-color-2: rgba(184, 148, 31, 0.04);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* === BACKGROUND === */
+.image-layer {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1080&q=80') center/cover no-repeat;
+  filter: brightness(0.4);
+  z-index: 0;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top right, rgba(10,10,10,0.92), rgba(10,10,10,0.7));
+  z-index: 1;
+}
+
+/* === CONTENT === */
+.content {
+  position: relative;
+  z-index: 2;
+  color: #f2f2f2;
+  padding: 120px 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  color: #fff;
+  text-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+h1 span {
+  color: #d4af37;
+  text-shadow: 0 0 30px rgba(212,175,55,0.8);
+  display: block;
+}
+
+h2 {
+  font-size: 1.7rem;
+  color: #d4af37;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: paint(gold-gradient);
+  --gradient-angle: 90deg;
+  box-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+
+p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  color: #d8d8d8;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.problem-list {
+  list-style: none;
+  margin: 15px 0 30px;
+}
+
+.problem-list li {
+  margin-bottom: 12px;
+  padding-left: 30px;
+  position: relative;
+  color: #e0e0e0;
+  font-size: 1.2rem;
+}
+
+.problem-list li::before {
+  content: '▸';
+  color: #d4af37;
+  font-size: 1.3rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* === BUTTON CON HOUDINI === */
+.cta-button {
+  display: inline-block;
+  background: paint(gold-gradient);
+  --gradient-angle: 45deg;
+  color: #000;
+  padding: 20px 35px 35px 45px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  align-self: flex-start;
+  margin-top: 25px;
+  border: none;
+}
+
+/* === TAG CON HOUDINI === */
+.country-tag {
+  display: inline-block;
+  background-color: rgba(34, 34, 34, 0.8);
+  color: #d4af37;
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 30px;
+  font-weight: 600;
+  border: 1px solid #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  align-self: flex-start;
+  
+  /* Borde sutil Houdini */
+  border: 1px solid transparent;
+  background-image: paint(gold-border);
+  --gradient-angle: 90deg;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.side-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background: paint(gold-gradient);
+  --gradient-angle: 180deg;
+  box-shadow: 0 0 25px rgba(212,175,55,0.6);
+  z-index: 2;
+}
+
+.watermark {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.15);
+  text-transform: uppercase;
+}
+
+/* === FALLBACKS PARA NAVEGADORES SIN HOUDINI === */
+@supports not (background: paint(something)) {
+  .pinterest-card {
+    border: 3px solid transparent;
+    background: linear-gradient(145deg, #0f0f0f, #181818) padding-box,
+                linear-gradient(45deg, #d4af37, #b8941f) border-box;
+  }
+  
+  .cta-button {
+    background: linear-gradient(45deg, #d4af37, #b8941f);
+  }
+  
+  .side-bar {
+    background: linear-gradient(to bottom, #d4af37, #b8941f);
+  }
+  
+  h2::after {
+    background: #d4af37;
+  }
+  
+  .country-tag {
+    border: 1px solid #d4af37;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="pinterest-card">
+    <div class="image-layer"></div>
+    <div class="image-overlay"></div>
+    <div class="side-bar"></div>
+    <div class="content">
+      <h1> <span>YOUR ENERGY LEVEL IS DYING: HOW TO KNOW IF YOUR TESTOSTERONE IS A SILENT THREAT?</span></h1>
+      <p>IT'S A PROVEN FACT: Male testosterone levels have entered a freefall affecting almost the entire WESTERN WORLD. This crisis isn't gradual; it's directly impacting your performance, motivation, and strength. The worst part is that the cause and the solution aren't universal..</p>
+      
+      <h2>THE INTERNAL ALARM: 4 SYMPTOMS OF A VITALITY CRISIS</h2>
+      <ul class="problem-list">
+        <li>Loss of energy, motivation, or focus</li>
+        <li>Less desire, strength, or performance</li>
+        <li>Constant fatigue and irregular sleep</li>
+        <li>Lack of purpose or discipline</li>
+        
+      </ul>
+      
+      <p>The causes vary by country: diet, chemicals, habits, culture. Below you will discover the causes and how to reverse them, depending on the country.</p>
+      
+      <div class="cta-button">View Discover the silent factor destroying men in your country.</div>
+      <div class="country-tag">#TestosteroneCrisis</div>
+    </div>
+    <div class="watermark">REVOKESYSTEM</div>
+  </div>
+</body>
+</html>

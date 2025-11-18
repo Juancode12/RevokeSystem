@@ -1,0 +1,804 @@
+/* ===== CAMARGOLOGY: SISTEMA DE DISEÑO OPTIMIZADO ===== */
+:root {
+    --primary-dark: #8b0000;
+    --primary-bright: #ff4500;
+    --gold: #FFD700;
+    --bg-dark: #0a0a0a;
+    --bg-card: rgba(30, 30, 30, 0.95);
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaa;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --success: #4CAF50;
+    --warning: #FFC107;
+    --danger: #F44336;
+    --critical: #8B0000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ===== HEADER OPTIMIZADO ===== */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.branding {
+    font-size: 0.9rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+/* ===== BOTONES DE NAVEGACIÓN ===== */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    text-align: center;
+    flex: 1;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.nav-button.primary {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    color: white;
+    border: none;
+}
+
+.nav-button.primary:hover {
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-button:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: none;
+}
+/* ===== NAVEGACIÓN RÁPIDA ===== */
+.quick-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.nav-dot.active {
+    background: var(--primary-bright);
+    transform: scale(1.2);
+}
+
+.nav-dot.completed {
+    background: var(--success);
+}
+
+.time-estimate {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    margin: 30px 0;
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ===== SECCIONES DE CONTENIDO ===== */
+.content-section {
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: var(--border-radius);
+    padding: clamp(25px, 5vw, 40px);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-dark);
+}
+
+.section-title {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--primary-bright);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-counter {
+    background: var(--primary-bright);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.section-text {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+/* ===== FORMULARIO ===== */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-bright);
+    box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.2);
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.form-select option {
+    background: var(--bg-dark);
+    color: white;
+}
+
+.form-hint {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 5px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* ===== CHECKBOX GRID ===== */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.checkbox-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-bright);
+}
+
+.checkbox-label {
+    font-size: 1rem;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.risk-badge {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.risk-critical {
+    background: var(--critical);
+    color: white;
+}
+
+.risk-high {
+    background: var(--danger);
+    color: white;
+}
+
+.risk-medium {
+    background: var(--warning);
+    color: black;
+}
+
+.risk-low {
+    background: var(--success);
+    color: white;
+}
+
+.risk-benefit {
+    background: var(--success);
+    color: white;
+}
+
+.none-option {
+    border: 1px solid var(--gold) !important;
+    background: rgba(255, 215, 0, 0.1) !important;
+}
+
+/* ===== SYMPTOM GRID ===== */
+.symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.symptom-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.symptom-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary-bright);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+/* ===== RESULT SECTION ===== */
+.result-section {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(139,0,0,0.1), rgba(255,69,0,0.1));
+    border-radius: var(--border-radius);
+    margin: 30px 0;
+    display: none;
+}
+
+.analyzing {
+    text-align: center;
+    padding: 40px;
+}
+
+.result-score {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.result-label {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.risk-level {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.risk-low {
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.risk-medium {
+    background: rgba(255, 193, 7, 0.2);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.risk-high {
+    background: rgba(244, 67, 54, 0.2);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.risk-critical {
+    background: rgba(139, 0, 0, 0.2);
+    color: var(--critical);
+    border: 1px solid var(--critical);
+}
+
+.result-message {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+
+/* ESTILOS PARA ESTIMADO DE TESTOSTERONA */
+.testosterone-estimate {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.testosterone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.testosterone-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.4em;
+}
+
+.testosterone-level {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.testosterone-range {
+    margin: 20px 0;
+}
+
+.range-bar {
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.range-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+    border-radius: 10px;
+    transition: width 2s ease-in-out;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    font-size: 0.8em;
+    color: rgba(255,255,255,0.8);
+}
+
+.testosterone-info {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.testosterone-status {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.testosterone-message {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.testosterone-recommendation {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #feca57;
+}
+
+/* COLORES PARA LOS NIVELES DE TESTOSTERONA */
+.testosterone-critical {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+}
+
+.testosterone-low {
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+    color: #2d3436;
+}
+
+.testosterone-medium {
+    background: linear-gradient(135deg, #48dbfb, #0abde3);
+    color: white;
+}
+
+.testosterone-good {
+    background: linear-gradient(135deg, #1dd1a1, #10ac84);
+    color: white;
+}
+
+.testosterone-excellent {
+    background: linear-gradient(135deg, #54a0ff, #2e86de);
+    color: white;
+}
+
+/* ===== BOTONES ===== */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+.submit-button {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-bright));
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+/* ===== BREAKDOWN VISUAL ===== */
+.breakdown-container {
+    margin: 30px 0;
+    text-align: left;
+}
+
+.breakdown-category {
+    margin-bottom: 20px;
+}
+
+.category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.breakdown-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.factor-name {
+    font-size: 0.95rem;
+}
+
+.factor-impact {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.impact-critical { color: var(--critical); }
+.impact-high { color: var(--danger); }
+.impact-medium { color: var(--warning); }
+.impact-low { color: var(--success); }
+
+.disclaimer {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--border-radius);
+}
+
+.disclaimer p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .symptom-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-score {
+        font-size: 3rem;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .content-section {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .quick-nav {
+        gap: 6px;
+    }
+    
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes analyzing {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+.analyzing {
+    animation: analyzing 1.5s infinite;
+}
