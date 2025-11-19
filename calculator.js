@@ -227,17 +227,17 @@ function estimateTestosterone(totalRisk, breakdown) {
 function getTestosteroneInterpretation(level) {
     if (level < 250) {
         return {
-            level: "CRÍTICAMENTE BAJO",
+            level: "Critically low",
             class: "testosterone-critical",
-            message: "Niveles severamente deficientes. Consulta con un endocrinólogo urgentemente.",
-            recommendation: "Evaluación médica inmediata y posible terapia de reemplazo hormonal."
+            message: "Severely deficient levels. Consult an endocrinologist urgently.",
+            recommendation: "Immediate medical evaluation and possible hormone replacement therapy."
         };
     } else if (level < 350) {
         return {
-            level: "BAJO",
+            level: "lOW",
             class: "testosterone-low",
-            message: "Niveles por debajo del óptimo. Múltiples factores están afectando tu producción hormonal.",
-            recommendation: "Enfoque agresivo en lifestyle: sueño, estrés, ejercicio y nutrición."
+            message: "Levels below optimal. Multiple factors are affecting your hormone production.",
+            recommendation: "Aggressive approach to lifestyle: sleep, stress, exercise and nutrition."
         };
     } else if (level < 500) {
         return {
