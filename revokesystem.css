@@ -31,6 +31,33 @@ body {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
+/* Botón de Payhip principal (dorado) */
+.payhip-buy-button {
+    background: linear-gradient(135deg, #d4af37, #b8860b) !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: bold !important;
+    font-family: 'Montserrat', sans-serif !important;
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    cursor: pointer !important;
+}
+
+.payhip-buy-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3) !important;
+    color: #1a1a1a !important;
+    background: linear-gradient(135deg, #b8860b, #d4af37) !important;
+}
+
+
+
+
 /* ========== MODAL STYLES ========== */
 .modal {
     display: none;

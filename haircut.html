@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haircut Selector™ - Análisis Biométrico Avanzado</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            color: #ffcc00;
+        }
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ddd;
+            font-size: 1.2rem;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.6);
+            border-radius: 10px;
+            border-left: 4px solid #ffcc00;
+        }
+        .section h2 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background: #444;
+            color: white;
+            font-size: 1rem;
+        }
+        .image-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .image-option {
+            border: 2px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .image-option:hover {
+            border-color: #ffcc00;
+            transform: scale(1.05);
+        }
+        .image-option.selected {
+            border-color: #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+        }
+        .image-option img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-option label {
+            display: block;
+            padding: 5px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ffd84d;
+        }
+        .result {
+            display: none;
+            margin-top: 30px;
+        }
+
+        /* Nuevos estilos para la sección de resultados mejorada */
+        .analysis-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+        }
+        
+        .main-recommendation {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .recommendation-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .cut-visual {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .cut-visual img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .cut-details {
+            flex: 1.5;
+            text-align: left;
+        }
+        
+        .match-badge {
+            background: #ffcc00;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .cut-name {
+            font-size: 2.5rem;
+            margin: 15px 0;
+            color: white;
+        }
+        
+        .analysis-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #ffcc00;
+        }
+        
+        .analysis-title {
+            color: #ffcc00;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .analysis-text {
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .texture-box {
+            border-left-color: #ff5555 !important;
+        }
+        
+        .texture-title {
+            color: #ff5555 !important;
+        }
+
+        /* Estilos para la sección de Evidencia de Transformación */
+        .case-study {
+            margin-top: 40px;
+            background: linear-gradient(180deg, rgba(30,30,50,0.9) 0%, rgba(20,20,30,1) 100%);
+            border: 1px solid #ffcc00;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .case-study-header {
+            background: #ffcc00;
+            color: #000;
+            padding: 15px 25px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .case-content {
+            display: flex;
+            padding: 25px;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .case-image-container {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .case-image-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: #ffcc00;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .case-details {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .cta-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(200, 50, 50, 0.3);
+            border-radius: 10px;
+            border: 1px solid #ff5555;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            background: #ff5555 !important;
+            color: white !important;
+            font-size: 1.4rem !important;
+            padding: 15px !important;
+            margin-top: 15px !important;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .logo span:first-child {
+            color: white;
+        }
+        
+        .logo span:last-child {
+            color: #ffcc00;
+        }
+        
+        /* Estilos Camargológicos */
+        .urgency-banner {
+            background: linear-gradient(90deg, #ff3333, #ff9900);
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .social-proof {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .proof-item {
+            flex: 1;
+            padding: 10px;
+        }
+        
+        .proof-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .auto-recommend {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .auto-btn {
+            background: #444;
+            color: white;
+            border: 1px solid #ffcc00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .auto-btn:hover {
+            background: #ffcc00;
+            color: black;
+        }
+        
+        .benefits-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .benefits-list li:before {
+            content: "✓";
+            color: #ffcc00;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        /* Upsell personalizado */
+        .personalized-upsell {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f) !important;
+            border: 1px solid #ffcc00 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span>REVOKE</span><span>SYSTEM</span>
+        </div>
+        
+        <!-- Banner de urgencia -->
+        <div class="urgency-banner">
+            ⚡ OFERTA DE LANZAMIENTO: Análisis biométrico gratuito por tiempo limitado ⚡
+        </div>
+        
+        <h1>Haircut Selector™</h1>
+        <p class="subtitle">Sistema de análisis biométrico avanzado para maximizar tu atractivo facial</p>
+        
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <div class="proof-item">
+                <div class="proof-number">15,347+</div>
+                <div>Clientes satisfechos</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-number">98%</div>
+                <div>Tasa de satisfacción</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-number">4.9★</div>
+                <div>Valoración promedio</div>
+            </div>
+        </div>
+        
+        <!-- Testimonio destacado -->
+        <div class="testimonial">
+            "Después de años probando cortes que no me favorecían, el análisis Geometry & Texture reveló exactamente qué necesitaba. Mi confianza ha aumentado enormemente."
+            <div class="testimonial-author">- Miguel, 32 años</div>
+        </div>
+        
+        <form id="haircutForm">
+            <!-- Botón de recomendación automática -->
+            <div class="auto-recommend">
+                <button type="button" class="auto-btn" onclick="autoRecommend()">¿No estás seguro? Obtén una recomendación automática</button>
+            </div>
+            
+            <!-- Face Shape -->
+            <div class="section">
+                <h2>A) Forma de tu Rostro</h2>
+                <div class="question">
+                    <label>¿Cuál es la forma de tu rostro?</label>
+                    <div class="image-options">
+                        <div class="image-option" onclick="selectOption('faceShape', 'oval', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M20,30 Q50,10 80,30 Q90,60 80,90 Q50,110 20,90 Q10,60 20,30' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='65' font-size='12' fill='white' text-anchor='middle'%3EOval%3C/text%3E%3C/svg%3E" alt="Oval">
+                            <label>Ovalado</label>
+                        </div>
+                        <div class="image-option" onclick="selectOption('faceShape', 'round', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='55' font-size='12' fill='white' text-anchor='middle'%3ERound%3C/text%3E%3C/svg%3E" alt="Round">
+                            <label>Redondo</label>
+                        </div>
+                        <div class="image-option" onclick="selectOption('faceShape', 'square', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='5' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='55' font-size='12' fill='white' text-anchor='middle'%3ESquare%3C/text%3E%3C/svg%3E" alt="Square">
+                            <label>Cuadrado</label>
+                        </div>
+                        <div class="image-option" onclick="selectOption('faceShape', 'rectangular', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Crect x='25' y='10' width='50' height='100' rx='5' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='65' font-size='12' fill='white' text-anchor='middle'%3ERectangular%3C/text%3E%3C/svg%3E" alt="Rectangular">
+                            <label>Rectangular</label>
+                        </div>
+                        <div class="image-option" onclick="selectOption('faceShape', 'diamond', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpolygon points='50,10 85,50 50,90 15,50' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='65' font-size='12' fill='white' text-anchor='middle'%3EDiamond%3C/text%3E%3C/svg%3E" alt="Diamond">
+                            <label>Diamante</label>
+                        </div>
+                        <div class="image-option" onclick="selectOption('faceShape', 'triangular', this)">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,10 90,90 10,90' fill='%23444' stroke='%23ffcc00' stroke-width='2'/%3E%3Ctext x='50' y='65' font-size='12' fill='white' text-anchor='middle'%3ETriangular%3C/text%3E%3C/svg%3E" alt="Triangular">
+                            <label>Triangular</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hair Type -->
+            <div class="section">
+                <h2>B) Tipo de Cabello</h2>
+                <div class="question">
+                    <label>Selecciona tu tipo de cabello:</label>
+                    <select id="hairType">
+                        <option value="">Selecciona tipo de cabello</option>
+                        <option value="straight">Liso</option>
+                        <option value="wavy">Ondulado</option>
+                        <option value="curly">Rizado</option>
+                        <option value="afro">Afro</option>
+                        <option value="fine">Fino</option>
+                        <option value="thick">Grueso</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Hair Density -->
+            <div class="section">
+                <h2>C) Densidad del Cabello</h2>
+                <div class="question">
+                    <label>¿Qué tan denso es tu cabello?</label>
+                    <select id="density">
+                        <option value="">Selecciona densidad</option>
+                        <option value="abundant">Abundante</option>
+                        <option value="medium">Media</option>
+                        <option value="low">Baja / Entradas</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Cowlick Direction -->
+            <div class="section">
+                <h2>D) Dirección del Remolino</h2>
+                <div class="question">
+                    <label>¿En qué dirección va tu remolino natural?</label>
+                    <select id="cowlick">
+                        <option value="">Selecciona dirección</option>
+                        <option value="right">Va hacia la derecha</option>
+                        <option value="left">Va hacia la izquierda</option>
+                        <option value="up">Va hacia arriba</option>
+                        <option value="unruly">Raro / indomable</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Beard -->
+            <div class="section">
+                <h2>E) Barba</h2>
+                <div class="question">
+                    <label>¿Usas barba?</label>
+                    <select id="beard">
+                        <option value="">Selecciona opción</option>
+                        <option value="no">No uso barba</option>
+                        <option value="dense">Densa</option>
+                        <option value="medium">Media</option>
+                        <option value="sparse">Rala</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Lifestyle -->
+            <div class="section">
+                <h2>F) Estilo de Vida/Estilo</h2>
+                <div class="question">
+                    <label>¿Qué estilo buscas?</label>
+                    <select id="lifestyle">
+                        <option value="">Selecciona estilo</option>
+                        <option value="professional">Profesional / limpio</option>
+                        <option value="masculine">Masculino / rudo</option>
+                        <option value="youthful">Juvenil</option>
+                        <option value="low">Bajo mantenimiento</option>
+                        <option value="zero">Requiere cero estilizado</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Lista de beneficios -->
+            <div class="section">
+                <h2>¿Qué obtendrás con tu corte perfecto?</h2>
+                <ul class="benefits-list">
+                    <li>Un estilo que realza tus mejores rasgos faciales</li>
+                    <li>Mayor confianza en tu apariencia diaria</li>
+                    <li>Complimientos frecuentes sobre tu nuevo look</li>
+                    <li>Ahorro de tiempo en el estilizado matutino</li>
+                    <li>Una imagen que refleja tu personalidad única</li>
+                </ul>
+            </div>
+            
+            <button type="button" onclick="findHaircut()">ANALIZAR MI ROSTRO</button>
+        </form>
+        
+        <div class="result" id="result">
+            <div class="analysis-header">
+                <h2 style="color: #ffcc00; font-size: 2rem; margin-bottom: 10px;">ANÁLISIS COMPLETADO</h2>
+                <p style="color: #aaa;">Hemos cruzado tus datos biométricos con nuestra base de datos de estilismo.</p>
+            </div>
+
+            <div class="main-recommendation">
+                <div class="recommendation-content">
+                    <div class="cut-visual">
+                        <img id="mainCutImg" src="" alt="Corte Recomendado">
+                    </div>
+                    <div class="cut-details">
+                        <span class="match-badge">MATCH PERFECTO (98%)</span>
+                        <h3 id="bestCutName" class="cut-name">Nombre del Corte</h3>
+                        
+                        <div class="analysis-box">
+                            <div class="analysis-title">📐 ¿Por qué este corte? (Geometría)</div>
+                            <p id="geometryReason" class="analysis-text">Explicación de la forma...</p>
+                        </div>
+                        
+                        <div class="analysis-box texture-box">
+                            <div class="analysis-title texture-title">🧪 Tu Estrategia de Textura</div>
+                            <p id="textureAdvice" class="analysis-text">Consejo sobre el tipo de pelo...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-header">
+                    <span>🧬 Tu Gemelo Genético</span>
+                    <span>Evidencia Visual</span>
+                </div>
+                <div class="case-content">
+                    <div class="case-image-container">
+                        <img id="celebImg" src="" alt="Celebrity Match">
+                        <div class="case-tag" id="celebName">Nombre Celebridad</div>
+                    </div>
+                    <div class="case-details">
+                        <h4 style="color: white; font-size: 1.4rem; margin-bottom: 15px;">"Él tiene tu misma estructura y aplicó estos cambios..."</h4>
+                        <p id="celebAnalysis" style="color: #bbb; margin-bottom: 20px; line-height: 1.6;">
+                            Análisis de cómo esta celebridad usa el corte para maximizar sus facciones.
+                        </p>
+                        <ul style="list-style: none; text-align: left; padding: 0;">
+                            <li style="margin-bottom: 10px; display: flex; align-items: center; color: #fff;">
+                                <span style="color: #ffcc00; margin-right: 10px;">✓</span> <span id="benefit1">Optimizó el ángulo mandibular.</span>
+                            </li>
+                            <li style="margin-bottom: 10px; display: flex; align-items: center; color: #fff;">
+                                <span style="color: #ffcc00; margin-right: 10px;">✓</span> <span id="benefit2">Controló el volumen lateral.</span>
+                            </li>
+                            <li style="margin-bottom: 10px; display: flex; align-items: center; color: #fff;">
+                                <span style="color: #ffcc00; margin-right: 10px;">✓</span> <span id="benefit3">Texturizó la zona superior.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section" id="personalizedUpsell">
+                <h3>¿Quieres maximizar tu rostro más allá del cabello?</h3>
+                <p>El corte es solo el 30% de tu atractivo facial. Descubre el Blueprint completo.</p>
+                <button class="cta-button" onclick="showGuide()">Desbloquear Guía Facial →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOptions = {
+            faceShape: '',
+            hairType: '',
+            density: '',
+            cowlick: '',
+            beard: '',
+            lifestyle: ''
+        };
+
+        function selectOption(category, value, element) {
+            // Remove selected class from all options in this category
+            const options = element.parentElement.querySelectorAll('.image-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Update selected value
+            selectedOptions[category] = value;
+        }
+
+        function autoRecommend() {
+            // Seleccionar opciones aleatorias para usuarios indecisos
+            const faceShapes = ['oval', 'round', 'square', 'rectangular', 'diamond', 'triangular'];
+            const hairTypes = ['straight', 'wavy', 'curly', 'afro', 'fine', 'thick'];
+            const densities = ['abundant', 'medium', 'low'];
+            const cowlicks = ['right', 'left', 'up', 'unruly'];
+            const beards = ['no', 'dense', 'medium', 'sparse'];
+            const lifestyles = ['professional', 'masculine', 'youthful', 'low', 'zero'];
+            
+            // Seleccionar aleatoriamente
+            selectedOptions.faceShape = faceShapes[Math.floor(Math.random() * faceShapes.length)];
+            document.getElementById('hairType').value = hairTypes[Math.floor(Math.random() * hairTypes.length)];
+            document.getElementById('density').value = densities[Math.floor(Math.random() * densities.length)];
+            document.getElementById('cowlick').value = cowlicks[Math.floor(Math.random() * cowlicks.length)];
+            document.getElementById('beard').value = beards[Math.floor(Math.random() * beards.length)];
+            document.getElementById('lifestyle').value = lifestyles[Math.floor(Math.random() * lifestyles.length)];
+            
+            // Resaltar la forma de cara seleccionada
+            const faceOptions = document.querySelectorAll('.image-option');
+            faceOptions.forEach(opt => {
+                if (opt.querySelector('label').textContent.toLowerCase() === selectedOptions.faceShape) {
+                    opt.classList.add('selected');
+                }
+            });
+            
+            alert("Hemos seleccionado opciones basadas en los patrones más comunes. Puedes ajustarlas según tus características específicas.");
+        }
+
+        function findHaircut() {
+            // 1. Obtener valores
+            const faceShape = document.getElementById('faceShape').value || selectedOptions.faceShape;
+            const hairType = document.getElementById('hairType').value;
+            const density = document.getElementById('density').value;
+            
+            // Validación básica
+            if (!faceShape || !hairType) {
+                alert('Por favor selecciona al menos tu Forma de Rostro y Tipo de Cabello.');
+                return;
+            }
+
+            // 2. BASES DE DATOS DE LÓGICA
+            // Lógica de Estructura (Rostro)
+            const faceLogic = {
+                oval: {
+                    cut: "Quiff Texturizado o Push Back",
+                    reason: "Tu rostro es equilibrado (el 'lienzo perfecto'). El objetivo es no cubrir tu frente para no acortar tus facciones.",
+                    celeb: "Jake Gyllenhaal",
+                    celebNote: "Jake usa volumen superior para mantener la simetría vertical sin exagerar los lados.",
+                    benefits: [
+                        "Mantiene la simetría natural de tu rostro",
+                        "Aprovecha tu frente proporcionada",
+                        "Crea volumen sin desequilibrar"
+                    ]
+                },
+                square: {
+                    cut: "Crew Cut o Undercut Clásico",
+                    reason: "Tu mandíbula es tu mejor activo. Evita volumen a los lados para no verte 'ancho'. Necesitas altura arriba para elongar.",
+                    celeb: "Henry Cavill",
+                    celebNote: "Henry mantiene los lados cortos para enfatizar su ángulo gonial masivo, dejando textura arriba.",
+                    benefits: [
+                        "Enfatiza tu ángulo mandibular fuerte",
+                        "Elonga visualmente tu rostro",
+                        "Equilibra proporciones faciales"
+                    ]
+                },
+                round: {
+                    cut: "Pompadour con High Fade",
+                    reason: "Tu rostro carece de ángulos naturales. Creamos una ilusión de estructura con altura máxima y lados muy cortos (Skin Fade).",
+                    celeb: "Zac Efron (Era actual)",
+                    celebNote: "Al añadir volumen vertical y recortar los lados, transformó una cara redonda en una silueta masculina.",
+                    benefits: [
+                        "Crea ángulos artificiales definidos",
+                        "Alarga visualmente tu rostro",
+                        "Rompe la redondez natural"
+                    ]
+                },
+                rectangular: {
+                    cut: "Fringe (Flequillo) o Side Part Bajo",
+                    reason: "Tu cara ya es larga. NO uses copetes altos. Necesitas flequillo o volumen lateral para 'acortar' visualmente el rostro.",
+                    celeb: "Keanu Reeves",
+                    celebNote: "Usa el cabello largo o con flequillo para romper la verticalidad excesiva de la frente.",
+                    benefits: [
+                        "Rompe la verticalidad facial",
+                        "Acorta visualmente tu rostro",
+                        "Suaviza líneas demasiado alargadas"
+                    ]
+                },
+                diamond: {
+                    cut: "Messy Fringe o Long Flow",
+                    reason: "Tus pómulos son anchos pero tu frente es estrecha. Necesitas cabello que caiga sobre la frente y volumen detrás de las orejas.",
+                    celeb: "Cillian Murphy",
+                    celebNote: "Utiliza un corte con textura que cae hacia adelante para equilibrar unos pómulos muy prominentes.",
+                    benefits: [
+                        "Equilibra pómulos prominentes",
+                        "Añade volumen en zonas estratégicas",
+                        "Suaviza líneas angulares marcadas"
+                    ]
+                },
+                triangular: {
+                    cut: "Textured Crop con Volumen Lateral",
+                    reason: "Tu mandíbula es más ancha que tu frente. Necesitas volumen en las sienes y arriba para equilibrar la pirámide.",
+                    celeb: "Brad Pitt",
+                    celebNote: "Mantiene volumen en los lados superiores para que la mandíbula no se vea desproporcionadamente grande.",
+                    benefits: [
+                        "Equilibra la pirámide facial",
+                        "Añade volumen en la zona temporal",
+                        "Armoniza frente y mandíbula"
+                    ]
+                }
+            };
+
+            // Lógica de Textura (Tipo de Pelo)
+            const textureLogic = {
+                straight: {
+                    tip: "⚠️ ALERTA DE VOLUMEN: Tu cabello tiende a caer plano ('Flat'). Es OBLIGATORIO pedirle al barbero 'Texturizado con tijera' y usar Polvo Voluminizador o Spray de Sal Marina.",
+                    suffix: "Texturizado"
+                },
+                wavy: {
+                    tip: "✅ VENTAJA GENÉTICA: Tienes movimiento natural. Usa una cera de fijación media para controlar, pero no elimines tus ondas. El estilo 'Messy' es tu mejor arma.",
+                    suffix: "Ondulado"
+                },
+                curly: {
+                    tip: "💧 HIDRATACIÓN: No uses peine en seco o crearás frizz. Pide un 'Taper Fade' en los lados para reducir volumen negativo y usa crema para peinar (Leave-in).",
+                    suffix: "con Rizos Definidos"
+                },
+                afro: {
+                    tip: "🔥 ESTRUCTURA: Tu cabello tiene la mejor estructura para fades. Mantén los bordes (Line-up) impecables y usa una esponja de rizos para la parte superior.",
+                    suffix: "Fade"
+                },
+                fine: {
+                    tip: "🛡️ DENSIDAD: Evita geles húmedos que agrupan el pelo y muestran el cuero cabelludo. Usa cortes cortos hacia adelante (French Crop) y productos mate secos.",
+                    suffix: "Estratégico"
+                },
+                thick: {
+                    tip: "⚖️ CONTROL: Tienes demasiado volumen. Pide entresacado (thinning) agresivo para que el peinado se sostenga sin necesitar toneladas de producto.",
+                    suffix: "con Peso Reducido"
+                }
+            };
+
+            // Fallback por si falta info
+            const fData = faceLogic[faceShape] || faceLogic['oval'];
+            const tData = textureLogic[hairType] || textureLogic['straight'];
+
+            // 3. ACTUALIZAR DOM
+            // Nombre del corte combinado
+            document.getElementById('bestCutName').textContent = `${fData.cut} ${tData.suffix ? `(${tData.suffix})` : ''}`;
+            
+            // Explicaciones
+            document.getElementById('geometryReason').textContent = fData.reason;
+            document.getElementById('textureAdvice').textContent = tData.tip;
+
+            // Datos de Celebridad (Evidencia)
+            document.getElementById('celebName').textContent = fData.celeb;
+            document.getElementById('celebAnalysis').textContent = fData.celebNote;
+
+            // Actualizar beneficios
+            document.getElementById('benefit1').textContent = fData.benefits[0];
+            document.getElementById('benefit2').textContent = fData.benefits[1];
+            document.getElementById('benefit3').textContent = fData.benefits[2];
+
+            // Personalizar upsell basado en características
+            personalizeUpsell(faceShape, density);
+
+            // Imagen Placeholder (Aquí idealmente pondrías URLs reales de tus assets)
+            const svgBg = "202030"; 
+            const svgText = "ffcc00";
+            const placeholderUrl = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23${svgBg}'/%3E%3Ctext x='50%25' y='50%25' dy='.3em' font-family='sans-serif' font-weight='bold' font-size='24' fill='%23${svgText}' text-anchor='middle'%3E${encodeURIComponent(fData.cut)}%3C/text%3E%3C/svg%3E`;
+            
+            document.getElementById('mainCutImg').src = placeholderUrl;
+            document.getElementById('celebImg').src = placeholderUrl; // Reemplazar con foto real de celebridad
+
+            // Mostrar resultados
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function personalizeUpsell(faceShape, density) {
+            const upsellSection = document.getElementById('personalizedUpsell');
+            let title, description, buttonText;
+            
+            // Lógica de upsell personalizado
+            if (density === 'low') {
+                title = "¿Problemas de densidad capilar?";
+                description = "El corte es temporal. Descubre cómo recuperar tu línea de cabello natural.";
+                buttonText = "Protocolo Derma-stamp →";
+                upsellSection.classList.add('personalized-upsell');
+            } else if (faceShape === 'round') {
+                title = "¿Cara redonda por grasa facial?";
+                description = "El corte ayuda, pero la definición mandibular real viene de dentro.";
+                buttonText = "Reducción de grasa facial en 14 días →";
+                upsellSection.classList.add('personalized-upsell');
+            } else {
+                title = "¿Quieres maximizar tu rostro más allá del cabello?";
+                description = "El corte es solo el 30% de tu atractivo facial. Descubre el Blueprint completo.";
+                buttonText = "Desbloquear Guía Facial →";
+            }
+            
+            upsellSection.querySelector('h3').textContent = title;
+            upsellSection.querySelector('p').textContent = description;
+            upsellSection.querySelector('.cta-button').textContent = buttonText;
+        }
+
+        function showGuide() {
+            alert('Redirigiendo a la guía especializada... Este es el momento perfecto para tu funnel de ventas.');
+            // Aquí iría la redirección a tu página de ventas
+        }
+    </script>
+</body>
+</html>

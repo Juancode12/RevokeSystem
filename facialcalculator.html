@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Biomarker Analysis - Scientific Attractiveness Assessment | RevokeSystem</title>
+    <meta name="description" content="86% of men underestimate their facial potential. Scientific evaluation of 25+ facial biomarkers to maximize masculine presence and dominance indicators.">
+    <link rel="icon" href="images/logo-RS.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(15, 15, 15, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.8),
+                inset 0 1px 0 rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .header-section::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #d4af37, #f4e4a6, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            font-weight: 500;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 15px;
+            border-left: 4px solid #d4af37;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(50, 50, 50, 0.5);
+        }
+
+        .form-section:hover {
+            transform: translateX(5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            color: #0a0a0a;
+            font-weight: 800;
+        }
+
+        .section-title {
+            color: #d4af37;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .question-group {
+            margin-bottom: 25px;
+        }
+
+        .question-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        .question-description {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .science-explanation {
+            color: #d4af37;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(80, 80, 80, 0.5);
+            background: rgba(30, 30, 30, 0.8);
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23d4af37' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        select:focus, input[type="range"]:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .slider-container input {
+            flex: 1;
+        }
+
+        .slider-value {
+            min-width: 60px;
+            text-align: center;
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #0a0a0a;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .calculate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .calculate-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin: 40px 0;
+        }
+
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(212, 175, 55, 0.3);
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.4rem;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 20px;
+            min-height: 32px;
+        }
+
+        .loading-subtext {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        /* Results Section */
+        .result-section {
+            display: none;
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .total-score {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #d4af37, #f4e4a6, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .score-description {
+            font-size: 1.3rem;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* Radar Chart */
+        .radar-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            margin: 40px 0;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Score Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .category-card {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(80, 80, 80, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .category-name {
+            color: #d4af37;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .category-score {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(80, 80, 80, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f4e4a6);
+            border-radius: 4px;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Type Analysis */
+        .type-analysis {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .type-title {
+            color: #d4af37;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .type-description {
+            color: #b0b0b0;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Actionable Advice */
+        .actionable-advice {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .advice-title {
+            color: #d4af37;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .advice-list {
+            list-style: none;
+        }
+
+        .advice-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(40, 40, 40, 0.6);
+            border-radius: 10px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .advice-item strong {
+            color: #d4af37;
+        }
+
+        .advice-solution {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* Psychological Lock - Blurred Report */
+        .locked-report-container {
+            position: relative;
+            margin-top: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .locked-report-header {
+            background: rgba(30,30,30,0.9);
+            padding: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .locked-report-header h3 {
+            color: #d4af37;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .locked-report-content {
+            padding: 30px;
+            background: rgba(20,20,20,0.8);
+            filter: blur(6px);
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .gate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .gate-content {
+            background: rgba(15,15,15,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            max-width: 500px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .questions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .total-score {
+                font-size: 4rem;
+            }
+            
+            .radar-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-lines"></div>
+
+    <div class="container">
+        <div class="header-section">
+            <div class="premium-badge">Advanced Biometric Assessment</div>
+            <h1>Facial Biomarker Analysis</h1>
+            <p class="subtitle">Discover your maximum potential with our scientific evaluation of 25+ facial biomarkers. Measurable results, precise protocols.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Biomarkers Analyzed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">86%</span>
+                    <span class="stat-label">Underestimate Potential</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">94%</span>
+                    <span class="stat-label">Improve in 30 Days</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Dominance Levels</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Form -->
+        <form id="calculatorForm">
+            <!-- Bone Structure Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">🦴</div>
+                    <div>
+                        <div class="section-title">Bone Structure Foundation</div>
+                        <div class="section-subtitle">Architectural base of your face</div>
+                    </div>
+                </div>
+                
+                <div class="questions-grid">
+                    <div class="question-group">
+                        <label class="question-label">Maxillary Projection</label>
+                        <div class="question-description">
+                            Determines how "forward" your mid-face is positioned.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: A retracted maxilla causes breathing issues and flat aesthetics. It's the foundation of facial beauty.
+                        </div>
+                        <select id="maxillaryProjection">
+                            <option value="10">Excellent - Optimal projection</option>
+                            <option value="7">Good - Adequate projection</option>
+                            <option value="4">Moderate - Limited projection</option>
+                            <option value="1">Weak - Marked retrognathia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Mandibular Angle</label>
+                        <div class="question-description">
+                            Definition of the jaw angle.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: The primary sexual dimorphism marker. A square jaw (near 90°) signals high androgens during development. A round jaw signals infantile development.
+                        </div>
+                        <select id="jawAngle">
+                            <option value="10">Defined - Sharp 125° angle</option>
+                            <option value="7">Normal - Standard 130° angle</option>
+                            <option value="4">Soft - Obtuse 140° angle</option>
+                            <option value="1">Rounded - No angular definition</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Zygomatic Width</label>
+                        <div class="question-description">
+                            Distance between cheekbones.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: Face width. Wide faces statistically correlate with higher success in CEO positions and combat, according to evolutionary studies.
+                        </div>
+                        <select id="zygomaticWidth">
+                            <option value="10">Wide - Powerful structure</option>
+                            <option value="8">Moderate - Balanced proportions</option>
+                            <option value="5">Narrow - Thin structure</option>
+                            <option value="2">Very narrow - Sharp face</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eye Complex Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">👁️</div>
+                    <div>
+                        <div class="section-title">Ocular Complex</div>
+                        <div class="section-subtitle">Threat and vitality indicators</div>
+                    </div>
+                </div>
+                
+                <div class="questions-grid">
+                    <div class="question-group">
+                        <label class="question-label">Canthal Tilt</label>
+                        <div class="question-description">
+                            The angle between the inner and outer corner of the eye.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: A positive tilt (hunter eyes) indicates high prenatal testosterone levels. A negative tilt projects fatigue or submission.
+                        </div>
+                        <select id="eyeTilt">
+                            <option value="10">Positive (+5°) - Hunter Gaze</option>
+                            <option value="7">Neutral (0°) - Standard Gaze</option>
+                            <option value="3">Mild Negative - Droopy Eyes</option>
+                            <option value="0">Severe Negative - "Prey" Gaze</option>
+                        </select>
+                    </div>
+
+                    <div class="question-group">
+                        <label class="question-label">Lower Scleral Show</label>
+                        <div class="question-description">
+                            The white part visible below the iris.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: "Sanpaku" eyes (visible white) indicate systemic stress or weak infraorbital bone structure.
+                        </div>
+                        <select id="scleralShow">
+                            <option value="10">None - Eyelid touches iris (Ideal)</option>
+                            <option value="6">Minimal - Barely visible</option>
+                            <option value="2">Visible - Constant tired gaze</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masculine Dimorphism Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-icon">🦍</div>
+                    <div>
+                        <div class="section-title">Masculine Dimorphism</div>
+                        <div class="section-subtitle">Biological strength signals</div>
+                    </div>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-group">
+                        <label class="question-label">Neck Thickness</label>
+                        <div class="question-description">
+                            The ratio of neck width vs. jaw width.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: A thick neck is the #1 indicator of physical strength at a distance. A thin neck neutralizes a good jawline.
+                        </div>
+                        <select id="neckWidth">
+                            <option value="10">Dominant - Wider than head</option>
+                            <option value="8">Athletic - Aligned with jaw</option>
+                            <option value="4">Thin - Narrower than jaw</option>
+                            <option value="1">Fragile - Pencil neck</option>
+                        </select>
+                    </div>
+
+                    <div class="question-group">
+                        <label class="question-label">Facial Definition (Body Fat)</label>
+                        <div class="question-description">
+                            Visibility of facial bones and muscles.
+                        </div>
+                        <div class="science-explanation">
+                            IMPACT: Facial fat hides your genetic structure. Less fat reveals the "real face".
+                        </div>
+                        <select id="faceFat">
+                            <option value="10">Chiseled - Visible cheek hollows</option>
+                            <option value="7">Defined - No puffiness</option>
+                            <option value="4">Average - Little definition</option>
+                            <option value="1">Puffy - Hidden features (Bloatmaxxing)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="calculate-btn" onclick="startAnalysis()">
+                🔍 INITIATE BIOMETRIC ANALYSIS
+            </button>
+        </form>
+
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-icon"></div>
+            <div class="loading-text" id="loadingText">Initializing analysis system...</div>
+            <div class="loading-subtext">This process takes approximately 15 seconds</div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="result-section" id="resultSection">
+            <div class="result-header">
+                <div class="result-title">Biometric Analysis Complete</div>
+                <div class="total-score" id="totalScore">0/100</div>
+                <div class="score-description" id="scoreDescription">Evaluating your potential...</div>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="radar-container">
+                <canvas id="biometricChart"></canvas>
+            </div>
+
+            <!-- Score Categories -->
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-name">Bone Structure</div>
+                    <div class="category-score" id="boneScore">0/40</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="boneProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-name">Skin Quality</div>
+                    <div class="category-score" id="skinScore">0/40</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="skinProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-name">Symmetry & Proportions</div>
+                    <div class="category-score" id="symmetryScore">0/40</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="symmetryProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-name">Specific Features</div>
+                    <div class="category-score" id="featuresScore">0/40</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="featuresProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type Analysis -->
+            <div class="type-analysis">
+                <div class="type-title" id="typeTitle">Facial Dominance Level</div>
+                <div class="type-description" id="typeDescription">
+                    Your personalized analysis will appear here...
+                </div>
+            </div>
+
+            <!-- Actionable Advice -->
+            <div class="actionable-advice" id="actionableAdvice">
+                <!-- Advice will be dynamically inserted here -->
+            </div>
+
+            <!-- Psychological Lock - Blurred Report -->
+            <div class="locked-report-container" id="lockedReport">
+                <div class="locked-report-header">
+                    <h3><span style="margin-right: 10px;">🔒</span> PERSONALIZED PROTOCOL: CONFIDENTIAL</h3>
+                </div>
+
+                <div class="locked-report-content">
+                    <h4 style="color: #e0e0e0; margin-bottom: 15px;">1. Deep Structural Analysis</h4>
+                    <p style="color: #aaa; margin-bottom: 20px;">Based on your gonial angle of [PROTECTED DATA], a deficiency in mandibular ramus development is detected. This is corrected through masseter hypertrophy using the technique of...</p>
+                    
+                    <h4 style="color: #e0e0e0; margin-bottom: 15px;">2. Suggested Supplementation (Beta Level)</h4>
+                    <ul style="color: #aaa; margin-bottom: 20px; list-style: none;">
+                        <li>• [HIDDEN] - 5g daily for bone density.</li>
+                        <li>• [HIDDEN] - To reduce facial water retention.</li>
+                        <li>• [HIDDEN] - To maximize type I collagen production.</li>
+                    </ul>
+
+                    <h4 style="color: #e0e0e0;">3. Corrective Mewing Routine</h4>
+                    <p style="color: #aaa;">Your tongue support is insufficient. You must apply the "McKenzie Suction" for 15 minutes daily to lift the hyoid bone and define the neck.</p>
+                </div>
+
+                <div class="gate-overlay">
+                    <div class="gate-content">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🔐</div>
+                        <h3 style="color: #fff; margin-bottom: 10px; font-weight: 800; font-size: 1.5rem;">ACCESS RESTRICTED</h3>
+                        <p style="color: #ccc; margin-bottom: 25px; font-size: 1rem; line-height: 1.5;">
+                            We've generated your <strong>Genetic Optimization Protocol (PDF)</strong>. It contains your facial gym routine, supplementation, and specific postural correction.
+                        </p>
+                        
+                        <input type="email" id="userEmail" placeholder="Enter your primary email..." style="width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #444; background: #222; color: white; text-align: center;">
+                        
+                        <button onclick="unlockFullReport()" class="calculate-btn" style="margin-top: 0; font-size: 1rem; padding: 15px;">
+                            SEND PROTOCOL TO MY EMAIL ➤
+                        </button>
+                        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">🔒 Encrypted data. 0% Spam. 100% Results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let myRadarChart = null;
+        let currentScores = {};
+
+        // Loading screen with progressive messages
+        function startAnalysis() {
+            document.getElementById('calculatorForm').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'block';
+            
+            const messages = [
+                "Scanning bone structure...",
+                "Analyzing facial symmetry...", 
+                "Comparing with superior percentile database...",
+                "Evaluating dermal quality...",
+                "Detecting critical asymmetries...",
+                "Calculating genetic potential...",
+                "Generating biometric report..."
+            ];
+            
+            let currentMessage = 0;
+            const loadingText = document.getElementById('loadingText');
+            
+            const messageInterval = setInterval(() => {
+                if (currentMessage < messages.length) {
+                    loadingText.textContent = messages[currentMessage];
+                    currentMessage++;
+                } else {
+                    clearInterval(messageInterval);
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        calculateScore();
+                    }, 1500);
+                }
+            }, 800);
+        }
+
+        // Update slider values
+        function updateSliderValue(sliderId, valueId) {
+            const slider = document.getElementById(sliderId);
+            const value = document.getElementById(valueId);
+            value.textContent = slider.value;
+        }
+
+        // Render radar chart
+        function renderRadarChart(bone, skin, symmetry, features) {
+            const ctx = document.getElementById('biometricChart').getContext('2d');
+            
+            if (myRadarChart) {
+                myRadarChart.destroy();
+            }
+
+            const gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 200);
+            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.2)');
+            gradient.addColorStop(1, 'rgba(212, 175, 55, 0.05)');
+
+            myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Bone Structure', 'Skin Quality', 'Golden Symmetry', 'Dominant Features'],
+                    datasets: [{
+                        label: 'Your Biometric Fingerprint',
+                        data: [bone, skin, symmetry, features],
+                        backgroundColor: gradient,
+                        borderColor: '#d4af37',
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#d4af37',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#d4af37',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            pointLabels: {
+                                color: '#d4af37',
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif",
+                                    weight: 'bold'
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 40,
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        // Calculate score with real values and actionable advice
+        function calculateScore() {
+            // 1. GET REAL VALUES FROM DOM
+            // Bone Structure
+            const maxillary = parseInt(document.getElementById('maxillaryProjection')?.value || 5);
+            const jaw = parseInt(document.getElementById('jawAngle')?.value || 5);
+            const zygomatic = parseInt(document.getElementById('zygomaticWidth')?.value || 5);
+            
+            // New Inputs
+            const eyeTilt = parseInt(document.getElementById('eyeTilt')?.value || 5);
+            const neck = parseInt(document.getElementById('neckWidth')?.value || 5);
+            const fat = parseInt(document.getElementById('faceFat')?.value || 5);
+
+            // 2. SCORE CALCULATION
+            const boneScore = Math.min(40, maxillary + jaw + zygomatic + neck); 
+            const skinScore = Math.min(40, 20); // Simplified for demo
+            const featuresScore = Math.min(40, (eyeTilt + fat) * 2);
+            
+            // Symmetry (varies based on bone structure)
+            const symmetryScore = Math.floor((boneScore / 40) * 35);
+
+            const totalScore = Math.min(100, Math.floor((boneScore + skinScore + featuresScore + symmetryScore) / 1.6));
+
+            // 3. ACTIONABLE ADVICE GENERATOR
+            let adviceHTML = '<div class="advice-title">🛠️ CRITICAL IMPROVEMENT PROTOCOLS DETECTED</div><ul class="advice-list">';
+            
+            // Advice triggers based on specific responses
+            if(jaw < 7 || neck < 7) {
+                adviceHTML += `
+                <li class="advice-item">
+                    <strong>⚠️ Lower Third Mass Deficiency:</strong> Your lower facial structure lacks mass.
+                    <div class="advice-solution">SOLUTION: Initiate chewing protocol (Hard Gum) 20min/day and isometric neck training to build foundational structure.</div>
+                </li>`;
+            }
+            
+            if(fat < 7) {
+                adviceHTML += `
+                <li class="advice-item">
+                    <strong>⚠️ Excess Adipose Tissue:</strong> Your bone structure is hidden.
+                    <div class="advice-solution">SOLUTION: Immediately reduce sodium intake and increase potassium to eliminate water retention within 72 hours.</div>
+                </li>`;
+            }
+
+            if(eyeTilt < 7) {
+                adviceHTML += `
+                <li class="advice-item">
+                    <strong>⚠️ Tired Ocular Area:</strong> Negative gaze projection.
+                    <div class="advice-solution">SOLUTION: Apply "Ice-Hooding" technique (ice on eyelids in morning) and sleep on your back to reduce periorbital swelling.</div>
+                </li>`;
+            }
+            
+            if(maxillary < 7) {
+                adviceHTML += `
+                <li class="advice-item">
+                    <strong>⚠️ Midface Deficiency:</strong> Flat facial projection affecting breathing.
+                    <div class="advice-solution">SOLUTION: Begin mewing protocol with proper tongue posture and consider nasal breathing exercises to stimulate maxillary growth.</div>
+                </li>`;
+            }
+            
+            adviceHTML += '</ul>';
+
+            // 4. UPDATE UI
+            document.getElementById('totalScore').textContent = `${totalScore}/100`;
+            document.getElementById('boneScore').textContent = `${boneScore}/40`;
+            document.getElementById('skinScore').textContent = `${skinScore}/40`;
+            document.getElementById('symmetryScore').textContent = `${symmetryScore}/40`;
+            document.getElementById('featuresScore').textContent = `${featuresScore}/40`;
+
+            // Progress bars
+            document.getElementById('boneProgress').style.width = `${(boneScore/40)*100}%`;
+            document.getElementById('skinProgress').style.width = `${(skinScore/40)*100}%`;
+            document.getElementById('symmetryProgress').style.width = `${(symmetryScore/40)*100}%`;
+            document.getElementById('featuresProgress').style.width = `${(featuresScore/40)*100}%`;
+
+            // Render Radar Chart
+            renderRadarChart(boneScore, skinScore, symmetryScore, featuresScore);
+
+            // Determine Level Texts
+            let typeTitle = '', typeDescription = '', scoreDescription = '';
+            if (totalScore >= 85) {
+                typeTitle = '🏆 ALPHA LEVEL: Structural Dominance';
+                scoreDescription = 'Top 5% Genetic Potential';
+                typeDescription = 'Your features project high biological competence and natural leadership. People unconsciously perceive you as dominant.';
+            } else if (totalScore >= 60) {
+                typeTitle = '⚡ BETA LEVEL: Latent Potential';
+                scoreDescription = 'Solid foundation with specific flaws';
+                typeDescription = 'You have superior raw material, but poor habits (oral posture, diet) are hiding your true potential.';
+            } else {
+                typeTitle = '🚨 CRITICAL LEVEL: Structural Invisibility';
+                scoreDescription = 'Immediate intervention required';
+                typeDescription = 'Your current phenotype projects weakness or poor health. Correction is vital for your social status and opportunities.';
+            }
+
+            // INJECT ANALYSIS AND ADVICE
+            document.getElementById('scoreDescription').textContent = scoreDescription;
+            document.getElementById('typeTitle').textContent = typeTitle;
+            document.getElementById('typeDescription').textContent = typeDescription;
+            document.getElementById('actionableAdvice').innerHTML = adviceHTML;
+
+            // Show results
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Enhanced unlock function with psychological triggers
+        function unlockFullReport() {
+            const emailField = document.getElementById('userEmail');
+            const btn = document.querySelector('.gate-overlay button');
+            const email = emailField.value;
+
+            if (email && email.includes('@') && email.includes('.')) {
+                // 1. Immediate visual feedback on the button
+                btn.innerHTML = '🔄 CONNECTING TO SECURE SERVER...';
+                btn.style.opacity = '0.8';
+                btn.disabled = true;
+
+                // 2. Simulated sending process (2 seconds)
+                setTimeout(() => {
+                    btn.innerHTML = '✅ SUCCESSFULLY SENT!';
+                    btn.style.background = '#28a745'; // Success green
+                    btn.style.color = '#fff';
+                    
+                    // 3. Final message and "Close"
+                    setTimeout(() => {
+                        const gateOverlay = document.querySelector('.gate-overlay > div');
+                        gateOverlay.innerHTML = `
+                            <div style="font-size: 4rem;">📨</div>
+                            <h3 style="color: #d4af37; margin: 10px 0;">Report on the Way!</h3>
+                            <p style="color: #e0e0e0; margin-bottom: 20px;">We've sent the protocol to <strong>${email}</strong>.</p>
+                            <p style="color: #aaa; font-size: 0.9rem;">Check your SPAM folder if you don't see it in 2 minutes.</p>
+                            <button onclick="location.reload()" style="background: transparent; border: 1px solid #444; color: #888; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Perform new analysis</button>
+                        `;
+                    }, 1000);
+                    
+                    // HERE: In a real implementation, you would send data to your backend/Mailchimp
+                    console.log("Email captured:", email);
+                    console.log("User data:", currentScores);
+
+                }, 2000);
+
+            } else {
+                // Error animation (shake)
+                emailField.style.border = '2px solid #ff4444';
+                emailField.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(0)' }
+                ], { duration: 300 });
+                
+                setTimeout(() => emailField.style.border = '1px solid #444', 2000);
+            }
+        }
+
+        // Initialize slider values
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize any sliders if added later
+        });
+    </script>
+</body>
+</html>
