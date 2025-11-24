@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alpha Protocol Checklist | RevokeSystem</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a1a;
+      --text: #e5e5e5;
+      --gold: #d4af37;
+      --gray: #888;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      background: var(--card);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: var(--gold);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    h2 {
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 8px;
+      margin-top: 40px;
+    }
+    .phase {
+      margin-bottom: 40px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 14px 0;
+      border-bottom: 1px solid #333;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+    li:last-child { border-bottom: none; }
+    input[type="checkbox"] {
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--gray);
+      border-radius: 6px;
+      margin-right: 16px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+    }
+    input[type="checkbox"]:checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .progress {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Alpha Protocol Checklist</h1>
+    <p style="text-align:center; color:#888;">Double Your T or I Give Your Pride Back</p>
+
+    <div class="progress">Completed: <span id="count">0</span> / <span id="total">0</span></div>
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <h2>Phase 1 – Days 1-30: Total Reset</h2>
+      <ul>
+        <li><input type="checkbox"> Sleep 10:30 PM – 6:30 AM (pitch black room)</li>
+        <li><input type="checkbox"> 20 min direct sun on torso every morning</li>
+        <li><input type="checkbox"> Cold shower 3-5 min daily</li>
+        <li><input type="checkbox"> Zero porn / masturbation / edging</li>
+        <li><input type="checkbox"> 16/8 fasting window</li>
+        <li><input type="checkbox"> Training 5× week (log every session)</li>
+        <li><input type="checkbox"> Red meat or eggs every single meal</li>
+        <li><input type="checkbox"> Zinc 50 mg + Magnesium + Boron + Tongkat + Fadogia daily</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <h2>Phase 2 – Days 31-60: Beast Building</h2>
+      <ul>
+        <li><input type="checkbox"> Training 6× week + heavy deadlift day</li>
+        <li><input type="checkbox"> 2× sprint sessions per week</li>
+        <li><input type="checkbox"> Ice bath 3-5 min, 3× week</li>
+        <li><input type="checkbox"> No social media except business</li>
+        <li><input type="checkbox"> Add Cistanche + Shilajit + Pine Pollen</li>
+        <li><input type="checkbox"> Daily aggression ritual in mirror</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <h2>Phase 3 – Days 61-90: Dominance</h2>
+      <ul>
+        <li><input type="checkbox"> Max 1 release every 10-14 days</li>
+        <li><input type="checkbox"> Compete daily (gym PRs, cold approach, business)</li>
+        <li><input type="checkbox"> 20-30 % strength increase vs Day 1</li>
+        <li><input type="checkbox"> Day 90 photos + new test score</li>
+        <li><input type="checkbox"> Send results to RevokeSystem</li>
+      </ul>
+    </div>
+
+    <footer>RevokeSystem © 2025 – Become Dangerous</footer>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const countSpan = document.getElementById('count');
+    const totalSpan = document.getElementById('total');
+
+    totalSpan.textContent = checkboxes.length;
+
+    function updateProgress() {
+      const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+      countSpan.textContent = checked;
+      document.title = `(${checked}/${checkboxes.length}) Alpha Protocol`;
+    }
+
+    checkboxes.forEach(box => {
+      box.addEventListener('change', updateProgress);
+    });
+
+    updateProgress(); // inicial
+  </script>
+</body>
+</html>
