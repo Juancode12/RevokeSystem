@@ -137,86 +137,14 @@ const riskWeights = {
 let currentSection = 0;
 let sections = [];
 
-// ===== ESTIMADOR DE TESTOSTERONA =====
+// ===== ESTIMADOR DE TESTOSTERONA CORREGIDO =====
 function estimateTestosterone(totalRisk, breakdown) {
     // Base de testosterona para hombre adulto sano
     let baseTestosterone = 700; // ng/dL (promedio para hombre joven saludable)
     
-    // Factores de ajuste basados en el riesgo calculado
-    let testosteroneLevel = baseTestosterone;
-    
-    // Ajuste por edad (ya considerado en el risk score)
-    const age = parseInt(document.getElementById('age').value);
-    if (age >= 50) {
-        testosteroneLevel *= 0.7; // -30% para 50+
-    } else if (age >= 40) {
-        testosteroneLevel *= 0.8; // -20% para 40-49
-    } else if (age >= 30) {
-        testosteroneLevel *= 0.9; // -10% para 30-39
-    }
-    
-    // Ajuste por IMC
-    const bmi = calculateBMI();
-    if (bmi >= 30) {
-        testosteroneLevel *= 0.7; // Obesidad: -30%
-    } else if (bmi >= 25) {
-        testosteroneLevel *= 0.85; // Sobrepeso: -15%
-    }
-    
-    // Ajuste por sueño
-    const sleep = document.getElementById('sleep').value;
-    if (sleep === '4') {
-        testosteroneLevel *= 0.75; // <5h: -25%
-    } else if (sleep === '5') {
-        testosteroneLevel *= 0.85; // 5h: -15%
-    } else if (sleep === '6') {
-        testosteroneLevel *= 0.9; // 6h: -10%
-    } else if (sleep === '7') {
-        testosteroneLevel *= 0.95; // 7h: -5%
-    }
-    
-    // Ajuste por calidad de sueño
-    const sleepQuality = document.getElementById('sleep-quality').value;
-    if (sleepQuality === 'very-poor') {
-        testosteroneLevel *= 0.8;
-    } else if (sleepQuality === 'poor') {
-        testosteroneLevel *= 0.9;
-    } else if (sleepQuality === 'excellent') {
-        testosteroneLevel *= 1.05;
-    }
-    
-    // Ajuste por estrés
-    const stressLevel = document.getElementById('stress-level').value;
-    if (stressLevel === 'very-high') {
-        testosteroneLevel *= 0.75;
-    } else if (stressLevel === 'high') {
-        testosteroneLevel *= 0.85;
-    } else if (stressLevel === 'moderate') {
-        testosteroneLevel *= 0.95;
-    } else if (stressLevel === 'very-low') {
-        testosteroneLevel *= 1.05;
-    }
-    
-    // Ajuste por ejercicio
-    const strengthFreq = document.getElementById('strength-frequency').value;
-    if (strengthFreq === '3') {
-        testosteroneLevel *= 1.15; // 4+ veces: +15%
-    } else if (strengthFreq === '2') {
-        testosteroneLevel *= 1.05; // 2-3 veces: +5%
-    } else if (strengthFreq === '0') {
-        testosteroneLevel *= 0.85; // Nunca: -15%
-    }
-    
-    // Ajuste por factores críticos
-    if (breakdown.some(item => item.category === 'critical' && Math.abs(item.impact) >= 15)) {
-        testosteroneLevel *= 0.7; // Factores críticos severos
-    } else if (breakdown.some(item => item.category === 'critical')) {
-        testosteroneLevel *= 0.8; // Factores críticos moderados
-    }
-    
-    // Ajuste final basado en el risk score total
-    const riskAdjustment = 1 - (totalRisk / 200); // Ajuste proporcional al riesgo
-    testosteroneLevel *= riskAdjustment;
+    // ÚNICO ajuste: basado en el risk score total (eliminados ajustes redundantes)
+    const riskAdjustment = 1 - (totalRisk / 200);
+    let testosteroneLevel = baseTestosterone * riskAdjustment;
     
     // Limitar rango fisiológico realista (150-1200 ng/dL)
     testosteroneLevel = Math.max(150, Math.min(1200, testosteroneLevel));
@@ -234,7 +162,7 @@ function getTestosteroneInterpretation(level) {
         };
     } else if (level < 350) {
         return {
-            level: "lOW",
+            level: "LOW",
             class: "testosterone-low",
             message: "Levels below optimal. Multiple factors are affecting your hormone production.",
             recommendation: "Aggressive approach to lifestyle: sleep, stress, exercise and nutrition."
@@ -777,7 +705,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // BMI
+        // BMI - SOLO UNA EVALUACIÓN (eliminada doble penalización)
         if (bmi >= 30) {
             totalRisk += riskWeights.obesity;
             breakdown.push({
@@ -826,8 +754,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // CALCULAR SCORE FINAL Y TESTOSTERONA
-        const finalScore = Math.min(Math.max(totalRisk, 0), 100);
+        // CALCULAR SCORE FINAL SIN LÍMITE ARTIFICIAL DE 100%
+        const finalScore = Math.max(totalRisk, 0); // ELIMINADO: Math.min(..., 100)
         const testosteroneLevel = estimateTestosterone(finalScore, breakdown);
 
         // LLAMAR A DISPLAY CON TODOS LOS PARÁMETROS
@@ -840,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         animateValue(document.getElementById('result-score'), 0, score, 1500);
 
-        // Determinar nivel de riesgo
+        // Determinar nivel de riesgo (con score ahora puede ser >100)
         let level, message, levelClass;
         if (score >= 70) {
             level = "CRITICAL HORMONAL RISK";
