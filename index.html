@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -191,158 +191,234 @@
         </div>
     </section>
     <!-- E-books Section -->
-    <section id="ebooks" class="py-20 bg-iron-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Our E-books</h2>
-                <p class="max-w-2xl mx-auto text-gray-300">
-                    Complete guides to develop the mindset and body of a champion.
-                    Each book is a step toward personal transformation.
-                </p>
-            </div>
-            <!-- Filters -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="all">All</button>
-                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="disciplina">Discipline</button>
-                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="cuerpo">Body</button>
-                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="mentalidad">Mindset</button>
-                <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="nutricion">Nutrition</button>
-            </div>
-            <!-- E-books Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- E-book 1 - Testosterone Guide -->
-    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="cuerpo,nutricion">
-        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center relative">
-            <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                BEST SELLER
-            </div>
-            <div class="text-center p-4">
-                <i class="fas fa-dumbbell text-5xl text-accent-500 mb-3"></i>
-                <h3 class="text-2xl font-display font-bold">Testosterone Supreme Guide</h3>
-            </div>
-        </div>
-        <div class="p-6">
-            <p class="text-gray-300 mb-4">
-                The definitive protocol to naturally increase your testosterone. 36 scientifically-backed habits to unleash your hormonal potential.
+<section id="ebooks" class="py-20 bg-iron-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Our E-books</h2>
+            <p class="max-w-2xl mx-auto text-gray-300">
+                Complete guides to develop the mindset and body of a champion.
+                Each book is a step toward personal transformation.
             </p>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Body</span>
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Nutrition</span>
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Science</span>
-            </div>
-            
-            <!-- Precios y countdown -->
-            <div class="pricing-container">
-                <div class="original-price">$45</div>
-                <div class="discount-price">$10</div>
-            </div>
-            
-            <div class="countdown-badge">
-                <div>Limited time offer!</div>
-                <div class="countdown-timer" id="countdown-ebook1">72:00:00</div>
-            </div>
-            
-            <div class="mt-6 space-y-3">
-                <div class="flex gap-3 justify-between">
-                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal1')">
-                        <i class="fas fa-info-circle mr-1"></i> Details
-                    </a>
+        </div>
+        
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="disciplina">Discipline</button>
+            <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="cuerpo">Body</button>
+            <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="mentalidad">Mindset</button>
+            <button class="filter-btn px-4 py-2 bg-iron-700 rounded-full text-sm font-medium hover:bg-accent-500 hover:text-iron-900 transition" data-filter="nutricion">Nutrition</button>
+        </div>
+        
+        <!-- E-books Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- E-book 1 - Testosterone Guide -->
+            <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="cuerpo,nutricion">
+                <div class="h-48 relative">
+                    <!-- Badge BEST SELLER -->
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                        BEST SELLER
+                    </div>
                     
+                    <!-- Imagen del e-book (SOLO IMAGEN, sin texto superpuesto) -->
+                    <div class="w-full h-full">
+                        <!-- Reemplaza esta URL con la imagen de tu e-book -->
+                        <img src="images/testo image.avif" 
+                             alt="Testosterone Supreme Guide" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Título sobre la imagen (opcional, pero no cubre toda la imagen) -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <h3 class="text-xl font-display font-bold text-white">Testosterone Supreme Guide</h3>
+                    </div>
                 </div>
-                <div class="flex gap-2">
-                   <a href="https://payhip.com/b/h2nNu" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
-                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
-                        <i class="fas fa-coins mr-1"></i> Crypto
-                    </a>
+                
+                <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                        The definitive protocol to naturally increase your testosterone. 36 scientifically-backed habits to unleash your hormonal potential.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Body</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Nutrition</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Science</span>
+                    </div>
+                    
+                    <!-- Precios y countdown -->
+                    <div class="pricing-container mt-4">
+                        <div class="original-price">$45</div>
+                        <div class="discount-price">$10</div>
+                    </div>
+                    
+                    <div class="countdown-badge mt-2">
+                        <div>Limited time offer!</div>
+                        <div class="countdown-timer" id="countdown-ebook1">72:00:00</div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-3">
+                        <div class="flex gap-3 justify-between">
+                            <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal1')">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </a>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://payhip.com/b/h2nNu" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
+                            <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                                <i class="fas fa-coins mr-1"></i> Crypto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- E-book 2 -->
+            <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="mentalidad,disciplina">
+                <div class="h-48 relative">
+                    <!-- Imagen del e-book -->
+                    <div class="w-full h-full">
+                        <!-- Reemplaza esta URL con la imagen de tu e-book -->
+                        <img src="images/face.png" 
+                             alt="Face the Full Guide" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Título sobre la imagen -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <h3 class="text-xl font-display font-bold text-white">Face the Full Guide</h3>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                        Improve your facial attractiveness with this guide.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
+                    </div>
+                    
+                    <!-- Precios -->
+                    <div class="pricing-container mt-4">
+                        <div class="original-price">$35</div>
+                        <div class="discount-price">$10</div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-3">
+                        <div class="flex gap-3 justify-between">
+                            <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal2')">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </a>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://payhip.com/b/yuaLi" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
+                            <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                                <i class="fas fa-coins mr-1"></i> Crypto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- E-book 3 -->
+            <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="disciplina,mentalidad">
+                <div class="h-48 relative">
+                    <!-- Imagen del e-book -->
+                    <div class="w-full h-full">
+                        <!-- Reemplaza esta URL con la imagen de tu e-book -->
+                        <img src="images/forearm.png" 
+                             alt="Forearm the Full Guide" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Título sobre la imagen -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <h3 class="text-xl font-display font-bold text-white">Forearm the Full Guide</h3>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                        Build strong, big and powerful forearms
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
+                    </div>
+                    
+                    <!-- Precios -->
+                    <div class="pricing-container mt-4">
+                        <div class="original-price">$25</div>
+                        <div class="discount-price">$10</div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-3">
+                        <div class="flex gap-3 justify-between">
+                            <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal3')">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </a>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://payhip.com/b/WKnm0" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
+                            <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                                <i class="fas fa-coins mr-1"></i> Crypto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- E-book 4 - Discipline -->
+            <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="disciplina,mentalidad">
+                <div class="h-48 relative">
+                    <!-- Imagen del e-book -->
+                    <div class="w-full h-full">
+                        <!-- Reemplaza esta URL con la imagen de tu e-book -->
+                        <img src="images/Disciplined image.png" 
+                             alt="Discipline" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Título sobre la imagen -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <h3 class="text-xl font-display font-bold text-white">Discipline</h3>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                        Master the art of discipline and unlock your full potential with proven strategies and daily habits.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
+                        <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Habits</span>
+                    </div>
+                    
+                    <!-- Precios -->
+                    <div class="pricing-container mt-4">
+                        <div class="original-price">$35</div>
+                        <div class="discount-price">$10</div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-3">
+                        <div class="flex gap-3 justify-between">
+                            <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal4')">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </a>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://payhip.com/b/WKnm0" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
+                            <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
+                                <i class="fas fa-coins mr-1"></i> Crypto
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     
-    <!-- E-book 2 -->
-    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="mentalidad,disciplina">
-        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center">
-            <div class="text-center p-4">
-                <i class="fas fa-brain text-5xl text-accent-500 mb-3"></i>
-                <h3 class="text-2xl font-display font-bold">Face the full guide</h3>
-            </div>
-        </div>
-        <div class="p-6">
-            <p class="text-gray-300 mb-4">
-                Improve your facial attractiveness with this guide.
-            </p>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
-            </div>
-            
-            <!-- Precios -->
-            <div class="pricing-container mt-4">
-                <div class="original-price">$35</div>
-                <div class="discount-price">$10</div>
-            </div>
-            
-            <div class="mt-6 space-y-3">
-                <div class="flex gap-3 justify-between">
-                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal2')">
-                        <i class="fas fa-info-circle mr-1"></i> Details
-                    </a>
-                    
-                </div>
-                <div class="flex gap-2">
-                     <a href="https://payhip.com/b/yuaLi" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
-
-                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
-                        <i class="fas fa-coins mr-1"></i> Crypto
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- E-book 3 -->
-    <div class="ebook-card bg-iron-700 rounded-xl overflow-hidden shadow-xl" data-category="disciplina,mentalidad">
-        <div class="h-48 bg-gradient-to-r from-gray-800 to-iron-900 flex items-center justify-center">
-            <div class="text-center p-4">
-                <i class="fas fa-bullseye text-5xl text-accent-500 mb-3"></i>
-                <h3 class="text-2xl font-display font-bold">Forearm the full guide</h3>
-            </div>
-        </div>
-        <div class="p-6">
-            <p class="text-gray-300 mb-4">
-                Build strong, big and powerful forearms
-            </p>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Discipline</span>
-                <span class="px-3 py-1 bg-iron-600 rounded-full text-xs">Mindset</span>
-            </div>
-            
-            <!-- Precios -->
-            <div class="pricing-container mt-4">
-                <div class="original-price">$25</div>
-                <div class="discount-price">$10</div>
-            </div>
-            
-            <div class="mt-6 space-y-3">
-                <div class="flex gap-3 justify-between">
-                    <a href="#" class="text-sm font-medium hover:text-accent-500 transition flex items-center" onclick="openModal('modal3')">
-                        <i class="fas fa-info-circle mr-1"></i> Details
-                    </a>
-                    
-                </div>
-                <div class="flex gap-2">
-                    <a href="https://payhip.com/b/WKnm0" class="payhip-buy-button flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition" data-theme="green" data-product="h2nNu">Buy Now</a>
-
-                    <a href="crypto.html" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-center py-2 rounded text-sm font-medium transition">
-                        <i class="fas fa-coins mr-1"></i> Crypto
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <!-- MODALES -->
     <!-- Modal 1 - Testosterone Guide -->
     <div id="modal1" class="modal">
         <div class="modal-content">
@@ -383,7 +459,7 @@
                     </ul>
                     
                     <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="https://payhip.com/your-link" class="btn-primary text-center flex-1">
+                        <a href="https://payhip.com/b/h2nNu" class="btn-primary text-center flex-1">
                             <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $10.00
                         </a>
                         <button class="btn-outline flex-1" onclick="closeModal('modal1')">
@@ -403,7 +479,7 @@
         </div>
     </div>
 
-    <!-- Modal 2 - Iron Mindset -->
+    <!-- Modal 2 - Face Guide -->
     <div id="modal2" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal('modal2')">&times;</button>
@@ -417,12 +493,12 @@
                 </div>
                 <div class="md:w-3/5">
                     <div class="modal-header">
-                        <h2 class="text-3xl font-display font-bold mb-2">Face the full guide</h2>
+                        <h2 class="text-3xl font-display font-bold mb-2">Face the Full Guide</h2>
                         <p class="text-gray-400">Forge an Attractive face</p>
                     </div>
                     
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                       Develop an irresistible presence with proven principles to enhance your facial structure, charisma, and overall attractiveness — building the kind of confidence that naturally commands attention and respect wherever you go.
+                        Develop an irresistible presence with proven principles to enhance your facial structure, charisma, and overall attractiveness — building the kind of confidence that naturally commands attention and respect wherever you go.
                     </p>
                     
                     <div class="pricing-container">
@@ -431,16 +507,16 @@
                     
                     <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
                     <ul class="feature-list">
-                        <li><strong>Facial Exercises </strong> - Build an atractive face</li>
+                        <li><strong>Facial Exercises</strong> - Build an attractive face</li>
                         <li><strong>Checklist</strong> - Track your habits</li>
-                        <li><strong>Theorical knowledge</strong> -  Understand the theory behind the appeal</li>
-                        <li><strong>Skin care</strong> - Your skin is the presentation of your face</li>
-                        <li><strong>Scientifically proven habits</strong> - Science is a key weapon</li>
+                        <li><strong>Theoretical Knowledge</strong> - Understand the theory behind the appeal</li>
+                        <li><strong>Skin Care</strong> - Your skin is the presentation of your face</li>
+                        <li><strong>Scientifically Proven Habits</strong> - Science is a key weapon</li>
                     </ul>
                     
                     <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="#" class="btn-primary text-center flex-1">
-                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - 10$
+                        <a href="https://payhip.com/b/yuaLi" class="btn-primary text-center flex-1">
+                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $10
                         </a>
                         <button class="btn-outline flex-1" onclick="closeModal('modal2')">
                             <i class="fas fa-info-circle mr-2"></i> More Info
@@ -459,9 +535,9 @@
         </div>
     </div>
 
-    <!-- Modal 3 - Extreme Discipline -->
+    <!-- Modal 3 - Forearm Guide -->
     <div id="modal3" class="modal">
-        <div class="modal-content"> 
+        <div class="modal-content">
             <button class="close-modal" onclick="closeModal('modal3')">&times;</button>
             <div class="modal-badge">NEW</div>
             
@@ -473,12 +549,13 @@
                 </div>
                 <div class="md:w-3/5">
                     <div class="modal-header">
-                        <h2 class="text-3xl font-display font-bold mb-2">Forearm the full guide</h2>
+                        <h2 class="text-3xl font-display font-bold mb-2">Forearm the Full Guide</h2>
                         <p class="text-gray-400">Get a strong and aesthetic forearm</p>
                     </div>
                     
                     <p class="text-gray-300 mb-6 leading-relaxed">
                         Build unstoppable forearm strength with advanced techniques to maximize grip, endurance, and power. Transform your daily training into a ritual that sculpts your arms and elevates your physical dominance.
+                    </p>
                     
                     <div class="pricing-container">
                         <div class="discount-price">$10</div>
@@ -486,15 +563,15 @@
                     
                     <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
                     <ul class="feature-list">
-                        <li><strong> Formation System</strong> - Scientifically proven methods</li>
-                        <li><strong>Create strength</strong> - Strength training is different from aesthetic training.</li>
-                        <li><strong>Create aesthetic</strong> - achieve a beautiful aesthetic</li>
-                        <li><strong>creates resistance</strong> - A resistance allows you to climb. To be held on a bar for longer.</li>
+                        <li><strong>Formation System</strong> - Scientifically proven methods</li>
+                        <li><strong>Create Strength</strong> - Strength training is different from aesthetic training.</li>
+                        <li><strong>Create Aesthetic</strong> - Achieve a beautiful aesthetic</li>
+                        <li><strong>Create Resistance</strong> - Build endurance to climb and hold on longer</li>
                         <li><strong>Progress Tracking Tools</strong> - Monitor and optimize your growth</li>
                     </ul>
                     
                     <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="#" class="btn-primary text-center flex-1">
+                        <a href="https://payhip.com/b/WKnm0" class="btn-primary text-center flex-1">
                             <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $7
                         </a>
                         <button class="btn-outline flex-1" onclick="closeModal('modal3')">
@@ -513,6 +590,66 @@
             </div>
         </div>
     </div>
+    
+    <!-- Modal 4 - Discipline -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal4')">&times;</button>
+            <div class="modal-badge">ESSENTIAL</div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/5 flex items-center justify-center">
+                    <div class="w-48 h-48 bg-gradient-to-r from-gray-800 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border-4 border-dashed border-accent-500">
+                        <i class="fas fa-tasks text-6xl text-accent-500"></i>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="modal-header">
+                        <h2 class="text-3xl font-display font-bold mb-2">Discipline</h2>
+                        <p class="text-gray-400">Master the art of self-control and consistency</p>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Discipline is the bridge between goals and accomplishment. This comprehensive guide provides you with the tools, strategies, and mindset shifts needed to build unbreakable discipline that transforms your life. Learn how to overcome procrastination, build powerful habits, and maintain consistency even when motivation fades.
+                    </p>
+                    
+                    <div class="pricing-container">
+                        <div class="original-price">$35.00</div>
+                        <div class="discount-price">$10.00</div>
+                    </div>
+                    
+                    <h3 class="text-xl font-display font-bold mt-8 mb-4 text-accent-500">What's Included?</h3>
+                    <ul class="feature-list">
+                        <li><strong>The Discipline Blueprint</strong> - Step-by-step system to build lasting discipline</li>
+                        <li><strong>Habit Formation Strategies</strong> - Scientifically proven methods to create automatic routines</li>
+                        <li><strong>Willpower Optimization</strong> - Techniques to strengthen and conserve mental energy</li>
+                        <li><strong>Accountability Systems</strong> - Tools to stay on track even when alone</li>
+                        <li><strong>Overcoming Resistance</strong> - Strategies to beat procrastination and excuses</li>
+                        <li><strong>Daily Discipline Checklists</strong> - Practical tools for immediate implementation</li>
+                        <li><strong>Progress Tracking Templates</strong> - Monitor your growth and celebrate wins</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <a href="https://payhip.com/b/WKnm0" class="btn-primary text-center flex-1">
+                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now - $10.00
+                        </a>
+                        <button class="btn-outline flex-1" onclick="closeModal('modal4')">
+                            <i class="fas fa-info-circle mr-2"></i> More Info
+                        </button>
+                    </div>
+                    
+                    <div class="guarantee-section">
+                        <p class="text-gray-300">
+                            <i class="fas fa-lock mr-2 text-accent-500"></i> Secure payment guaranteed | 
+                            <i class="fas fa-sync-alt mr-2 text-accent-500"></i> 30-day guarantee |
+                            <i class="fas fa-shipping-fast mr-2 text-accent-500"></i> Immediate access
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Section Divider -->
     <div class="section-divider"></div>
