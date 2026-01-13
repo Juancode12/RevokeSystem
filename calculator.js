@@ -425,15 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateNavigationButtons();
         });
 
-        // Single download handler
-        downloadHandler = function() {
-            const email = prompt("📧 Enter your email to receive your REVOKESYSTEM Protocol:");
-            if (email && validateEmail(email)) {
-                alert("✅ Your evidence-based protocol is being prepared. Check your email in 5 minutes.");
-            } else if (email) {
-                alert("Please enter a valid email address.");
-            }
-        };
+        
         
         document.getElementById('download-btn').addEventListener('click', downloadHandler);
     }

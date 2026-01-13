@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORT #RS-09: The Neuro-Architecture of Execution | REVOKESYSTEM</title>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-red: #ff3b3b;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --text-gray: #b0b0b0;
+            --accent-blue: #00f2ff;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .report-header {
+            border-left: 4px solid var(--primary-red);
+            padding-left: 20px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .report-id { color: var(--primary-red); font-weight: bold; }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin: 20px 0;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-hook {
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #222;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .pillar-card {
+            background: #1a1a1a;
+            padding: 25px;
+            border-bottom: 3px solid var(--primary-red);
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover { transform: translateY(-5px); }
+
+        .pillar-card h3 { color: var(--primary-red); margin-top: 0; }
+
+        .cta-box {
+            background: linear-gradient(45deg, #1a0000, #330000);
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+            border: 2px solid var(--primary-red);
+            margin-top: 60px;
+        }
+
+        .cta-button {
+            background: var(--primary-red);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(255, 59, 59, 0.6);
+        }
+
+        #chart-container {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .scientific-data {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #00ff41;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <div class="report-id">[REPORT #RS-09] HIGH-PERFORMANCE DIVISION</div>
+            <div>FROM: REVOKESYSTEM BEHAVIORAL RESEARCH</div>
+            <div>SUBJECT: NEURO-ARCHITECTURE OF EXECUTION</div>
+        </div>
+
+        <h1>Why Your Willpower is a Bug, Not a Feature.</h1>
+        <p class="hero-hook">"You don't have a laziness problem. You have a Dopamine Baseline Collapse."</p>
+
+        <section class="content-section">
+            <h2>The "Random Human" Failure</h2>
+            <p>Data indicates that 93% of modern men operate in a "Reactive State." They wake up, check notifications, and surrender their focus to algorithms. This isn't just a bad habit; it's <strong>Chemical Sabotage</strong>.</p>
+            <p>When you trigger constant dopamine spikes, your tonic baseline drops. The result? Hard work feels physically painful. You aren't "unmotivated"—you are biologically incapable of focus because your receptors are fried.</p>
+            <div id="chart-container"></div>
+            <p class="scientific-data">> DATA_ANALYSIS: Baseline dopamine levels drop 45% after 2 hours of high-frequency digital stimulation.</p>
+        </section>
+
+        <div class="pillar-grid">
+            <div class="pillar-card">
+                <h3>I. MOTIVATION</h3>
+                <p><strong>The RAS Protocol:</strong> Motivation isn't a feeling; it's a <em>Motive</em>. Without a structural 'Why', the Reticular Activating System (RAS) filters out opportunities and defaults to survival mode.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>II. DOPAMINE</h3>
+                <p><strong>Baseline Recalibration:</strong> By managing Tonic vs. Phasic dopamine, you increase your testosterone efficiency. Strategic fasting makes the 'effort' feel like the reward.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>III. DISCIPLINE</h3>
+                <p><strong>Friction Engineering:</strong> We don't rely on being "strong." We use systems. If your environment allows failure, you will fail. If your environment blocks it, you execute.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>IV. WILLPOWER</h3>
+                <p><strong>Cognitive Capital:</strong> Willpower is a limited battery. We invest 90% of our cognitive load in the first 120 minutes of the day. The rest is automated execution.</p>
+            </div>
+        </div>
+
+        <section class="content-section" style="margin-top: 40px;">
+            <h2>The Operator Shift</h2>
+            <p>The <strong>REVOKESYSTEM</strong> doesn't offer advice. It offers <em>Architecture</em>. It is the bridge between the "Random Human" (reactive, weak, distracted) and the "Operator" (precise, systematic, unstoppable).</p>
+            <p>This is the difference between "trying to be better" and <strong>installing the software that makes failure impossible.</strong></p>
+        </section>
+
+        <div class="cta-box">
+            <h2 style="margin-top: 0;">ARE YOU READY TO INSTALL THE SYSTEM?</h2>
+            <p>Stop fighting your biology. Start using it. Get the full tactical manual and join the top 1% of men who operate by design, not by chance.</p>
+            <a href="YOUR_PAYHIP_LINK_HERE" class="cta-button">Download: DISCIPLINE - THE FULL GUIDE</a>
+            <p style="font-size: 0.8rem; margin-top: 20px; color: var(--text-gray);">*Instant Digital Access. 50+ Pages of High-Performance Engineering.*</p>
+        </div>
+    </div>
+
+    <script>
+        // D3.js Chart for Dopamine Visualization
+        function initChart() {
+            const data = [
+                {time: 0, level: 80}, {time: 1, level: 100}, {time: 2, level: 40}, 
+                {time: 3, level: 30}, {time: 4, level: 25}, {time: 5, level: 20}
+            ];
+
+            const margin = {top: 20, right: 30, bottom: 40, left: 50};
+            const width = document.querySelector('#chart-container').clientWidth - margin.left - margin.right;
+            const height = 400 - margin.top - margin.bottom;
+
+            const svg = d3.select("#chart-container")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleLinear().domain([0, 5]).range([0, width]);
+            const y = d3.scaleLinear().domain([0, 110]).range([height, 0]);
+
+            const line = d3.line()
+                .x(d => x(d.time))
+                .y(d => y(d.level))
+                .curve(d3.curveMonotoneX);
+
+            svg.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "#ff3b3b")
+                .attr("stroke-width", 3)
+                .attr("d", line);
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x).ticks(5).tickFormat(d => d + "h"))
+                .style("color", "#666");
+
+            svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", height + 35)
+                .attr("text-anchor", "middle")
+                .style("fill", "#666")
+                .text("Hours of Digital Overstimulation");
+
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -40)
+                .attr("x", -height / 2)
+                .attr("text-anchor", "middle")
+                .style("fill", "#ff3b3b")
+                .text("Dopamine Baseline (%)");
+        }
+
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+</body>
+</html>

@@ -550,9 +550,7 @@
             });
 
             // Add event listeners for buttons
-            elements.guideButton.addEventListener('click', function() {
-                alert('Thank you for your interest! The complete guide to naturally boost testosterone will be sent to your email.');
-            });
+            
             
             elements.earlyAssessmentBtn.addEventListener('click', function() {
                 alert('Redirecting to free assessment... This will help identify your personal risk factors and create a customized plan.');
