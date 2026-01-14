@@ -1043,62 +1043,7 @@ document.addEventListener('DOMContentLoaded', function() {
             existingCTA.remove();
         }
         
-        const ctaHTML = `
-            <div class="payhip-cta" style="
-                margin: 40px auto;
-                padding: 25px;
-                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-                border-radius: 15px;
-                text-align: center;
-                border-left: 5px solid #667eea;
-                max-width: 800px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            ">
-                <h3 style="margin: 0 0 15px 0; color: #2d3748; font-size: 24px;">
-                    🎯 Get Your Personalized Action Plan
-                </h3>
-                <p style="margin: 0 0 20px 0; color: #4a5568; font-size: 16px; line-height: 1.6;">
-                    Based on your <strong>${score} risk score</strong> and <strong>${riskLevel}</strong> assessment, 
-                    get a complete guide with personalized recommendations for:
-                </p>
-                <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap;">
-                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <div style="font-size: 24px; margin-bottom: 10px;">💪</div>
-                        <div style="font-weight: 600; color: #2d3748;">Exercise Plans</div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <div style="font-size: 24px; margin-bottom: 10px;">🥗</div>
-                        <div style="font-weight: 600; color: #2d3748;">Nutrition Guide</div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <div style="font-size: 24px; margin-bottom: 10px;">😴</div>
-                        <div style="font-weight: 600; color: #2d3748;">Sleep Optimization</div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <div style="font-size: 24px; margin-bottom: 10px;">🧠</div>
-                        <div style="font-weight: 600; color: #2d3748;">Stress Management</div>
-                    </div>
-                </div>
-                <button id="payhip-cta-button" style="
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                    border: none;
-                    padding: 15px 40px;
-                    font-size: 18px;
-                    font-weight: 600;
-                    border-radius: 50px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 25px rgba(102, 126, 234, 0.4)';" 
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(102, 126, 234, 0.3)';">
-                    Get Full Personalized Guide →
-                </button>
-                <p style="margin: 15px 0 0 0; color: #718096; font-size: 14px;">
-                    Instant access to comprehensive guide • 30-day money back guarantee
-                </p>
-            </div>
-        `;
+        
         
         const resultsContent = domCache.get('results-content');
         if (resultsContent) {
