@@ -1,6 +1,6 @@
-// ===== SISTEMA EXPANDIDO DE PESOS CIENTÍFICOS =====
+// ===== EXPANDED SCIENTIFIC WEIGHT SYSTEM =====
 const riskWeights = {
-    // FACTORES CRÍTICOS
+    // CRITICAL FACTORS
     obesity: 20,
     apnea: 18,
     diabetes: 15,
@@ -9,7 +9,7 @@ const riskWeights = {
     alcohol: 12,
     smoking: 10,
 
-    // NUTRICIÓN
+    // NUTRITION
     'sugar-drinks': 8,
     'processed-carbs': 6,
     'low-protein': 5,
@@ -17,31 +17,31 @@ const riskWeights = {
     'soy-heavy': 3,
     'intermittent-fasting': -2,
 
-    // EJERCICIO
+    // EXERCISE
     'overtraining': 9,
     'sedentary-job': 7,
     'no-steps': 6,
     'consistent-training': -5,
     'active-lifestyle': -3,
 
-    // ESTRÉS
+    // STRESS
     'chronic-stress': 8,
     'poor-sleep-mental': 7,
     'relationship-stress': 6,
     'meditation': -4,
     'good-coping': -3,
 
-    // AMBIENTE
+    // ENVIRONMENT
     'bpa-plastics': 8,
     'nonstick-cookware': 5,
     'conventional-produce': 4,
     'water-filter': -3,
     'organic-foods': -2,
 
-    // SÍNTOMAS
+    // SYMPTOMS
     symptoms: 2,
 
-    // EDAD
+    // AGE
     age: {
         '25-29': 0,
         '30-39': 5,
@@ -49,7 +49,7 @@ const riskWeights = {
         '50+': 15
     },
 
-    // SUEÑO
+    // SLEEP
     sleep: {
         '4': 15,
         '5': 12,
@@ -66,7 +66,7 @@ const riskWeights = {
         'very-poor': 9
     },
 
-    // DIETA
+    // DIET
     'diet-type': {
         'western': 8,
         'mediterranean': -3,
@@ -76,7 +76,7 @@ const riskWeights = {
         'other': 2
     },
 
-    // VEGETALES
+    // VEGETABLES
     'vegetable-intake': {
         '0': 6,
         '1': 3,
@@ -84,7 +84,7 @@ const riskWeights = {
         '3': -2
     },
 
-    // EJERCICIO SELECT
+    // EXERCISE SELECT
     'strength-frequency': {
         '0': 8,
         '1': 4,
@@ -98,7 +98,7 @@ const riskWeights = {
         '3': -2
     },
 
-    // ESTRÉS SELECT
+    // STRESS SELECT
     'stress-level': {
         'very-low': -2,
         'low': 0,
@@ -114,7 +114,7 @@ const riskWeights = {
         'isolated': 9
     },
 
-    // AMBIENTE SELECT
+    // ENVIRONMENT SELECT
     'air-quality': {
         'excellent': -1,
         'good': 0,
@@ -123,7 +123,7 @@ const riskWeights = {
         'very-poor': 9
     },
 
-    // HISTORIAL FAMILIAR
+    // FAMILY HISTORY
     'family-history': {
         'none': 0,
         'diabetes': 4,
@@ -133,29 +133,65 @@ const riskWeights = {
     }
 };
 
-// ===== VARIABLES GLOBALES =====
+// ===== CONFIGURATIONS AND CONSTANTS =====
+const CATEGORY_ICONS = {
+    critical: '🔴',
+    medium: '🟡',
+    light: '🟢',
+    symptoms: '📋'
+};
+
+const CATEGORY_TITLES = {
+    critical: 'Critical Factors (10-25 pts impact)',
+    medium: 'Medium Factors (5-10 pts impact)',
+    light: 'Light Factors (1-4 pts impact)',
+    symptoms: 'Clinical Symptoms'
+};
+
+const OVERWEIGHT_IMPACT = 10;
+const BASE_TESTOSTERONE = 700;
+const MIN_TESTOSTERONE = 150;
+const MAX_TESTOSTERONE = 1200;
+
+// ===== PAYHIP CONFIGURATION =====
+const PAYHIP_URL = "https://payhip.com/b/h2nNu"; // REPLACE WITH YOUR ACTUAL PAYHIP URL
+
+// ===== DOM CACHE =====
+const domCache = {
+    elements: {},
+    get(id) {
+        if (!this.elements[id]) {
+            this.elements[id] = document.getElementById(id);
+        }
+        return this.elements[id];
+    },
+    clear() {
+        this.elements = {};
+    }
+};
+
+// ===== GLOBAL VARIABLES =====
 let currentSection = 0;
 let sections = [];
+let obesityProcessed = false;
+let isInitializing = true;
 
-// ===== ESTIMADOR DE TESTOSTERONA CORREGIDO =====
-function estimateTestosterone(totalRisk, breakdown) {
-    // Base de testosterona para hombre adulto sano
-    let baseTestosterone = 700; // ng/dL (promedio para hombre joven saludable)
+// ===== OPTIMIZED TESTOSTERONE ESTIMATOR =====
+function estimateTestosterone(totalRisk) {
+    if (totalRisk <= 0) return BASE_TESTOSTERONE;
     
-    // ÚNICO ajuste: basado en el risk score total (eliminados ajustes redundantes)
-    const riskAdjustment = 1 - (totalRisk / 200);
-    let testosteroneLevel = baseTestosterone * riskAdjustment;
+    // Logarithmic curve for more realistic estimation
+    const riskFactor = Math.min(totalRisk / 100, 0.9);
+    const adjustment = 1 - (riskFactor * 0.7); // 70% max reduction
+    let testosteroneLevel = BASE_TESTOSTERONE * adjustment;
     
-    // Limitar rango fisiológico realista (150-1200 ng/dL)
-    testosteroneLevel = Math.max(150, Math.min(1200, testosteroneLevel));
-    
-    return Math.round(testosteroneLevel);
+    return Math.max(MIN_TESTOSTERONE, Math.min(MAX_TESTOSTERONE, Math.round(testosteroneLevel)));
 }
 
 function getTestosteroneInterpretation(level) {
     if (level < 250) {
         return {
-            level: "Critically low",
+            level: "CRITICALLY LOW",
             class: "testosterone-critical",
             message: "Severely deficient levels. Consult an endocrinologist urgently.",
             recommendation: "Immediate medical evaluation and possible hormone replacement therapy."
@@ -164,47 +200,49 @@ function getTestosteroneInterpretation(level) {
         return {
             level: "LOW",
             class: "testosterone-low",
-            message: "Levels below optimal. Multiple factors are affecting your hormone production.",
-            recommendation: "Aggressive approach to lifestyle: sleep, stress, exercise and nutrition."
+            message: "Levels below optimal range. Multiple factors are affecting your hormone production.",
+            recommendation: "Aggressive lifestyle approach focusing on sleep, stress management, exercise and nutrition."
         };
     } else if (level < 500) {
         return {
-            level: "PROMEDIO BAJO",
+            level: "BELOW AVERAGE",
             class: "testosterone-medium",
-            message: "Dentro del rango normal pero subóptimo. Hay margen significativo de mejora.",
-            recommendation: "Optimizar hábitos clave para alcanzar niveles óptimos."
+            message: "Within normal but suboptimal range. There is significant room for improvement.",
+            recommendation: "Optimize key habits to achieve optimal levels through targeted lifestyle changes."
         };
     } else if (level < 700) {
         return {
-            level: "ÓPTIMO",
+            level: "OPTIMAL",
             class: "testosterone-good",
-            message: "Niveles saludables y funcionales. Buen balance hormonal.",
-            recommendation: "Mantener hábitos actuales y enfocarse en mejoras incrementales."
+            message: "Healthy and functional levels. Good hormonal balance maintained.",
+            recommendation: "Maintain current healthy habits and focus on incremental improvements."
         };
     } else {
         return {
-            level: "EXCELENTE",
+            level: "EXCELLENT",
             class: "testosterone-excellent",
-            message: "Niveles excepcionales. Máximo potencial hormonal alcanzado.",
-            recommendation: "Continúa con tu rutina actual - estás en el percentil superior."
+            message: "Exceptional levels. Maximum hormonal potential achieved.",
+            recommendation: "Continue with your current routine - you're in the top percentile for hormonal health."
         };
     }
 }
 
-// ===== FUNCIONES AUXILIARES MEJORADAS =====
+// ===== OPTIMIZED HELPER FUNCTIONS =====
 function calculateBMI() {
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    if (weight && height && height > 0) {
-        const bmi = weight / Math.pow(height/100, 2);
-        return Math.round(bmi * 10) / 10; // Redondear a 1 decimal
+    const weight = parseFloat(domCache.get('weight')?.value);
+    const height = parseFloat(domCache.get('height')?.value);
+    
+    if (!weight || !height || height <= 0 || weight <= 0) {
+        return null;
     }
-    return null;
+    
+    const bmi = weight / Math.pow(height / 100, 2);
+    return Math.round(bmi * 10) / 10;
 }
 
 function getFactorName(value) {
     const names = {
-        // FACTORES CRÍTICOS
+        // CRITICAL FACTORS
         'obesity': 'Obesity (BMI ≥30)',
         'apnea': 'Sleep Apnea',
         'diabetes': 'Diabetes/Metabolic Syndrome',
@@ -213,7 +251,7 @@ function getFactorName(value) {
         'alcohol': 'High Alcohol Consumption',
         'smoking': 'Current Smoker',
         
-        // NUTRICIÓN
+        // NUTRITION
         'sugar-drinks': 'Daily Sugary Drinks',
         'processed-carbs': 'High Processed Carbohydrates',
         'low-protein': 'Insufficient Protein Intake',
@@ -221,21 +259,21 @@ function getFactorName(value) {
         'soy-heavy': 'High Soy/Phytoestrogen Foods',
         'intermittent-fasting': 'Regular Intermittent Fasting',
         
-        // EJERCICIO
+        // EXERCISE
         'overtraining': 'Overtraining/Chronic Fatigue',
         'sedentary-job': 'Sedentary Job (>6h sitting)',
         'no-steps': 'Low Daily Steps (<5,000)',
         'consistent-training': 'Consistent Strength Training',
         'active-lifestyle': 'Active Lifestyle',
         
-        // ESTRÉS
+        // STRESS
         'chronic-stress': 'Chronic Work/Financial Stress',
         'poor-sleep-mental': 'Anxiety Affecting Sleep',
         'relationship-stress': 'Significant Relationship Stress',
         'meditation': 'Regular Meditation/Mindfulness',
         'good-coping': 'Healthy Stress Management',
         
-        // AMBIENTE
+        // ENVIRONMENT
         'bpa-plastics': 'Regular Plastic Container Use (BPA)',
         'nonstick-cookware': 'Non-stick Cookware Regular Use',
         'conventional-produce': 'Mostly Conventional Produce',
@@ -256,9 +294,11 @@ function getFactorDescription(value) {
         'consistent-training': 'Strength training boosts natural testosterone production',
         'meditation': 'Reduces cortisol and improves hormonal balance',
         'sedentary-job': 'Prolonged sitting increases inflammation and reduces testosterone',
-        'chronic-stress': 'Elevated cortisol directly suppresses testosterone production'
+        'chronic-stress': 'Elevated cortisol directly suppresses testosterone production',
+        'smoking': 'Nicotine and toxins impair testicular function',
+        'steroids': 'Exogenous hormones suppress natural production'
     };
-    return descriptions[value] || 'Contributes to hormonal balance impact';
+    return descriptions[value] || 'Affects hormonal balance and testosterone production';
 }
 
 function getImpactCategory(impact) {
@@ -268,13 +308,25 @@ function getImpactCategory(impact) {
     return 'light';
 }
 
-function processCheckboxSection(sectionName, breakdown) {
-    let sectionTotal = 0;
-    
-    document.querySelectorAll(`input[name="${sectionName}"]:checked`).forEach(checkbox => {
-        if (checkbox.value !== 'none') {
+// ===== OPTIMIZED FACTOR PROCESSOR =====
+const factorProcessor = {
+    processCheckboxSection(sectionName, breakdown) {
+        let sectionTotal = 0;
+        const checkboxes = document.querySelectorAll(`input[name="${sectionName}"]:checked`);
+        
+        checkboxes.forEach(checkbox => {
+            if (checkbox.value === 'none') return;
+            
+            // Prevent duplicate processing of obesity
+            if (checkbox.value === 'obesity' && obesityProcessed) {
+                return;
+            }
+            if (checkbox.value === 'obesity') {
+                obesityProcessed = true;
+            }
+            
             const impact = riskWeights[checkbox.value];
-            if (impact) {
+            if (impact !== undefined) {
                 sectionTotal += impact;
                 breakdown.push({
                     category: getImpactCategory(impact),
@@ -283,104 +335,252 @@ function processCheckboxSection(sectionName, breakdown) {
                     description: getFactorDescription(checkbox.value)
                 });
             }
-        }
-    });
-    
-    return sectionTotal;
-}
-
-function processSelectFactor(selectId, breakdown, categoryName) {
-    const select = document.getElementById(selectId);
-    if (!select || !select.value) return 0;
-    
-    if (riskWeights[selectId] && riskWeights[selectId][select.value] !== undefined) {
-        const impact = riskWeights[selectId][select.value];
-        breakdown.push({
-            category: getImpactCategory(impact),
-            name: `${categoryName}: ${select.selectedOptions[0].text}`,
-            impact: impact,
-            description: getFactorDescription(selectId)
         });
-        return impact;
+        
+        return sectionTotal;
+    },
+    
+    processSelectFactor(selectId, breakdown, categoryName) {
+        const select = domCache.get(selectId);
+        if (!select || !select.value || select.value === '') return 0;
+        
+        if (riskWeights[selectId] && riskWeights[selectId][select.value] !== undefined) {
+            const impact = riskWeights[selectId][select.value];
+            const optionText = select.options[select.selectedIndex]?.text || select.value;
+            breakdown.push({
+                category: getImpactCategory(impact),
+                name: `${categoryName}: ${optionText}`,
+                impact: impact,
+                description: getFactorDescription(selectId)
+            });
+            return impact;
+        }
+        return 0;
     }
-    return 0;
-}
+};
 
-// ===== FUNCIONES DE VALIDACIÓN CORREGIDAS =====
-function validateAllRequiredFields() {
-    const age = parseInt(document.getElementById('age').value);
-    if (!age || age < 18 || age > 80) {
-        showFieldError("Please enter a valid age between 18 and 80.", 'age');
+// ===== UNIFIED VALIDATION FUNCTIONS =====
+function validateForm(showAlerts = true) {
+    const validators = [
+        { 
+            id: 'age', 
+            test: v => !isNaN(v) && v >= 18 && v <= 80, 
+            msg: "Please enter a valid age between 18 and 80 years.",
+            required: true
+        },
+        { 
+            id: 'weight', 
+            test: v => !isNaN(v) && v >= 40 && v <= 200, 
+            msg: "Please enter a valid weight (40-200 kg).",
+            required: true
+        },
+        { 
+            id: 'height', 
+            test: v => !isNaN(v) && v >= 140 && v <= 220, 
+            msg: "Please enter a valid height (140-220 cm).",
+            required: true
+        },
+        { 
+            id: 'sleep', 
+            test: v => v && ['4','5','6','7','8','9'].includes(v),
+            msg: "Please select your average sleep hours.",
+            required: true
+        }
+    ];
+
+    for (const {id, test, msg, required} of validators) {
+        const element = domCache.get(id);
+        if (!element) continue;
+        
+        const value = element.type === 'select-one' ? element.value : parseFloat(element.value);
+        
+        // If the field is empty and required
+        if (required && (element.value === '' || element.value === null || element.value === undefined)) {
+            if (showAlerts && !isInitializing) {
+                showFieldError(msg, id, true);
+            }
+            return false;
+        }
+        
+        // Validate the value
+        if (element.value !== '' && !test(value)) {
+            if (showAlerts && !isInitializing) {
+                showFieldError(msg, id, true);
+            }
+            return false;
+        }
+    }
+    
+    // Validate BMI
+    const bmi = calculateBMI();
+    if (bmi === null) {
+        if (showAlerts && !isInitializing) {
+            showFieldError("Please enter valid weight and height to calculate BMI.", 'weight', true);
+        }
         return false;
     }
     
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    if (!weight || weight < 40 || weight > 200) {
-        showFieldError("Please enter valid weight (40-200 kg).", 'weight');
-        return false;
-    }
-    if (!height || height < 140 || height > 220) {
-        showFieldError("Please enter valid height (140-220 cm).", 'height');
-        return false;
-    }
-    
-    const sleep = document.getElementById('sleep').value;
-    if (!sleep) {
-        showFieldError("Please select your average sleep hours.", 'sleep');
+    if (bmi < 15 || bmi > 50) {
+        if (showAlerts && !isInitializing) {
+            showFieldError("BMI outside valid range. Please check your weight and height.", 'weight', true);
+        }
         return false;
     }
     
     return true;
 }
 
-function showFieldError(message, fieldId) {
-    alert(`🚫 ${message}`);
-    if (fieldId) {
-        document.getElementById(fieldId).focus();
+function showFieldError(message, fieldId, showAlert = true) {
+    if (showAlert && !isInitializing) {
+        alert(`🚫 ${message}`);
+    }
+    const field = domCache.get(fieldId);
+    if (field) {
+        field.focus();
+        field.style.borderColor = '#f44336';
+        setTimeout(() => {
+            if (field.style.borderColor === '#f44336') {
+                field.style.borderColor = '';
+            }
+        }, 2000);
     }
 }
 
-// ===== INICIALIZACIÓN PRINCIPAL =====
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('assessment-form');
-    sections = [
-        document.getElementById('section-1'),
-        document.getElementById('section-2'), 
-        document.getElementById('section-3'),
-        document.getElementById('section-4'),
-        document.getElementById('section-5'),
-        document.getElementById('section-6'),
-        document.getElementById('section-7')
-    ];
-    
-    const submitBtn = document.getElementById('submit-btn');
-    const resultSection = document.getElementById('result-section');
-    const analyzingDiv = document.getElementById('analyzing');
-    const resultsContent = document.getElementById('results-content');
-    const progressFill = document.getElementById('progress-fill');
-    const progressPercent = document.getElementById('progress-percent');
-    
-    let downloadHandler = null;
+// ===== NAVIGATION AND UI FUNCTIONS =====
+function isSectionComplete(sectionIndex) {
+    if (sectionIndex === 0) {
+        // Only check that fields are not empty for progress
+        const age = domCache.get('age')?.value || '';
+        const weight = domCache.get('weight')?.value || '';
+        const height = domCache.get('height')?.value || '';
+        const sleep = domCache.get('sleep')?.value || '';
+        
+        return age !== '' && weight !== '' && height !== '' && sleep !== '';
+    } else if (sectionIndex >= 1 && sectionIndex <= 5) {
+        const section = sections[sectionIndex];
+        if (!section) return false;
+        
+        const inputs = section.querySelectorAll('input[type="checkbox"]');
+        return Array.from(inputs).some(input => input.checked);
+    } else if (sectionIndex === 6) {
+        return true; // Symptoms optional
+    }
+    return false;
+}
 
-    // Inicializar aplicación
+// ===== OPTIMIZED ANIMATIONS =====
+function animateCounter(element, target, duration = 1500) {
+    if (!element) return;
+    
+    const start = parseInt(element.textContent) || 0;
+    const startTime = performance.now();
+    
+    const update = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smoother animation
+        const easeOut = progress * (2 - progress);
+        const value = Math.floor(start + (target - start) * easeOut);
+        
+        element.textContent = `${value} pts`;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    };
+    
+    requestAnimationFrame(update);
+}
+
+// ===== MAIN INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', function() {
+    const form = domCache.get('assessment-form');
+    sections = [
+        domCache.get('section-1'),
+        domCache.get('section-2'), 
+        domCache.get('section-3'),
+        domCache.get('section-4'),
+        domCache.get('section-5'),
+        domCache.get('section-6'),
+        domCache.get('section-7')
+    ].filter(Boolean);
+    
+    if (sections.length === 0) {
+        console.error('No sections found');
+        return;
+    }
+
+    const submitBtn = domCache.get('submit-btn');
+    const resultSection = domCache.get('result-section');
+    const analyzingDiv = domCache.get('analyzing');
+    const resultsContent = domCache.get('results-content');
+    const progressFill = domCache.get('progress-fill');
+    const progressPercent = domCache.get('progress-percent');
+
+    // Initialize application
     initializeApp();
 
     function initializeApp() {
-        // SOLUCIÓN: Deshabilitar validación HTML5 para evitar el error del campo "waist"
-        form.setAttribute('novalidate', 'true');
+        isInitializing = true;
+        
+        if (form) {
+            form.setAttribute('novalidate', 'true');
+        }
         
         showSection(0);
+        setupRealTimeValidation();
         setupNavigationButtons();
         initializeQuickNav();
         setupNoneOptions();
         setupEventListeners();
         updateNavigationButtons();
+        
+        // Disable initialization flag after a short delay
+        setTimeout(() => {
+            isInitializing = false;
+        }, 100);
     }
 
-    // CONFIGURAR BOTONES DE NAVEGACIÓN CON EVENT LISTENERS
+    function setupRealTimeValidation() {
+        const inputs = ['age', 'weight', 'height'];
+        
+        inputs.forEach(id => {
+            const input = domCache.get(id);
+            if (input) {
+                input.addEventListener('input', () => {
+                    const value = parseFloat(input.value);
+                    const min = id === 'age' ? 18 : id === 'weight' ? 40 : 140;
+                    const max = id === 'age' ? 80 : id === 'weight' ? 200 : 220;
+                    
+                    if (input.value === '') {
+                        input.style.borderColor = '';
+                    } else if (!isNaN(value) && value >= min && value <= max) {
+                        input.style.borderColor = '#4CAF50';
+                    } else {
+                        input.style.borderColor = '#f44336';
+                    }
+                    
+                    updateProgress();
+                    updateSubmitButton();
+                    updateNavigationButtons();
+                });
+            }
+        });
+        
+        // For sleep select
+        const sleepSelect = domCache.get('sleep');
+        if (sleepSelect) {
+            sleepSelect.addEventListener('change', () => {
+                updateProgress();
+                updateSubmitButton();
+                updateNavigationButtons();
+            });
+        }
+    }
+
     function setupNavigationButtons() {
-        // Configurar botones de la primera sección (que no tenían onclick)
+        // Set up specific navigation buttons for first section
         const firstSectionPrev = document.querySelector('#section-1 .nav-button:not(.primary)');
         const firstSectionNext = document.querySelector('#section-1 .nav-button.primary');
         
@@ -391,46 +591,100 @@ document.addEventListener('DOMContentLoaded', function() {
             firstSectionNext.addEventListener('click', goToNextSection);
         }
         
-        // Configurar resto de botones
-        document.querySelectorAll('.nav-button:not(.primary)').forEach(button => {
-            if (!button.hasAttribute('data-listener-added')) {
-                button.addEventListener('click', goToPreviousSection);
-                button.setAttribute('data-listener-added', 'true');
+        // Use event delegation for other buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.nav-button:not(.primary):not([data-section="0"] *)')) {
+                goToPreviousSection();
             }
-        });
-        
-        document.querySelectorAll('.nav-button.primary').forEach(button => {
-            if (!button.hasAttribute('data-listener-added')) {
-                button.addEventListener('click', goToNextSection);
-                button.setAttribute('data-listener-added', 'true');
+            if (e.target.matches('.nav-button.primary:not([data-section="0"] *)')) {
+                goToNextSection();
             }
         });
     }
 
     function setupEventListeners() {
-        // Form submission - Ya no necesita novalidate aquí porque se hace en initializeApp
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!validateAllRequiredFields()) return;
-            
-            showAnalyzing();
-            setTimeout(calculateScientificResults, 1500);
-        });
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!validateForm(true)) return;
+                
+                showAnalyzing();
+                setTimeout(calculateScientificResults, 1500);
+            });
+        }
 
-        // Input events for auto-advance
-        form.addEventListener('input', function() {
-            updateProgress();
-            updateSubmitButton();
-            updateNavigationButtons();
-        });
-
-        
-        
-        document.getElementById('download-btn').addEventListener('click', downloadHandler);
+        // Set up redirect to Payhip button
+        const downloadBtn = domCache.get('download-btn');
+        if (downloadBtn) {
+            // Change button text if desired
+            downloadBtn.textContent = 'Get Full Personalized Guide';
+            downloadBtn.addEventListener('click', redirectToPayhip);
+        }
     }
 
-    // FUNCIONES DE NAVEGACIÓN MEJORADAS
+    // ===== MODIFIED: REDIRECT TO PAYHIP INSTEAD OF DOWNLOAD =====
+    function redirectToPayhip() {
+        // Get results data to potentially pass as parameters
+        const resultScore = domCache.get('result-score')?.textContent || '0';
+        const riskLevel = domCache.get('risk-level')?.textContent || 'Not available';
+        
+        // Optional: Pass data as URL parameters for personalization
+        const params = new URLSearchParams({
+            score: resultScore,
+            risk: riskLevel.toLowerCase().replace(/\s+/g, '-'),
+            source: 'testosterone-assessment',
+            date: new Date().toISOString().split('T')[0]
+        });
+        
+        const payhipUrl = `${PAYHIP_URL}?${params.toString()}`;
+        
+        // Open Payhip in new tab
+        window.open(payhipUrl, '_blank', 'noopener,noreferrer');
+        
+        // Optional: Show confirmation message
+        showPayhipRedirectMessage(resultScore, riskLevel);
+    }
+    
+    function showPayhipRedirectMessage(score, riskLevel) {
+        // Create a modal or notification
+        const message = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 10000;
+                max-width: 350px;
+                animation: slideIn 0.5s ease-out;
+            ">
+                <h4 style="margin: 0 0 10px 0; font-size: 18px;">🎯 Personalized Guide Available</h4>
+                <p style="margin: 0 0 10px 0; font-size: 14px; opacity: 0.9;">
+                    Based on your risk score of <strong>${score}</strong> and <strong>${riskLevel}</strong> level,
+                    we've prepared a comprehensive guide to help you optimize your testosterone.
+                </p>
+                <p style="margin: 0; font-size: 12px; opacity: 0.8;">
+                    Opening Payhip in new tab...
+                </p>
+            </div>
+        `;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.innerHTML = message;
+        document.body.appendChild(messageDiv);
+        
+        // Remove message after 5 seconds
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 5000);
+    }
+
     function goToPreviousSection() {
         if (currentSection > 0) {
             showSection(currentSection - 1);
@@ -439,14 +693,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function goToNextSection() {
         if (!isSectionComplete(currentSection)) {
-            alert("Please complete all required fields in this section before continuing.");
+            if (!isInitializing) {
+                alert("Please complete all required fields in this section before continuing.");
+            }
             return;
         }
         
         if (currentSection < sections.length - 1) {
             showSection(currentSection + 1);
-        } else if (currentSection === sections.length - 1) {
-            document.getElementById('submit-btn').scrollIntoView({ behavior: 'smooth' });
+        } else if (currentSection === sections.length - 1 && submitBtn) {
+            submitBtn.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -454,18 +710,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevButtons = document.querySelectorAll('.nav-button:not(.primary)');
         const nextButtons = document.querySelectorAll('.nav-button.primary');
         
-        // Actualizar botones Previous
         prevButtons.forEach(button => {
             button.style.display = currentSection > 0 ? 'block' : 'none';
         });
         
-        // Actualizar botones Next
         nextButtons.forEach(button => {
             const isComplete = isSectionComplete(currentSection);
             button.disabled = !isComplete;
             
             if (currentSection === sections.length - 2) {
                 button.textContent = 'Final Section →';
+            } else if (currentSection === sections.length - 1) {
+                button.textContent = 'Complete Assessment';
             } else {
                 button.textContent = 'Next Section →';
             }
@@ -473,7 +729,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initializeQuickNav() {
-        const quickNav = document.getElementById('quick-nav');
+        const quickNav = domCache.get('quick-nav');
         if (!quickNav) return;
         
         quickNav.innerHTML = '';
@@ -484,6 +740,8 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.addEventListener('click', () => {
                 if (isSectionComplete(index - 1) || index === 0) {
                     showSection(index);
+                } else if (!isInitializing) {
+                    alert("Please complete the previous section first.");
                 }
             });
             quickNav.appendChild(dot);
@@ -496,23 +754,23 @@ document.addEventListener('DOMContentLoaded', function() {
             noneOption.addEventListener('change', function() {
                 if (this.checked) {
                     const section = this.closest('.content-section');
-                    section.querySelectorAll('input[type="checkbox"]:not(.none-option-checkbox)').forEach(checkbox => {
-                        checkbox.checked = false;
-                    });
-                    
-                    // FORZAR actualización inmediata
-                    updateProgress();
-                    updateSubmitButton();
-                    updateNavigationButtons();
-                    
-                    // Permitir continuar inmediatamente después de seleccionar "none"
-                    if (currentSection < sections.length - 1) {
-                        setTimeout(() => {
-                            const nextButton = section.querySelector('.nav-button.primary');
-                            if (nextButton && !nextButton.disabled) {
-                                nextButton.focus();
-                            }
-                        }, 100);
+                    if (section) {
+                        section.querySelectorAll('input[type="checkbox"]:not(.none-option-checkbox)').forEach(checkbox => {
+                            checkbox.checked = false;
+                        });
+                        
+                        updateProgress();
+                        updateSubmitButton();
+                        updateNavigationButtons();
+                        
+                        if (currentSection < sections.length - 1) {
+                            setTimeout(() => {
+                                const nextButton = section.querySelector('.nav-button.primary');
+                                if (nextButton && !nextButton.disabled) {
+                                    nextButton.focus();
+                                }
+                            }, 100);
+                        }
                     }
                 }
             });
@@ -521,70 +779,50 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('input[type="checkbox"]:not(.none-option-checkbox)').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const section = this.closest('.content-section');
-                const noneOption = section.querySelector('.none-option-checkbox');
-                if (noneOption && noneOption.checked) {
-                    noneOption.checked = false;
+                if (section) {
+                    const noneOption = section.querySelector('.none-option-checkbox');
+                    if (noneOption && noneOption.checked) {
+                        noneOption.checked = false;
+                    }
+                    updateProgress();
+                    updateSubmitButton();
+                    updateNavigationButtons();
                 }
-                updateProgress();
-                updateSubmitButton();
-                updateNavigationButtons();
             });
         });
     }
 
     function showSection(index) {
-        console.log('Mostrando sección:', index);
+        if (index < 0 || index >= sections.length) return;
+        
         sections.forEach(section => {
-            section.style.display = 'none';
+            if (section) {
+                section.style.display = 'none';
+            }
         });
         
-        sections[index].style.display = 'block';
-        currentSection = index;
-        
-        // Efecto de transición
-        sections[index].classList.remove('fade-in');
-        void sections[index].offsetWidth;
-        sections[index].classList.add('fade-in');
-        
-        updateProgress();
-        updateSubmitButton();
-        updateQuickNav();
-        updateNavigationButtons();
-        
-        // Scroll suave a la sección
-        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // ===== FUNCIÓN isSectionComplete CORREGIDA =====
-    function isSectionComplete(sectionIndex) {
-        const section = sections[sectionIndex];
-        
-        if (sectionIndex === 0) {
-            const age = parseInt(document.getElementById('age').value);
-            const weight = document.getElementById('weight').value;
-            const height = document.getElementById('height').value;
-            const sleep = document.getElementById('sleep').value;
+        const targetSection = sections[index];
+        if (targetSection) {
+            targetSection.style.display = 'block';
+            currentSection = index;
             
-            return age >= 18 && age <= 80 && weight && height && sleep;
-        } else if (sectionIndex >= 1 && sectionIndex <= 5) {
-            const inputs = section.querySelectorAll('input[type="checkbox"]');
-            let hasSelection = false;
+            // Transition effect
+            targetSection.classList.remove('fade-in');
+            void targetSection.offsetWidth;
+            targetSection.classList.add('fade-in');
             
-            inputs.forEach(input => {
-                if (input.checked) hasSelection = true;
-            });
+            updateProgress();
+            updateSubmitButton();
+            updateQuickNav();
+            updateNavigationButtons();
             
-            return hasSelection;
-        } else if (sectionIndex === 6) {
-            return true; // Síntomas opcionales
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        return false;
     }
 
     function updateProgress() {
         let completedSections = 0;
         
-        // Verificar TODAS las secciones
         for (let i = 0; i < sections.length; i++) {
             if (isSectionComplete(i)) completedSections++;
         }
@@ -603,103 +841,94 @@ document.addEventListener('DOMContentLoaded', function() {
         const allComplete = sections.every((_, i) => isSectionComplete(i));
         if (submitBtn) {
             submitBtn.style.display = allComplete ? 'block' : 'none';
+            submitBtn.disabled = !allComplete;
         }
     }
 
     function updateQuickNav() {
         document.querySelectorAll('.nav-dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSection);
-            dot.classList.toggle('completed', index < currentSection && isSectionComplete(index));
+            if (dot) {
+                dot.classList.toggle('active', index === currentSection);
+                dot.classList.toggle('completed', index < currentSection && isSectionComplete(index));
+            }
         });
     }
 
-    function validateAge() {
-        const age = parseInt(document.getElementById('age').value);
-        if (isNaN(age)) {
-            showAgeError("Please enter a valid age.");
-            return false;
-        }
-        
-        if (age < 18) {
-            showAgeError("This assessment is for adults 18 years and older only.");
-            document.getElementById('age').value = '';
-            return false;
-        }
-        
-        if (age > 80) {
-            showAgeError("For accurate assessment, please consult with a healthcare provider for age-specific evaluation.");
-            return false;
-        }
-        
-        return true;
-    }
-
-    function showAgeError(message) {
-        alert(`🚫 ${message}`);
-        document.getElementById('age').focus();
-    }
-
     function showAnalyzing() {
-        if (resultSection) resultSection.style.display = 'block';
+        if (resultSection) {
+            resultSection.style.display = 'block';
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
         if (analyzingDiv) analyzingDiv.style.display = 'block';
         if (resultsContent) resultsContent.style.display = 'none';
-        if (resultSection) resultSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // ===== CÁLCULO PRINCIPAL DE RESULTADOS CORREGIDO =====
+    // ===== OPTIMIZED MAIN RESULTS CALCULATION =====
     function calculateScientificResults() {
-        if (!validateAllRequiredFields()) return;
+        // Reset obesity processed flag
+        obesityProcessed = false;
+        domCache.clear(); // Clear cache for fresh calculations
+        
+        if (!validateForm(true)) {
+            return;
+        }
         
         let totalRisk = 0;
         const breakdown = [];
         const bmi = calculateBMI();
 
-        // EDAD
-        const age = parseInt(document.getElementById('age').value);
+        if (bmi === null) {
+            showFieldError("Error calculating BMI. Please check weight and height.", 'weight', true);
+            return;
+        }
+
+        // AGE
+        const age = parseInt(domCache.get('age').value);
         let ageImpact = 0;
         if (age >= 50) ageImpact = riskWeights.age['50+'];
         else if (age >= 40) ageImpact = riskWeights.age['40-49'];
         else if (age >= 30) ageImpact = riskWeights.age['30-39'];
         
-        if (ageImpact > 0) {
+        if (ageImpact !== 0) {
             totalRisk += ageImpact;
             breakdown.push({
-                category: 'critical',
+                category: getImpactCategory(ageImpact),
                 name: `Age (${age} years)`,
                 impact: ageImpact,
-                description: 'Natural age-related decline'
+                description: 'Natural age-related decline in testosterone production'
             });
         }
 
-        // SUEÑO
-        const sleep = document.getElementById('sleep').value;
+        // SLEEP
+        const sleep = domCache.get('sleep').value;
         const sleepImpact = riskWeights.sleep[sleep] || 0;
-        if (sleepImpact > 0) {
+        if (sleepImpact !== 0) {
             totalRisk += sleepImpact;
             breakdown.push({
-                category: sleepImpact >= 10 ? 'critical' : 'medium',
-                name: `Sleep (${sleep}h/night)`,
+                category: getImpactCategory(sleepImpact),
+                name: `Sleep Duration (${sleep} hours/night)`,
                 impact: sleepImpact,
                 description: 'Sleep duration impact on testosterone production'
             });
         }
 
-        // CALIDAD DE SUEÑO
-        const sleepQuality = document.getElementById('sleep-quality').value;
-        if (sleepQuality && riskWeights['sleep-quality'][sleepQuality]) {
+        // SLEEP QUALITY
+        const sleepQuality = domCache.get('sleep-quality').value;
+        if (sleepQuality && riskWeights['sleep-quality'][sleepQuality] !== undefined) {
             const sleepQualityImpact = riskWeights['sleep-quality'][sleepQuality];
             totalRisk += sleepQualityImpact;
             breakdown.push({
-                category: Math.abs(sleepQualityImpact) >= 6 ? 'critical' : 'medium',
-                name: `Sleep Quality: ${document.getElementById('sleep-quality').selectedOptions[0].text}`,
+                category: getImpactCategory(sleepQualityImpact),
+                name: `Sleep Quality: ${domCache.get('sleep-quality').selectedOptions[0].text}`,
                 impact: sleepQualityImpact,
-                description: 'Sleep quality affects hormone restoration'
+                description: 'Sleep quality affects hormone restoration during sleep'
             });
         }
 
-        // BMI - SOLO UNA EVALUACIÓN (eliminada doble penalización)
+        // BMI
         if (bmi >= 30) {
             totalRisk += riskWeights.obesity;
+            obesityProcessed = true;
             breakdown.push({
                 category: 'critical',
                 name: 'Obesity (BMI ≥30)',
@@ -707,109 +936,209 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: 'Adipose tissue aromatizes testosterone to estrogen'
             });
         } else if (bmi >= 25) {
-            totalRisk += 10;
+            totalRisk += OVERWEIGHT_IMPACT;
             breakdown.push({
                 category: 'medium',
                 name: 'Overweight (BMI 25-29.9)',
-                impact: 10,
-                description: 'Excess body fat reduces free testosterone'
+                impact: OVERWEIGHT_IMPACT,
+                description: 'Excess body fat reduces free testosterone availability'
             });
         }
 
-        // PROCESAR TODAS LAS SECCIONES CORREGIDO
-        totalRisk += processCheckboxSection('nutrition', breakdown);
-        totalRisk += processCheckboxSection('exercise', breakdown);
-        totalRisk += processCheckboxSection('stress', breakdown);
-        totalRisk += processCheckboxSection('environment', breakdown);
-        totalRisk += processCheckboxSection('medical', breakdown);
+        // PROCESS SECTIONS
+        totalRisk += factorProcessor.processCheckboxSection('nutrition', breakdown);
+        totalRisk += factorProcessor.processCheckboxSection('exercise', breakdown);
+        totalRisk += factorProcessor.processCheckboxSection('stress', breakdown);
+        totalRisk += factorProcessor.processCheckboxSection('environment', breakdown);
+        totalRisk += factorProcessor.processCheckboxSection('medical', breakdown);
 
-        // PROCESAR SELECTS CORREGIDO
-        totalRisk += processSelectFactor('diet-type', breakdown, 'Diet Type');
-        totalRisk += processSelectFactor('vegetable-intake', breakdown, 'Vegetable Intake');
-        totalRisk += processSelectFactor('strength-frequency', breakdown, 'Strength Training');
-        totalRisk += processSelectFactor('cardio-frequency', breakdown, 'Cardio Exercise');
-        totalRisk += processSelectFactor('stress-level', breakdown, 'Stress Level');
-        totalRisk += processSelectFactor('social-support', breakdown, 'Social Support');
-        totalRisk += processSelectFactor('air-quality', breakdown, 'Air Quality');
-        totalRisk += processSelectFactor('family-history', breakdown, 'Family History');
+        // PROCESS SELECTS
+        totalRisk += factorProcessor.processSelectFactor('diet-type', breakdown, 'Diet Type');
+        totalRisk += factorProcessor.processSelectFactor('vegetable-intake', breakdown, 'Vegetable Intake');
+        totalRisk += factorProcessor.processSelectFactor('strength-frequency', breakdown, 'Strength Training');
+        totalRisk += factorProcessor.processSelectFactor('cardio-frequency', breakdown, 'Cardio Exercise');
+        totalRisk += factorProcessor.processSelectFactor('stress-level', breakdown, 'Stress Level');
+        totalRisk += factorProcessor.processSelectFactor('social-support', breakdown, 'Social Support');
+        totalRisk += factorProcessor.processSelectFactor('air-quality', breakdown, 'Air Quality');
+        totalRisk += factorProcessor.processSelectFactor('family-history', breakdown, 'Family History');
 
-        // SÍNTOMAS
+        // SYMPTOMS
         const symptomCheckboxes = document.querySelectorAll('input[name="symptoms"]:checked');
-        const symptomImpact = symptomCheckboxes.length * riskWeights.symptoms;
-        if (symptomImpact > 0) {
+        if (symptomCheckboxes.length > 0) {
+            const symptomImpact = symptomCheckboxes.length * riskWeights.symptoms;
             totalRisk += symptomImpact;
             breakdown.push({
                 category: 'symptoms',
-                name: `${symptomCheckboxes.length} clinical symptoms`,
+                name: `${symptomCheckboxes.length} clinical symptoms reported`,
                 impact: symptomImpact,
-                description: 'Symptom burden indicating potential deficiency'
+                description: 'Symptom burden indicating potential testosterone deficiency'
             });
         }
 
-        // CALCULAR SCORE FINAL SIN LÍMITE ARTIFICIAL DE 100%
-        const finalScore = Math.max(totalRisk, 0); // ELIMINADO: Math.min(..., 100)
-        const testosteroneLevel = estimateTestosterone(finalScore, breakdown);
+        const finalScore = Math.max(totalRisk, 0);
+        const testosteroneLevel = estimateTestosterone(finalScore);
 
-        // LLAMAR A DISPLAY CON TODOS LOS PARÁMETROS
         displayScientificResults(finalScore, breakdown, bmi, testosteroneLevel);
     }
 
     function displayScientificResults(score, breakdown, bmi, testosteroneLevel) {
         if (analyzingDiv) analyzingDiv.style.display = 'none';
-        if (resultsContent) resultsContent.style.display = 'block';
+        if (resultsContent) {
+            resultsContent.style.display = 'block';
+            resultsContent.scrollIntoView({ behavior: 'smooth' });
+        }
 
-        animateValue(document.getElementById('result-score'), 0, score, 1500);
+        const resultScoreElement = domCache.get('result-score');
+        if (resultScoreElement) {
+            animateCounter(resultScoreElement, score);
+        }
 
-        // Determinar nivel de riesgo (con score ahora puede ser >100)
+        // Determine risk level
         let level, message, levelClass;
         if (score >= 70) {
             level = "CRITICAL HORMONAL RISK";
             levelClass = "risk-critical";
-            message = "Your profile indicates severe testosterone disruption. Multiple high-impact factors are compromising masculine function. Immediate intervention required.";
+            message = "Your profile indicates severe testosterone disruption. Multiple high-impact factors are compromising hormonal function. Immediate medical intervention is recommended.";
         } else if (score >= 50) {
             level = "HIGH RISK PROFILE";
             levelClass = "risk-high";
-            message = "Significant testosterone impairment detected. Critical lifestyle factors require immediate attention to prevent further decline.";
+            message = "Significant testosterone impairment detected. Critical lifestyle factors require immediate attention to prevent further decline. Consider consulting an endocrinologist.";
         } else if (score >= 30) {
             level = "MODERATE RISK";
             levelClass = "risk-medium";
-            message = "Several factors are negatively impacting testosterone levels. Targeted interventions can restore optimal function.";
+            message = "Several factors are negatively impacting testosterone levels. Targeted lifestyle interventions can help restore optimal hormonal function.";
+        } else if (score >= 15) {
+            level = "LOW-MODERATE RISK";
+            levelClass = "risk-low-medium";
+            message = "Some risk factors present. Minor adjustments to lifestyle habits could help optimize testosterone levels.";
         } else {
             level = "LOW RISK";
             levelClass = "risk-low";
-            message = "Minimal risk factors detected. Maintain current healthy habits and monitor for changes.";
+            message = "Minimal risk factors detected. Maintain current healthy habits and continue monitoring for changes.";
         }
 
-        document.getElementById('risk-level').textContent = level;
-        document.getElementById('risk-level').className = `risk-level ${levelClass}`;
-        document.getElementById('result-message').textContent = message;
+        const riskLevelElement = domCache.get('risk-level');
+        const resultMessageElement = domCache.get('result-message');
+        
+        if (riskLevelElement) {
+            riskLevelElement.textContent = level;
+            riskLevelElement.className = `risk-level ${levelClass}`;
+        }
+        
+        if (resultMessageElement) {
+            resultMessageElement.textContent = message;
+        }
 
-        // MOSTRAR ESTIMADO DE TESTOSTERONA
         const testosteroneInfo = getTestosteroneInterpretation(testosteroneLevel);
         displayTestosteroneEstimate(testosteroneLevel, testosteroneInfo);
-        
         displayBreakdown(breakdown, bmi);
+        
+        // Add Payhip CTA after results
+        addPayhipCTA(score, level);
     }
 
-    // FUNCIÓN PARA MOSTRAR EL ESTIMADO DE TESTOSTERONA
+    function addPayhipCTA(score, riskLevel) {
+        const existingCTA = document.querySelector('.payhip-cta');
+        if (existingCTA) {
+            existingCTA.remove();
+        }
+        
+        const ctaHTML = `
+            <div class="payhip-cta" style="
+                margin: 40px auto;
+                padding: 25px;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                border-radius: 15px;
+                text-align: center;
+                border-left: 5px solid #667eea;
+                max-width: 800px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            ">
+                <h3 style="margin: 0 0 15px 0; color: #2d3748; font-size: 24px;">
+                    🎯 Get Your Personalized Action Plan
+                </h3>
+                <p style="margin: 0 0 20px 0; color: #4a5568; font-size: 16px; line-height: 1.6;">
+                    Based on your <strong>${score} risk score</strong> and <strong>${riskLevel}</strong> assessment, 
+                    get a complete guide with personalized recommendations for:
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap;">
+                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="font-size: 24px; margin-bottom: 10px;">💪</div>
+                        <div style="font-weight: 600; color: #2d3748;">Exercise Plans</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="font-size: 24px; margin-bottom: 10px;">🥗</div>
+                        <div style="font-weight: 600; color: #2d3748;">Nutrition Guide</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="font-size: 24px; margin-bottom: 10px;">😴</div>
+                        <div style="font-weight: 600; color: #2d3748;">Sleep Optimization</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 10px; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="font-size: 24px; margin-bottom: 10px;">🧠</div>
+                        <div style="font-weight: 600; color: #2d3748;">Stress Management</div>
+                    </div>
+                </div>
+                <button id="payhip-cta-button" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border: none;
+                    padding: 15px 40px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 25px rgba(102, 126, 234, 0.4)';" 
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(102, 126, 234, 0.3)';">
+                    Get Full Personalized Guide →
+                </button>
+                <p style="margin: 15px 0 0 0; color: #718096; font-size: 14px;">
+                    Instant access to comprehensive guide • 30-day money back guarantee
+                </p>
+            </div>
+        `;
+        
+        const resultsContent = domCache.get('results-content');
+        if (resultsContent) {
+            resultsContent.insertAdjacentHTML('beforeend', ctaHTML);
+            
+            // Add event listener to the CTA button
+            const ctaButton = document.getElementById('payhip-cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', redirectToPayhip);
+            }
+        }
+    }
+
     function displayTestosteroneEstimate(level, info) {
-        const breakdownContainer = document.getElementById('breakdown-container');
+        const breakdownContainer = domCache.get('breakdown-container');
+        if (!breakdownContainer) return;
+        
+        const existingEstimate = document.querySelector('.testosterone-estimate');
+        if (existingEstimate) {
+            existingEstimate.remove();
+        }
+        
+        const widthPercentage = ((level - MIN_TESTOSTERONE) / (MAX_TESTOSTERONE - MIN_TESTOSTERONE)) * 100;
+        const clampedWidth = Math.max(0, Math.min(100, widthPercentage));
         
         const testosteroneHTML = `
             <div class="testosterone-estimate">
                 <div class="testosterone-header">
-                    <h3>🧪 Estimado de Niveles de Testosterona</h3>
+                    <h3>🧪 Estimated Testosterone Level</h3>
                     <div class="testosterone-level ${info.class}">${level} ng/dL</div>
                 </div>
                 <div class="testosterone-range">
                     <div class="range-bar">
-                        <div class="range-fill" style="width: ${((level - 150) / (1200 - 150)) * 100}%"></div>
+                        <div class="range-fill" style="width: ${clampedWidth}%"></div>
                         <div class="range-labels">
-                            <span>150 (Crítico)</span>
-                            <span>350 (Bajo)</span>
-                            <span>500 (Promedio)</span>
-                            <span>700 (Óptimo)</span>
-                            <span>1200 (Excelente)</span>
+                            <span>${MIN_TESTOSTERONE} (Critical)</span>
+                            <span>350 (Low)</span>
+                            <span>500 (Average)</span>
+                            <span>700 (Optimal)</span>
+                            <span>${MAX_TESTOSTERONE} (Excellent)</span>
                         </div>
                     </div>
                 </div>
@@ -817,32 +1146,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="testosterone-status ${info.class}">${info.level}</div>
                     <p class="testosterone-message">${info.message}</p>
                     <div class="testosterone-recommendation">
-                        <strong>Recomendación:</strong> ${info.recommendation}
+                        <strong>Recommendation:</strong> ${info.recommendation}
                     </div>
                 </div>
             </div>
         `;
         
-        // Insertar antes del breakdown
         breakdownContainer.insertAdjacentHTML('beforebegin', testosteroneHTML);
     }
 
     function displayBreakdown(breakdown, bmi) {
-        const container = document.getElementById('breakdown-container');
+        const container = domCache.get('breakdown-container');
         if (!container) return;
         
-        let html = '<h3 style="text-align: center; margin-bottom: 20px;">🎯 Risk Factor Breakdown</h3>';
+        // Clear previous content
+        container.innerHTML = '';
         
         if (breakdown.length === 0) {
-            html += `
+            container.innerHTML = `
                 <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+                    <h3 style="margin-bottom: 10px;">🎯 Risk Factor Breakdown</h3>
                     <p>🎉 No significant risk factors detected. Your hormonal profile appears optimal.</p>
                 </div>
             `;
-            container.innerHTML = html;
             return;
         }
 
+        // Add title
+        const title = document.createElement('h3');
+        title.textContent = '🎯 Risk Factor Breakdown';
+        title.style.textAlign = 'center';
+        title.style.marginBottom = '20px';
+        container.appendChild(title);
+
+        // Group by category
         const categories = {
             critical: breakdown.filter(item => item.category === 'critical'),
             medium: breakdown.filter(item => item.category === 'medium'),
@@ -850,31 +1187,21 @@ document.addEventListener('DOMContentLoaded', function() {
             symptoms: breakdown.filter(item => item.category === 'symptoms')
         };
 
-        // Factores Críticos
+        // Display in order of importance
         if (categories.critical.length > 0) {
-            const criticalEl = createCategoryElement('critical', 'Critical Factors (10-25% impact)', categories.critical);
-            container.appendChild(criticalEl);
+            container.appendChild(createCategoryElement('critical', categories.critical));
         }
-
-        // Factores Medios
         if (categories.medium.length > 0) {
-            const mediumEl = createCategoryElement('medium', 'Medium Factors (5-10% impact)', categories.medium);
-            container.appendChild(mediumEl);
+            container.appendChild(createCategoryElement('medium', categories.medium));
         }
-
-        // Factores Ligeros
         if (categories.light.length > 0) {
-            const lightEl = createCategoryElement('light', 'Light Factors (1-4% impact)', categories.light);
-            container.appendChild(lightEl);
+            container.appendChild(createCategoryElement('light', categories.light));
         }
-
-        // Síntomas
         if (categories.symptoms.length > 0) {
-            const symptomsEl = createCategoryElement('symptoms', 'Clinical Symptoms', categories.symptoms);
-            container.appendChild(symptomsEl);
+            container.appendChild(createCategoryElement('symptoms', categories.symptoms));
         }
 
-        // BMI
+        // BMI if available
         if (bmi) {
             const bmiEl = document.createElement('div');
             bmiEl.className = 'breakdown-category';
@@ -888,52 +1215,42 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="factor-name">Body Mass Index (BMI)</span>
                         <span class="factor-impact">${bmi.toFixed(1)}</span>
                     </div>
+                    <div class="breakdown-item">
+                        <span class="factor-name">BMI Category</span>
+                        <span class="factor-impact">${bmi >= 30 ? 'Obese' : bmi >= 25 ? 'Overweight' : 'Normal'}</span>
+                    </div>
                 </div>
             `;
             container.appendChild(bmiEl);
         }
     }
 
-    function createCategoryElement(type, title, items) {
+    function createCategoryElement(type, items) {
         const element = document.createElement('div');
         element.className = 'breakdown-category';
         
-        const icon = type === 'critical' ? '🔴' : type === 'medium' ? '🟡' : type === 'light' ? '🟢' : '📋';
+        const itemsHTML = items.map(item => `
+            <div class="breakdown-item">
+                <div class="factor-info">
+                    <span class="factor-name">${item.name}</span>
+                    <div class="factor-description">${item.description}</div>
+                </div>
+                <span class="factor-impact impact-${type}">
+                    ${item.impact > 0 ? '+' : ''}${item.impact} pts
+                </span>
+            </div>
+        `).join('');
         
         element.innerHTML = `
             <div class="category-title">
-                <span>${icon}</span>
-                <span>${title}</span>
+                <span>${CATEGORY_ICONS[type]}</span>
+                <span>${CATEGORY_TITLES[type]}</span>
             </div>
             <div class="category-items">
-                ${items.map(item => `
-                    <div class="breakdown-item">
-                        <span class="factor-name">${item.name}</span>
-                        <span class="factor-impact impact-${type}">${item.impact > 0 ? '-' : '+'}${Math.abs(item.impact)}%</span>
-                    </div>
-                `).join('')}
+                ${itemsHTML}
             </div>
         `;
         
         return element;
-    }
-
-    function animateValue(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const value = Math.floor(progress * (end - start) + start);
-            element.textContent = value + "%";
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
     }
 });
