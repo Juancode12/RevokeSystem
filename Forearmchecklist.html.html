@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo RS.png">
+    <title>Forearm Training Progress Checklist</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .progress-container {
+            background: var(--light);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            min-width: 80px;
+        }
+        
+        .checklist-section {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        .section-icon {
+            margin-right: 10px;
+            font-size: 1.6rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .checklist-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            margin-top: 3px;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+        
+        .checklist-label {
+            flex-grow: 1;
+        }
+        
+        .checklist-label h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .checklist-label p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .results-section {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .results-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .results-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .results-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-print {
+            background: var(--accent);
+        }
+        
+        .btn-print:hover {
+            background: #c0392b;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .btn {
+                display: none;
+            }
+            
+            .progress-container {
+                background: white;
+                border: 1px solid #ddd;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .progress-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .progress-bar {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Forearm Training Progress Checklist</h1>
+            <p class="subtitle">Your comprehensive guide to building stronger, more capable forearms</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-text">Progress: <span id="progress-percent">0%</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-count">0/20</div>
+        </div>
+        
+        <div class="checklist-section">
+            <div class="section-title">
+                <span class="section-icon">🧠</span>
+                <h2>Knowledge & Planning</h2>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item1" class="check-item">
+                <label for="item1" class="checklist-label">
+                    <h3>Understand basic forearm anatomy</h3>
+                    <p>Know the difference between flexors, extensors, and brachioradialis</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item2" class="check-item">
+                <label for="item2" class="checklist-label">
+                    <h3>Have a clear training goal</h3>
+                    <p>Define whether you're training for strength, size, endurance, or health</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item3" class="check-item">
+                <label for="item3" class="checklist-label">
+                    <h3>Value consistency over intensity</h3>
+                    <p>Recognize that regular, proper training beats occasional intense sessions</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item4" class="check-item">
+                <label for="item4" class="checklist-label">
+                    <h3>Follow a structured routine</h3>
+                    <p>Have specific days, exercises, and sets/reps planned out</p>
+                </label>
+            </div>
+        </div>
+        
+        <div class="checklist-section">
+            <div class="section-title">
+                <span class="section-icon">💪</span>
+                <h2>Training & Technique</h2>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item5" class="check-item">
+                <label for="item5" class="checklist-label">
+                    <h3>Apply progressive overload</h3>
+                    <p>Consistently increase weight, reps, or time under tension</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item6" class="check-item">
+                <label for="item6" class="checklist-label">
+                    <h3>Use full range of motion</h3>
+                    <p>Complete stretches and contractions in every repetition</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item7" class="check-item">
+                <label for="item7" class="checklist-label">
+                    <h3>Prioritize proper form</h3>
+                    <p>Never sacrifice technique for heavier weights</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item8" class="check-item">
+                <label for="item8" class="checklist-label">
+                    <h3>Train all forearm functions</h3>
+                    <p>Include flexors, extensors, crush grip, support grip, and pinch grip</p>
+                </label>
+            </div>
+        </div>
+        
+        <div class="checklist-section">
+            <div class="section-title">
+                <span class="section-icon">🛡️</span>
+                <h2>Prevention & Recovery</h2>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item9" class="check-item">
+                <label for="item9" class="checklist-label">
+                    <h3>Warm up properly</h3>
+                    <p>Perform wrist circles and dynamic stretches before training</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item10" class="check-item">
+                <label for="item10" class="checklist-label">
+                    <h3>Train extensors regularly</h3>
+                    <p>Use bands for extensor work at least twice weekly</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item11" class="check-item">
+                <label for="item11" class="checklist-label">
+                    <h3>Listen to your body</h3>
+                    <p>Stop immediately if you feel sharp tendon pain</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item12" class="check-item">
+                <label for="item12" class="checklist-label">
+                    <h3>Respect rest days</h3>
+                    <p>Allow adequate recovery between intense sessions</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item13" class="check-item">
+                <label for="item13" class="checklist-label">
+                    <h3>Get sufficient sleep</h3>
+                    <p>Aim for 7-9 hours of quality sleep nightly</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item14" class="check-item">
+                <label for="item14" class="checklist-label">
+                    <h3>Stay hydrated</h3>
+                    <p>Drink at least 3 liters of water daily</p>
+                </label>
+            </div>
+        </div>
+        
+        <div class="checklist-section">
+            <div class="section-title">
+                <span class="section-icon">🍗</span>
+                <h2>Nutrition & Fuel</h2>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item15" class="check-item">
+                <label for="item15" class="checklist-label">
+                    <h3>Consume adequate protein</h3>
+                    <p>Approximately 2g per kg of body weight for muscle repair</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item16" class="check-item">
+                <label for="item16" class="checklist-label">
+                    <h3>Maintain balanced nutrition</h3>
+                    <p>Include complex carbs and healthy fats in your diet</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item17" class="check-item">
+                <label for="item17" class="checklist-label">
+                    <h3>Consider strategic supplements</h3>
+                    <p>Creatine and Omega-3s can enhance performance and recovery</p>
+                </label>
+            </div>
+        </div>
+        
+        <div class="checklist-section">
+            <div class="section-title">
+                <span class="section-icon">📈</span>
+                <h2>Tracking & Progress</h2>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item18" class="check-item">
+                <label for="item18" class="checklist-label">
+                    <h3>Keep a training log</h3>
+                    <p>Record exercises, weights, and repetitions</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item19" class="check-item">
+                <label for="item19" class="checklist-label">
+                    <h3>Take progress photos</h3>
+                    <p>Document visual changes every 4 weeks</p>
+                </label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="item20" class="check-item">
+                <label for="item20" class="checklist-label">
+                    <h3>Perform strength tests</h3>
+                    <p>Regularly test max Farmer's Walk weight or Dead Hang time</p>
+                </label>
+            </div>
+        </div>
+        
+        <div class="results-section">
+            <div class="results-card">
+                <h3 class="results-title" id="results-title">Complete the Checklist for Your Results</h3>
+                <p class="results-description" id="results-description">Check off the items above to see your personalized training analysis and recommendations.</p>
+                <div id="results-details"></div>
+            </div>
+            
+            <button class="btn" id="reset-btn">Reset Checklist</button>
+            <button class="btn btn-print" onclick="window.print()">Print Checklist</button>
+        </div>
+        
+        <footer>
+            <p>Based on comprehensive forearm training principles | Use this checklist every 4-6 weeks</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkItems = document.querySelectorAll('.check-item');
+            const progressFill = document.getElementById('progress-fill');
+            const progressPercent = document.getElementById('progress-percent');
+            const progressCount = document.getElementById('progress-count');
+            const resultsTitle = document.getElementById('results-title');
+            const resultsDescription = document.getElementById('results-description');
+            const resultsDetails = document.getElementById('results-details');
+            const resetBtn = document.getElementById('reset-btn');
+            
+            const totalItems = checkItems.length;
+            
+            // Load saved state from localStorage
+            checkItems.forEach(item => {
+                const itemId = item.id;
+                if (localStorage.getItem(itemId) === 'checked') {
+                    item.checked = true;
+                }
+                
+                item.addEventListener('change', function() {
+                    if (this.checked) {
+                        localStorage.setItem(this.id, 'checked');
+                    } else {
+                        localStorage.removeItem(this.id);
+                    }
+                    updateProgress();
+                });
+            });
+            
+            // Reset button functionality
+            resetBtn.addEventListener('click', function() {
+                checkItems.forEach(item => {
+                    item.checked = false;
+                    localStorage.removeItem(item.id);
+                });
+                updateProgress();
+            });
+            
+            function updateProgress() {
+                const checkedCount = document.querySelectorAll('.check-item:checked').length;
+                const percent = Math.round((checkedCount / totalItems) * 100);
+                
+                progressFill.style.width = percent + '%';
+                progressPercent.textContent = percent + '%';
+                progressCount.textContent = checkedCount + '/' + totalItems;
+                
+                updateResults(checkedCount);
+            }
+            
+            function updateResults(checkedCount) {
+                if (checkedCount === 0) {
+                    resultsTitle.textContent = "Complete the Checklist for Your Results";
+                    resultsDescription.textContent = "Check off the items above to see your personalized training analysis and recommendations.";
+                    resultsDetails.innerHTML = "";
+                    return;
+                }
+                
+                if (checkedCount >= 16) {
+                    resultsTitle.textContent = "Elite Level!";
+                    resultsDescription.textContent = "You're following an exceptional training regimen with attention to all critical details.";
+                    resultsDetails.innerHTML = `
+                        <p><strong>Analysis:</strong> Your approach is scientific and comprehensive. You're maximizing your genetic potential for forearm development.</p>
+                        <p><strong>Recommendation:</strong> Continue with your current approach. Consider implementing advanced techniques like cluster sets or overreaching protocols to break through any plateaus.</p>
+                    `;
+                } else if (checkedCount >= 11) {
+                    resultsTitle.textContent = "Solid Foundation";
+                    resultsDescription.textContent = "You have a good training foundation but there are areas for improvement.";
+                    resultsDetails.innerHTML = `
+                        <p><strong>Analysis:</strong> You're covering the basics well but may be missing some key elements that could accelerate your progress.</p>
+                        <p><strong>Recommendation:</strong> Focus on the unchecked items, particularly in the areas of recovery and tracking. Small improvements here can yield significant gains.</p>
+                    `;
+                } else if (checkedCount >= 6) {
+                    resultsTitle.textContent = "Developing Foundation";
+                    resultsDescription.textContent = "You're on the right track but need to address several key training components.";
+                    resultsDetails.innerHTML = `
+                        <p><strong>Analysis:</strong> You have some good habits but are likely leaving gains on the table or risking injury by missing fundamental principles.</p>
+                        <p><strong>Recommendation:</strong> Prioritize consistency, proper form, and balanced training (especially training extensors). Build these habits before increasing intensity.</p>
+                    `;
+                } else {
+                    resultsTitle.textContent = "Needs Improvement";
+                    resultsDescription.textContent = "Your training approach needs significant refinement to achieve optimal results safely.";
+                    resultsDetails.innerHTML = `
+                        <p><strong>Analysis:</strong> You're at high risk for plateaus or injury without a more structured approach.</p>
+                        <p><strong>Recommendation:</strong> Start by focusing on the Knowledge & Planning and Prevention & Recovery sections. Build a solid foundation before advancing to more intense training.</p>
+                    `;
+                }
+            }
+            
+            // Initial update
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
