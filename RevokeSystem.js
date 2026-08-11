@@ -1,5 +1,4 @@
-
-        // ========== MODAL FUNCTIONS ==========
+// ========== MODAL FUNCTIONS ==========
 function openModal(modalId) {
     document.getElementById(modalId).classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -27,287 +26,278 @@ document.addEventListener('keydown', (e) => {
         });
     }
 });
-        // Removed full language system and kept only essential scripts
-        document.addEventListener('DOMContentLoaded', function() {
-            // ========== MOBILE MENU ==========
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const closeMobileMenu = document.getElementById('close-mobile-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && closeMobileMenu && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.add('open');
-                });
-                closeMobileMenu.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                });
-                document.querySelectorAll('#mobile-menu a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('open');
-                    });
-                });
-            }
 
-            // ========== COOKIE BANNER ==========
-            const cookieBanner = document.getElementById('cookie-banner');
-            const cookieAccept = document.getElementById('cookie-accept');
-            const cookieReject = document.getElementById('cookie-reject');
-            if (cookieBanner && !localStorage.getItem('cookieAccepted')) {
-                setTimeout(() => {
-                    cookieBanner.classList.add('show');
-                }, 2000);
-            }
-            if (cookieAccept) {
-                cookieAccept.addEventListener('click', () => {
-                    localStorage.setItem('cookieAccepted', 'true');
-                    cookieBanner.classList.remove('show');
-                });
-            }
-            if (cookieReject) {
-                cookieReject.addEventListener('click', () => {
-                    localStorage.setItem('cookieAccepted', 'false');
-                    cookieBanner.classList.remove('show');
-                });
-            }
-
-            // ========== FAQ ACCORDION ==========
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const item = question.parentElement;
-                    item.classList.toggle('active');
-                    const icon = question.querySelector('i');
-                    if (icon) {
-                        if (item.classList.contains('active')) {
-                            icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-                        } else {
-                            icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-                        }
-                    }
-                });
-            });
-
-            // ========== SMOOTH SCROLLING ==========
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // ========== HEADER EFFECT ON SCROLL ==========
-            window.addEventListener('scroll', () => {
-                const header = document.querySelector('header');
-                if (header) {
-                    if (window.scrollY > 50) {
-                        header.classList.add('shadow-lg');
-                    } else {
-                        header.classList.remove('shadow-lg');
-                    }
-                }
-            });
-
-            // ========== SCROLL REVEAL ANIMATION ==========
-            function revealOnScroll() {
-                const reveals = document.querySelectorAll('.scroll-reveal');
-                reveals.forEach(el => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = el.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        el.classList.add('active');
-                    }
-                });
-            }
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-
-            // ========== E-BOOK FILTERING ==========
-            document.querySelectorAll('.filter-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    document.querySelectorAll('.filter-btn').forEach(btn => {
-                        btn.classList.remove('bg-accent-500', 'text-iron-900');
-                    });
-                    this.classList.add('bg-accent-500', 'text-iron-900');
-                    const filter = this.getAttribute('data-filter');
-                    document.querySelectorAll('.ebook-card').forEach(ebook => {
-                        if (filter === 'all') {
-                            ebook.classList.remove('hidden');
-                        } else {
-                            const categories = ebook.getAttribute('data-category').split(',');
-                            if (categories.includes(filter)) {
-                                ebook.classList.remove('hidden');
-                            } else {
-                                ebook.classList.add('hidden');
-                            }
-                        }
-                    });
-                });
-            });
-
-            // ========== ARTICLE SEARCH ==========
-            const searchInput = document.getElementById('article-search');
-            const articles = document.querySelectorAll('#articulos .grid > div');
-            if (searchInput) {
-                searchInput.addEventListener('input', function () {
-                    const term = this.value.toLowerCase();
-                    articles.forEach(article => {
-                        const title = article.querySelector('h3')?.textContent.toLowerCase() || '';
-                        const content = article.querySelector('p')?.textContent.toLowerCase() || '';
-                        if (term === '' || title.includes(term) || content.includes(term)) {
-                            article.style.display = 'block';
-                        } else {
-                            article.style.display = 'none';
-                        }
-                    });
-                });
-            }
-
-            // ========== COUNTDOWN TIMER FOR EBOOK ==========
-            function updateEbookCountdown() {
-                const launchEnd = new Date();
-                launchEnd.setDate(launchEnd.getDate() + 3); // 3 days from now
-                
-                const now = new Date();
-                const difference = launchEnd - now;
-                
-                if (difference <= 0) {
-                    document.getElementById('countdown-ebook1').textContent = "Offer expired!";
-                    return;
-                }
-                
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                
-                document.getElementById('countdown-ebook1').textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-
-            // Update countdown every second
-            setInterval(updateEbookCountdown, 1000);
-            updateEbookCountdown();
-
-            // Activate "All" filter by default
-            const allFilter = document.querySelector('.filter-btn[data-filter="all"]');
-            if (allFilter) {
-                allFilter.classList.add('bg-accent-500', 'text-iron-900');
-            }
-        });
-        
-        // Form submission handler
-        document.getElementById("mailForm").addEventListener("submit", function (e) {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Obtener valores
-            const nombre  = document.getElementById("identifer").value.trim();
-            const email   = document.getElementById("mails").value.trim();
-            const topic   = document.getElementById("topic").value.trim();
-            const mensaje = document.getElementById("mensaje").value.trim();
-
-            // Validación de correo
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            // Validaciones
-            if (!nombre) {
-                document.getElementById("resultado").textContent = "⚠️ El nombre es obligatorio.";
-                document.getElementById("resultado").style.color = "#f87171";
-                return;
-            }
-
-            if (!email) {
-                document.getElementById("resultado").textContent = "⚠️ El correo es obligatorio.";
-                document.getElementById("resultado").style.color = "#f87171";
-                return;
-            }
-
-            if (!emailRegex.test(email)) {
-                document.getElementById("resultado").textContent = "⚠️ Por favor, escribe un correo válido.";
-                document.getElementById("resultado").style.color = "#f87171";
-                return;
-            }
-
-            if (!topic) {
-                document.getElementById("resultado").textContent = "⚠️ El asunto es obligatorio.";
-                document.getElementById("resultado").style.color = "#f87171";
-                return;
-            }
-
-            if (!mensaje) {
-                document.getElementById("resultado").textContent = "⚠️ El mensaje no puede estar vacío.";
-                document.getElementById("resultado").style.color = "#f87171";
-                return;
-            }
-
-            // 🔑 Claves alineadas al DTO del backend
-            const data = {
-                nombre: nombre,
-                email: email,
-                topic: topic,
-                mensaje: mensaje
-            };
-
-            // Envío al backend
-            fetch("http://localhost:8080/api/mail/send", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById("resultado").textContent = "✅ Mensaje enviado con éxito.";
-                    document.getElementById("resultado").style.color = "#d4af37";
-                    document.getElementById("mailForm").reset(); // Limpia el formulario
-                } else {
-                    document.getElementById("resultado").textContent = "⚠️ Error al enviar el mensaje.";
-                    document.getElementById("resultado").style.color = "#f87171";
-                }
-            })
-            .catch(error => {
-                console.error("Error de conexión:", error);
-                document.getElementById("resultado").textContent = "❌ No se pudo conectar al servidor.";
-                document.getElementById("resultado").style.color = "#ef4444";
-            });
-        });
-
-        // Mobile menu functionality
+// ========== AUTO-ABRIR MODAL DESDE URL (HASH O PARÁMETRO) ==========
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMobileMenu = document.getElementById('close-mobile-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.add('open');
-        });
-        
-        closeMobileMenu.addEventListener('click', function() {
-            mobileMenu.classList.remove('open');
-        });
+    // Hash (#modalX)
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#modal')) {
+        const modalId = hash.replace('#', '');
+        setTimeout(function() {
+            openModal(modalId);
+        }, 500);
     }
-    
-    // Close mobile menu when clicking on a link
-    const mobileLinks = document.querySelectorAll('#mobile-menu a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('open');
-        });
-    });
-    
-    // Force mobile viewport fix
-    function fixViewport() {
-        const viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+
+    // Parámetro ?modal=modalX
+    const urlParams = new URLSearchParams(window.location.search);
+    const modalParam = urlParams.get('modal');
+    if (modalParam) {
+        setTimeout(function() {
+            openModal(modalParam);
+        }, 500);
+    }
+
+    // ========== IR A TARJETA DE E-BOOK DESDE HASH ==========
+    const ebookHash = window.location.hash;
+    if (ebookHash && ebookHash.startsWith('#ebook-')) {
+        const ebookId = ebookHash.replace('#', '');
+        const targetElement = document.getElementById(ebookId);
+        if (targetElement) {
+            setTimeout(function() {
+                // Desplazarse suavemente hasta la tarjeta
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Añadir clase de resaltado
+                targetElement.classList.add('highlight');
+                // Quitar el resaltado después de 3 segundos
+                setTimeout(function() {
+                    targetElement.classList.remove('highlight');
+                }, 3000);
+            }, 500);
         }
     }
-    
-    fixViewport();
 });
-    
+
+// ========== COPIAR ENLACE DE UN E-BOOK ESPECÍFICO ==========
+function copiarEnlaceEbook(ebookId) {
+    const url = window.location.href.split('#')[0] + '#' + ebookId;
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+            mostrarToast('✅ Enlace copiado: ' + ebookId);
+        }).catch(() => {
+            prompt('Copia este enlace:', url);
+        });
+    } else {
+        prompt('Copia este enlace:', url);
+    }
+}
+
+function mostrarToast(mensaje) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-2xl z-50 border border-gray-600';
+    toast.innerHTML = mensaje;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.5s';
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+// ========== DOMContentLoaded ==========
+document.addEventListener('DOMContentLoaded', function() {
+    // ========== MOBILE MENU ==========
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openButton = document.getElementById('mobile-menu-button');
+    const closeButton = document.getElementById('close-mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
+
+    function openMenu() {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
+    }
+
+    if (openButton) {
+        openButton.addEventListener('click', openMenu);
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    // Cerrar al hacer clic en cualquier enlace del menú
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Cerrar al hacer clic fuera del menú
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('open')) {
+            const isClickInsideMenu = mobileMenu.contains(e.target);
+            const isClickOnOpenButton = openButton && openButton.contains(e.target);
+            if (!isClickInsideMenu && !isClickOnOpenButton) {
+                closeMenu();
+            }
+        }
+    });
+
+    // Cerrar al redimensionar a escritorio
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    // ========== COOKIE BANNER ==========
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAccept = document.getElementById('cookie-accept');
+    const cookieReject = document.getElementById('cookie-reject');
+    if (cookieBanner && !localStorage.getItem('cookieAccepted')) {
+        setTimeout(() => cookieBanner.classList.add('show'), 2000);
+    }
+    if (cookieAccept) {
+        cookieAccept.addEventListener('click', () => {
+            localStorage.setItem('cookieAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+    }
+    if (cookieReject) {
+        cookieReject.addEventListener('click', () => {
+            localStorage.setItem('cookieAccepted', 'false');
+            cookieBanner.classList.remove('show');
+        });
+    }
+
+    // ========== FAQ ACCORDION ==========
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+            const icon = question.querySelector('i');
+            if (icon) {
+                if (item.classList.contains('active')) {
+                    icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            }
+        });
+    });
+
+    // ========== SMOOTH SCROLLING ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ========== HEADER EFFECT ON SCROLL ==========
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        }
+    });
+
+    // ========== SCROLL REVEAL ==========
+    function revealOnScroll() {
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 150) {
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // ========== E-BOOK FILTERING ==========
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            // Remover clase activa de todos
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-accent-500', 'text-iron-900');
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
+            });
+            // Activar este
+            this.classList.add('active');
+            this.style.backgroundColor = '#d4af37';
+            this.style.color = '#1a1a1a';
+            this.style.borderColor = '#d4af37';
+
+            const filter = this.getAttribute('data-filter');
+            document.querySelectorAll('.ebook-card').forEach(ebook => {
+                if (filter === 'all') {
+                    ebook.classList.remove('hidden');
+                } else {
+                    const categories = ebook.getAttribute('data-category').split(',');
+                    if (categories.includes(filter)) {
+                        ebook.classList.remove('hidden');
+                    } else {
+                        ebook.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
+
+    // ========== ARTICLE SEARCH ==========
+    const searchInput = document.getElementById('article-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('#articulos .grid > div').forEach(article => {
+                const title = article.querySelector('h3')?.textContent?.toLowerCase() || '';
+                const content = article.querySelector('p')?.textContent?.toLowerCase() || '';
+                if (term === '' || title.includes(term) || content.includes(term)) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // ========== COUNTDOWN ==========
+    function updateEbookCountdown() {
+        const launchEnd = new Date();
+        launchEnd.setDate(launchEnd.getDate() + 3);
+        const now = new Date();
+        const difference = launchEnd - now;
+        if (difference <= 0) {
+            document.getElementById('countdown-ebook1').textContent = "Offer expired!";
+            return;
+        }
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        document.getElementById('countdown-ebook1').textContent = 
+            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    setInterval(updateEbookCountdown, 1000);
+    updateEbookCountdown();
+
+    // Activar filtro "All" por defecto
+    const allFilter = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allFilter) {
+        allFilter.classList.add('active');
+        allFilter.style.backgroundColor = '#d4af37';
+        allFilter.style.color = '#1a1a1a';
+        allFilter.style.borderColor = '#d4af37';
+    }
+});
