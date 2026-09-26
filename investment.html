@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Learn how to start investing, understand bonds, fixed income, index funds, diversification, disciplined investing, and building a long-term portfolio.">
+
+    <meta name="keywords"
+        content="how to start investing, investing for beginners, bonds, fixed income, index funds, diversified portfolio, REVOKESYSTEM">
+
+    <meta property="og:title"
+        content="How to Start Investing | REVOKESYSTEM">
+
+    <meta property="og:description"
+        content="Learn the fundamentals of investing, diversification and disciplined wealth building.">
+
+    <title>How to Start Investing | REVOKESYSTEM</title>
+
+    <link rel="icon" type="image/png" href="images/logo-RS.png">
+
+    <style>
+
+        /* =========================================
+           REVOKESYSTEM — INVESTING ARTICLE
+           CSS3
+        ========================================= */
+
+        :root {
+
+            --black: #070707;
+            --black-soft: #0d0d0d;
+            --dark: #121212;
+            --dark-2: #181818;
+
+            --gold: #d6a84f;
+            --gold-light: #f1cb70;
+
+            --green: #65c98b;
+
+            --white: #ffffff;
+            --text: #e7e7e7;
+            --muted: #999999;
+
+            --border: rgba(255,255,255,0.10);
+
+            --container: 1180px;
+        }
+
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            background: var(--black);
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        strong {
+            color: var(--white);
+        }
+
+
+        /* =========================================
+           CONTAINER
+        ========================================= */
+
+        .container {
+
+            width: min(
+                calc(100% - 40px),
+                var(--container)
+            );
+
+            margin: 0 auto;
+        }
+
+        .narrow {
+            max-width: 820px;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .site-header {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            background:
+                rgba(7,7,7,0.94);
+
+            backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .header-inner {
+
+            min-height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .logo {
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .header-cta {
+
+            padding: 9px 16px;
+
+            border:
+                1px solid var(--gold);
+
+            color: var(--gold);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            transition: 0.25s ease;
+        }
+
+        .header-cta:hover {
+
+            background: var(--gold);
+
+            color: var(--black);
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            min-height: 720px;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 78% 45%,
+                    rgba(214,168,79,0.15),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #070707,
+                    #131313
+                );
+        }
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -180px;
+            top: 80px;
+
+            border:
+                1px solid rgba(214,168,79,0.16);
+
+            border-radius: 50%;
+        }
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            right: -80px;
+            top: 155px;
+
+            border:
+                1px solid rgba(214,168,79,0.08);
+
+            border-radius: 50%;
+        }
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+        .hero-label {
+
+            color: var(--gold);
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+
+            color: var(--white);
+
+            font-size:
+                clamp(55px, 8vw, 100px);
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 35px;
+        }
+
+        .hero h1 span {
+
+            display: block;
+
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+
+            max-width: 730px;
+
+            color: var(--white);
+
+            font-size:
+                clamp(21px, 3vw, 30px);
+
+            line-height: 1.3;
+
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+
+            max-width: 650px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .primary-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-top: 20px;
+
+            padding: 16px 24px;
+
+            background: var(--gold);
+
+            color: var(--black);
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .primary-button:hover {
+
+            transform: translateY(-3px);
+
+            background: var(--gold-light);
+
+            box-shadow:
+                0 12px 35px
+                rgba(214,168,79,0.20);
+        }
+
+        .primary-button span {
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           GENERAL SECTIONS
+        ========================================= */
+
+        .section {
+
+            padding: 110px 0;
+
+            background: var(--black);
+        }
+
+        .dark-section {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111111,
+                    #080808
+                );
+
+            border-top:
+                1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .section-number {
+
+            color: var(--gold);
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+
+            color: var(--white);
+
+            font-size:
+                clamp(40px, 6vw, 70px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 25px;
+        }
+
+        .section h2 span {
+
+            color: var(--gold);
+        }
+
+        .section-intro {
+
+            max-width: 720px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            margin-bottom: 50px;
+        }
+
+
+        /* =========================================
+           INTRO
+        ========================================= */
+
+        .intro p {
+
+            color: #bcbcbc;
+
+            font-size: 18px;
+        }
+
+        .quote-box {
+
+            margin: 40px 0;
+
+            padding: 35px;
+
+            border-left:
+                3px solid var(--gold);
+
+            background:
+                rgba(255,255,255,0.035);
+        }
+
+        .quote-box p {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            line-height: 1.4;
+
+            margin: 0;
+        }
+
+        .quote-box .gold {
+            color: var(--gold);
+        }
+
+
+        /* =========================================
+           SAVING VS INVESTING
+        ========================================= */
+
+        .comparison-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+            margin-top: 45px;
+        }
+
+        .comparison-card {
+
+            padding: 35px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .comparison-card.investing {
+
+            border-color:
+                rgba(214,168,79,0.3);
+
+            background:
+                rgba(214,168,79,0.045);
+        }
+
+        .comparison-card h3 {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            margin-bottom: 15px;
+        }
+
+        .comparison-card p {
+
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+        .comparison-card ul {
+
+            list-style: none;
+
+            margin-top: 25px;
+        }
+
+        .comparison-card li {
+
+            color: #c7c7c7;
+
+            padding: 8px 0;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .comparison-card li:last-child {
+            border-bottom: none;
+        }
+
+
+        /* =========================================
+           WHAT IS AN INVESTMENT
+        ========================================= */
+
+        .definition-box {
+
+            padding: 45px;
+
+            margin-top: 45px;
+
+            border:
+                1px solid rgba(214,168,79,0.25);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(214,168,79,0.07),
+                    rgba(255,255,255,0.02)
+                );
+        }
+
+        .definition-box h3 {
+
+            color: var(--gold);
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        .definition-box p {
+
+            color: var(--white);
+
+            font-size: 22px;
+
+            line-height: 1.45;
+
+            margin: 0;
+        }
+
+
+        /* =========================================
+           INVESTMENT TYPES
+        ========================================= */
+
+        .investment-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 55px;
+        }
+
+        .investment-card {
+
+            padding: 35px 28px;
+
+            min-height: 330px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .investment-card:hover {
+
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(214,168,79,0.5);
+        }
+
+        .investment-number {
+
+            color: var(--gold);
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .investment-card h3 {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            line-height: 1.2;
+
+            margin: 25px 0 15px;
+        }
+
+        .investment-card p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+        }
+
+        .risk-tag {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 6px 10px;
+
+            border:
+                1px solid var(--border);
+
+            color: var(--gold);
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================
+           BONDS / FIXED INCOME
+        ========================================= */
+
+        .two-column {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .content p {
+
+            color: #bcbcbc;
+
+            font-size: 17px;
+        }
+
+        .content h3 {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            margin:
+                30px 0 18px;
+        }
+
+        .bullet-list {
+
+            list-style: none;
+
+            margin-top: 30px;
+        }
+
+        .bullet-list li {
+
+            position: relative;
+
+            padding-left: 28px;
+
+            margin-bottom: 15px;
+
+            color: #c7c7c7;
+        }
+
+        .bullet-list li::before {
+
+            content: "✓";
+
+            position: absolute;
+
+            left: 0;
+
+            color: var(--gold);
+
+            font-weight: 900;
+        }
+
+
+        /* =========================================
+           BOND VISUAL
+        ========================================= */
+
+        .visual-card {
+
+            min-height: 450px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(214,168,79,0.10),
+                    transparent 55%
+                ),
+
+                #101010;
+        }
+
+        .bond-visual {
+
+            width: 300px;
+
+            padding: 30px;
+
+            border:
+                1px solid var(--gold);
+
+            background:
+                rgba(214,168,79,0.04);
+        }
+
+        .bond-visual-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 30px;
+        }
+
+        .bond-visual h3 {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .bond-line {
+
+            height: 2px;
+
+            width: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--gold),
+                    transparent
+                );
+
+            margin: 25px 0;
+        }
+
+        .bond-value {
+
+            color: var(--gold);
+
+            font-size: 35px;
+
+            font-weight: 900;
+        }
+
+        .bond-small {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================
+           INDEX FUNDS
+        ========================================= */
+
+        .index-box {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 30px;
+
+            margin-top: 50px;
+        }
+
+        .index-card {
+
+            padding: 35px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .index-card h3 {
+
+            color: var(--white);
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+        }
+
+        .index-card p {
+
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+        .index-flow {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+        .index-flow span {
+
+            padding: 9px 12px;
+
+            border:
+                1px solid var(--border);
+
+            color: #ccc;
+
+            font-size: 10px;
+
+            letter-spacing: 0.5px;
+        }
+
+        .index-flow .arrow {
+
+            color: var(--gold);
+
+            border: none;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           DISCIPLINE
+        ========================================= */
+
+        .discipline-section {
+
+            text-align: center;
+        }
+
+        .discipline-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: 55px;
+        }
+
+        .discipline-card {
+
+            padding: 30px 20px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .discipline-card span {
+
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 25px;
+
+            font-weight: 900;
+
+            margin-bottom: 12px;
+        }
+
+        .discipline-card strong {
+
+            display: block;
+
+            color: var(--white);
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .discipline-card p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin: 0;
+        }
+
+
+        /* =========================================
+           PORTFOLIO
+        ========================================= */
+
+        .portfolio {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+
+            margin-top: 55px;
+        }
+
+        .portfolio-chart {
+
+            height: 350px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            padding: 30px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.02);
+        }
+
+        .bar {
+
+            width: 70px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    to top,
+                    var(--gold),
+                    var(--gold-light)
+                );
+        }
+
+        .bar::before {
+
+            content: attr(data-value);
+
+            position: absolute;
+
+            top: -28px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            color: var(--white);
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+        .bar-1 {
+            height: 45%;
+        }
+
+        .bar-2 {
+            height: 30%;
+        }
+
+        .bar-3 {
+            height: 60%;
+        }
+
+        .bar-4 {
+            height: 40%;
+        }
+
+        .bar-5 {
+            height: 75%;
+        }
+
+        .bar-6 {
+            height: 55%;
+        }
+
+        .portfolio-copy h3 {
+
+            color: var(--white);
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+        .portfolio-copy p {
+
+            color: var(--muted);
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           RULES
+        ========================================= */
+
+        .rules {
+
+            margin-top: 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .rule {
+
+            padding: 25px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .rule-number {
+
+            color: var(--gold);
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .rule h3 {
+
+            color: var(--white);
+
+            font-size: 18px;
+
+            margin: 12px 0 8px;
+        }
+
+        .rule p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin: 0;
+        }
+
+
+        /* =========================================
+           MINDSET
+        ========================================= */
+
+        .mindset {
+
+            padding: 45px;
+
+            margin-top: 60px;
+
+            text-align: center;
+
+            border:
+                1px solid rgba(214,168,79,0.25);
+
+            background:
+                rgba(214,168,79,0.05);
+        }
+
+        .mindset p {
+
+            color: var(--white);
+
+            font-size: 25px;
+
+            line-height: 1.4;
+
+            margin: 0;
+        }
+
+        .mindset span {
+
+            color: var(--gold);
+
+            font-weight: 900;
+        }
+
+
+        /* =========================================
+           MONEY SYSTEM
+        ========================================= */
+
+        .money-system {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+
+            margin-top: 55px;
+        }
+
+        .money-step {
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .money-step strong {
+
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+        }
+
+        .money-step span {
+
+            display: block;
+
+            color: var(--white);
+
+            font-size: 14px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================================
+           GUIDE CTA
+        ========================================= */
+
+        .guide-section {
+
+            padding: 120px 0;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    rgba(214,168,79,0.15),
+                    transparent 45%
+                ),
+
+                #070707;
+        }
+
+        .guide-box {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 80px 50px;
+
+            text-align: center;
+
+            border:
+                1px solid rgba(214,168,79,0.3);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .guide-label {
+
+            color: var(--gold);
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+        .guide-box h2 {
+
+            color: var(--white);
+
+            font-size:
+                clamp(40px, 6vw, 65px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 25px;
+        }
+
+        .guide-box h2 span {
+
+            display: block;
+
+            color: var(--gold);
+        }
+
+        .guide-box > p {
+
+            max-width: 680px;
+
+            margin:
+                0 auto 35px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+        }
+
+        .guide-topics {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin: 30px auto;
+        }
+
+        .guide-topics span {
+
+            padding: 8px 13px;
+
+            border:
+                1px solid var(--border);
+
+            color: #ccc;
+
+            font-size: 11px;
+        }
+
+        .large-button {
+
+            padding: 18px 30px;
+
+            font-size: 12px;
+        }
+
+        .small-note {
+
+            margin-top: 22px !important;
+
+            color: #666 !important;
+
+            font-size: 11px !important;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .site-footer {
+
+            padding: 50px 0;
+
+            background: #050505;
+
+            border-top:
+                1px solid var(--border);
+        }
+
+        .footer-inner {
+
+            text-align: center;
+        }
+
+        .footer-inner p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin: 15px 0;
+        }
+
+        .footer-inner small {
+
+            display: block;
+
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #555;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           RESPONSIVE — TABLET
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .investment-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .investment-card:last-child {
+
+                grid-column:
+                    1 / -1;
+            }
+
+            .two-column {
+
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+            .discipline-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .portfolio {
+
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .money-system {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        /* =========================================
+           RESPONSIVE — MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                width:
+                    calc(100% - 28px);
+            }
+
+            .site-header {
+
+                position: relative;
+            }
+
+            .header-inner {
+
+                min-height: 62px;
+            }
+
+            .logo {
+
+                font-size: 15px;
+            }
+
+            .header-cta {
+
+                padding: 7px 10px;
+
+                font-size: 9px;
+            }
+
+            .hero {
+
+                min-height: 620px;
+            }
+
+            .hero h1 {
+
+                font-size: 54px;
+
+                letter-spacing: -3px;
+            }
+
+            .hero-subtitle {
+
+                font-size: 20px;
+            }
+
+            .section,
+            .guide-section {
+
+                padding: 80px 0;
+            }
+
+            .section h2,
+            .guide-box h2 {
+
+                font-size: 43px;
+            }
+
+            .comparison-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .investment-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .investment-card:last-child {
+
+                grid-column: auto;
+            }
+
+            .index-box {
+
+                grid-template-columns: 1fr;
+            }
+
+            .discipline-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-chart {
+
+                height: 280px;
+
+                gap: 10px;
+
+                padding: 20px;
+            }
+
+            .bar {
+
+                width: 42px;
+            }
+
+            .rules {
+
+                grid-template-columns: 1fr;
+            }
+
+            .money-system {
+
+                grid-template-columns: 1fr;
+            }
+
+            .guide-box {
+
+                padding: 55px 20px;
+            }
+
+            .primary-button {
+
+                width: 100%;
+            }
+        }
+
+
+        /* =========================================
+           ACCESSIBILITY
+        ========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+
+        /* =========================================
+           PRINT
+        ========================================= */
+
+        @media print {
+
+            .site-header,
+            .primary-button,
+            .header-cta {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .section,
+            .dark-section,
+            .guide-section {
+                background: white;
+                color: black;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a href="/" class="logo">
+                REVOKE<span>SYSTEM</span>
+            </a>
+
+            <a href="#guide" class="header-cta">
+                GET THE GUIDE
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================================
+             HERO
+        ========================================== -->
+
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-label">
+                    REVOKESYSTEM • MONEY & WEALTH
+                </div>
+
+                <h1>
+                    Start
+                    <span>Investing.</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Your money shouldn't only sit there.
+                    Learn how disciplined people turn savings
+                    into long-term assets.
+                </p>
+
+                <p class="hero-description">
+                    Investing doesn't have to begin with complicated
+                    strategies, constant trading or trying to predict
+                    the next big opportunity.
+                </p>
+
+                <a href="#guide" class="primary-button">
+                    BUILD YOUR MONEY SYSTEM
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             INTRO
+        ========================================== -->
+
+        <section class="section intro">
+
+            <div class="container narrow">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <h2>
+                    Before You Invest,
+                    <span>Understand What It Means.</span>
+                </h2>
+
+                <p>
+                    Investing means putting money or capital into an
+                    asset with the expectation that it may generate
+                    income, appreciate in value, or both over time.
+                </p>
+
+                <p>
+                    It is fundamentally different from simply spending
+                    money because the objective is to acquire something
+                    that can potentially produce future economic value.
+                </p>
+
+                <div class="quote-box">
+
+                    <p>
+                        <span class="gold">
+                            Saving protects capital.
+                        </span>
+                        Investing gives capital an opportunity to grow.
+                    </p>
+
+                </div>
+
+                <p>
+                    That doesn't mean every investment makes money.
+                    Every investment involves some combination of risk,
+                    uncertainty, time and potential return.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             SAVING VS INVESTING
+        ========================================== -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <h2>
+                    Saving vs.
+                    <span>Investing</span>
+                </h2>
+
+                <p class="section-intro">
+                    They aren't competing strategies.
+                    A strong financial system can use both.
+                </p>
+
+
+                <div class="comparison-grid">
+
+                    <div class="comparison-card">
+
+                        <h3>Saving</h3>
+
+                        <p>
+                            Money you keep accessible for short-term
+                            needs, emergencies and planned expenses.
+                        </p>
+
+                        <ul>
+
+                            <li>Emergency fund</li>
+                            <li>Short-term goals</li>
+                            <li>Liquidity</li>
+                            <li>Capital preservation</li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="comparison-card investing">
+
+                        <h3>Investing</h3>
+
+                        <p>
+                            Money allocated toward assets with the
+                            potential to generate future returns.
+                        </p>
+
+                        <ul>
+
+                            <li>Long-term goals</li>
+                            <li>Potential growth</li>
+                            <li>Income generation</li>
+                            <li>Compounding</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHAT IS AN INVESTMENT
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="container narrow">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <h2>
+                    What Makes Something
+                    <span>An Investment?</span>
+                </h2>
+
+                <p>
+                    An investment is not simply something that costs money.
+                </p>
+
+                <p>
+                    The key idea is that you are allocating capital today
+                    because you expect the asset to potentially create
+                    economic value in the future.
+                </p>
+
+                <div class="definition-box">
+
+                    <h3>
+                        THE BASIC IDEA
+                    </h3>
+
+                    <p>
+                        Capital today → Asset → Potential future income,
+                        appreciation or both
+                    </p>
+
+                </div>
+
+                <p style="margin-top:35px;">
+                    That asset could be a bond, a fund, a business,
+                    real estate, or another financial instrument.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             SAFE / LOWER-RISK OPTIONS
+        ========================================== -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    04
+                </div>
+
+                <h2>
+                    Start With
+                    <span>Understandable Assets</span>
+                </h2>
+
+                <p class="section-intro">
+                    There is no single investment that is "safe" in every
+                    situation. Risk depends on the asset, issuer, maturity,
+                    market conditions, inflation and your time horizon.
+                </p>
+
+
+                <div class="investment-grid">
+
+
+                    <!-- BONDS -->
+
+                    <article class="investment-card">
+
+                        <div class="investment-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Bonds
+                        </h3>
+
+                        <p>
+                            A bond generally represents a loan from an
+                            investor to an issuer. Depending on the bond,
+                            the investor may receive interest and repayment
+                            of principal according to its terms.
+                        </p>
+
+                        <span class="risk-tag">
+                            LOWER RISK ≠ NO RISK
+                        </span>
+
+                    </article>
+
+
+                    <!-- FIXED INCOME -->
+
+                    <article class="investment-card">
+
+                        <div class="investment-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Fixed Income
+                        </h3>
+
+                        <p>
+                            Fixed-income investments can provide scheduled
+                            interest or income according to the security's
+                            structure. Examples include government and
+                            corporate debt securities.
+                        </p>
+
+                        <span class="risk-tag">
+                            INCOME FOCUS
+                        </span>
+
+                    </article>
+
+
+                    <!-- INDEX FUNDS -->
+
+                    <article class="investment-card">
+
+                        <div class="investment-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Index Funds
+                        </h3>
+
+                        <p>
+                            An index fund is designed to track a particular
+                            market index rather than actively selecting
+                            individual securities.
+                        </p>
+
+                        <span class="risk-tag">
+                            DIVERSIFICATION
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             BONDS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="container two-column">
+
+                <div class="content">
+
+                    <div class="section-number">
+                        05
+                    </div>
+
+                    <h2>
+                        Bonds &
+                        <span>Fixed Income</span>
+                    </h2>
+
+                    <p>
+                        Bonds can be useful for investors who want an asset
+                        that is structured around lending capital and receiving
+                        interest according to predetermined terms.
+                    </p>
+
+                    <p>
+                        Government bonds, for example, are issued by governments
+                        to finance their activities.
+                    </p>
+
+                    <ul class="bullet-list">
+
+                        <li>
+                            Understand who issued the bond.
+                        </li>
+
+                        <li>
+                            Understand its maturity.
+                        </li>
+
+                        <li>
+                            Understand its interest rate and payment structure.
+                        </li>
+
+                        <li>
+                            Consider credit risk and inflation.
+                        </li>
+
+                        <li>
+                            Understand that bond prices can fluctuate before maturity.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="visual-card">
+
+                    <div class="bond-visual">
+
+                        <div class="bond-visual-top">
+
+                            <span>FIXED INCOME</span>
+
+                            <span>BOND</span>
+
+                        </div>
+
+                        <h3>
+                            CAPITAL
+                        </h3>
+
+                        <p>
+                            Investor provides capital
+                            to an issuer.
+                        </p>
+
+                        <div class="bond-line"></div>
+
+                        <div class="bond-value">
+                            $
+                        </div>
+
+                        <div class="bond-small">
+                            Interest + principal according
+                            to the bond's terms
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             INDEX FUNDS
+        ========================================== -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    06
+                </div>
+
+                <h2>
+                    Index Funds &
+                    <span>Diversification</span>
+                </h2>
+
+                <p class="section-intro">
+                    Instead of trying to identify individual winners,
+                    an index fund can provide exposure to a collection
+                    of securities represented by an underlying index.
+                </p>
+
+
+                <div class="index-box">
+
+                    <div class="index-card">
+
+                        <h3>
+                            Why Diversification Matters
+                        </h3>
+
+                        <p>
+                            Diversification spreads your exposure across
+                            multiple assets rather than depending entirely
+                            on one company, one sector or one investment.
+                        </p>
+
+                        <div class="index-flow">
+
+                            <span>CAPITAL</span>
+
+                            <span class="arrow">→</span>
+
+                            <span>MANY ASSETS</span>
+
+                            <span class="arrow">→</span>
+
+                            <span>DIVERSIFIED EXPOSURE</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="index-card">
+
+                        <h3>
+                            What It Doesn't Mean
+                        </h3>
+
+                        <p>
+                            Diversification does not guarantee profits or
+                            eliminate losses. A diversified portfolio can
+                            still decline when markets fall.
+                        </p>
+
+                        <p>
+                            Its purpose is to reduce concentration risk,
+                            not eliminate investment risk.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             DISCIPLINE
+        ========================================== -->
+
+        <section class="section discipline-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    07
+                </div>
+
+                <h2>
+                    How Disciplined
+                    <span>Investors Think</span>
+                </h2>
+
+                <p class="section-intro"
+                    style="margin-left:auto;margin-right:auto;">
+                    Building wealth is often less about finding a perfect
+                    investment and more about building a process you can
+                    actually follow.
+                </p>
+
+
+                <div class="discipline-grid">
+
+
+                    <div class="discipline-card">
+
+                        <span>01</span>
+
+                        <strong>Consistency</strong>
+
+                        <p>
+                            Contribute according to a sustainable plan.
+                        </p>
+
+                    </div>
+
+
+                    <div class="discipline-card">
+
+                        <span>02</span>
+
+                        <strong>Patience</strong>
+
+                        <p>
+                            Give long-term investments time to work.
+                        </p>
+
+                    </div>
+
+
+                    <div class="discipline-card">
+
+                        <span>03</span>
+
+                        <strong>Diversification</strong>
+
+                        <p>
+                            Avoid depending entirely on one asset.
+                        </p>
+
+                    </div>
+
+
+                    <div class="discipline-card">
+
+                        <span>04</span>
+
+                        <strong>Process</strong>
+
+                        <p>
+                            Follow a strategy instead of constantly reacting.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mindset">
+
+                    <p>
+                        The disciplined investor doesn't need to predict
+                        every move in the market.
+                        <br>
+                        <span>
+                            They need a process they can stick to.
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             PORTFOLIO
+        ========================================== -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    08
+                </div>
+
+                <h2>
+                    Build a
+                    <span>Diversified Portfolio</span>
+                </h2>
+
+                <p class="section-intro">
+                    A portfolio is simply the collection of investments
+                    you own. The exact allocation should depend on your
+                    goals, time horizon, risk tolerance and circumstances.
+                </p>
+
+
+                <div class="portfolio">
+
+
+                    <div class="portfolio-chart">
+
+                        <div
+                            class="bar bar-1"
+                            data-value="Asset A">
+                        </div>
+
+                        <div
+                            class="bar bar-2"
+                            data-value="Asset B">
+                        </div>
+
+                        <div
+                            class="bar bar-3"
+                            data-value="Asset C">
+                        </div>
+
+                        <div
+                            class="bar bar-4"
+                            data-value="Asset D">
+                        </div>
+
+                        <div
+                            class="bar bar-5"
+                            data-value="Asset E">
+                        </div>
+
+                        <div
+                            class="bar bar-6"
+                            data-value="Asset F">
+                        </div>
+
+                    </div>
+
+
+                    <div class="portfolio-copy">
+
+                        <h3>
+                            Don't Put Your Entire Financial Future
+                            Into One Bet.
+                        </h3>
+
+                        <p>
+                            A diversified portfolio can combine different
+                            types of assets and reduce concentration in
+                            any single investment.
+                        </p>
+
+                        <p>
+                            The objective isn't to own everything.
+                            It is to build a portfolio whose risk and
+                            potential return are appropriate for your
+                            financial plan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="rules">
+
+
+                    <div class="rule">
+
+                        <div class="rule-number">
+                            RULE 01
+                        </div>
+
+                        <h3>
+                            Know Your Goal
+                        </h3>
+
+                        <p>
+                            Retirement, a home, financial independence,
+                            education or another objective can require
+                            different strategies.
+                        </p>
+
+                    </div>
+
+
+                    <div class="rule">
+
+                        <div class="rule-number">
+                            RULE 02
+                        </div>
+
+                        <h3>
+                            Know Your Time Horizon
+                        </h3>
+
+                        <p>
+                            Money needed soon generally calls for a
+                            different approach than money invested
+                            for decades.
+                        </p>
+
+                    </div>
+
+
+                    <div class="rule">
+
+                        <div class="rule-number">
+                            RULE 03
+                        </div>
+
+                        <h3>
+                            Understand Risk
+                        </h3>
+
+                        <p>
+                            Higher potential returns generally come
+                            with greater uncertainty and risk.
+                        </p>
+
+                    </div>
+
+
+                    <div class="rule">
+
+                        <div class="rule-number">
+                            RULE 04
+                        </div>
+
+                        <h3>
+                            Keep Learning
+                        </h3>
+
+                        <p>
+                            Understand what you own before allocating
+                            significant amounts of capital.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             COMPOUNDING / LONG TERM
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="container narrow">
+
+                <div class="section-number">
+                    09
+                </div>
+
+                <h2>
+                    Time Is Part of
+                    <span>The Strategy</span>
+                </h2>
+
+                <p>
+                    One of the reasons people invest for the long term
+                    is the potential for compounding.
+                </p>
+
+                <p>
+                    When an investment generates returns and those returns
+                    remain invested, future growth can build on previous growth.
+                </p>
+
+                <div class="definition-box">
+
+                    <h3>
+                        THE COMPOUNDING IDEA
+                    </h3>
+
+                    <p>
+                        Capital → Return → Reinvestment → Potentially more capital
+                    </p>
+
+                </div>
+
+                <p style="margin-top:35px;">
+                    Compounding is not a guarantee of profit, and actual
+                    investment returns fluctuate. But time can be an
+                    important component of a long-term investing strategy.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             MONEY SYSTEM
+        ========================================== -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-number">
+                    10
+                </div>
+
+                <h2>
+                    Investing Is Only One Part of
+                    <span>Building Wealth</span>
+                </h2>
+
+                <p class="section-intro">
+                    You can have a good investment strategy and still
+                    struggle financially if you don't know how to manage
+                    the money that comes before and after investing.
+                </p>
+
+
+                <div class="money-system">
+
+                    <div class="money-step">
+
+                        <strong>01</strong>
+
+                        <span>
+                            EARN
+                        </span>
+
+                    </div>
+
+                    <div class="money-step">
+
+                        <strong>02</strong>
+
+                        <span>
+                            MANAGE
+                        </span>
+
+                    </div>
+
+                    <div class="money-step">
+
+                        <strong>03</strong>
+
+                        <span>
+                            SAVE
+                        </span>
+
+                    </div>
+
+                    <div class="money-step">
+
+                        <strong>04</strong>
+
+                        <span>
+                            INVEST
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quote-box">
+
+                    <p>
+                        Wealth isn't only about how much money you make.
+                        It's also about what you do with the money
+                        after you earn it.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             GUIDE CTA
+        ========================================== -->
+
+        <section id="guide" class="guide-section">
+
+            <div class="container guide-box">
+
+                <div class="guide-label">
+                    REVOKESYSTEM • FINANCIAL GUIDE
+                </div>
+
+                <h2>
+                    Build Your
+                    <span>Complete Money System.</span>
+                </h2>
+
+                <p>
+                    Investing is only one piece of the puzzle.
+                    The complete REVOKESYSTEM Financial Guide goes deeper
+                    into how to manage your money, save strategically,
+                    invest it and build wealth over time.
+                </p>
+
+
+                <div class="guide-topics">
+
+                    <span>Money Management</span>
+
+                    <span>Saving</span>
+
+                    <span>Investing</span>
+
+                    <span>Wealth Building</span>
+
+                    <span>Money Psychology</span>
+
+                    <span>Financial Systems</span>
+
+                </div>
+
+
+                <a
+                    href="https://payhip.com/b/t5wRH"
+                    class="primary-button large-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GET THE COMPLETE GUIDE
+                    <span>→</span>
+                </a>
+
+
+                <p class="small-note">
+                    Build the system. Follow the process. Let time do its work.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div class="logo">
+                REVOKE<span>SYSTEM</span>
+            </div>
+
+            <p>
+                Build wealth. Manage it. Make it grow.
+            </p>
+
+            <small>
+                Educational content only. This article is not personalized
+                financial advice. Investment products involve risk, and past
+                performance does not guarantee future results.
+            </small>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
