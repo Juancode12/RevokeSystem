@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Train Like a Soldier | REVOKESYSTEM</title>
+
+    <meta name="description" content="Train like a soldier with a military-inspired fitness system focused on functional strength, endurance, conditioning, discipline and physical capability.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #080908;
+            --dark: #101210;
+            --dark2: #171a17;
+            --olive: #68735a;
+            --olive-light: #879574;
+            --gold: #c6a84b;
+            --white: #f1f1ed;
+            --gray: #a4a79f;
+            --border: #292d28;
+            --red: #8f3b32;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            background: #0a0b0a;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-tag {
+            color: var(--olive-light);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            padding: 120px 0 100px;
+            background:
+                linear-gradient(rgba(8,9,8,.82), rgba(8,9,8,.94)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(255,255,255,.015) 3px,
+                    rgba(255,255,255,.015) 4px
+                );
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "REVOKE";
+            position: absolute;
+            right: -30px;
+            bottom: -70px;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(104,115,90,.035);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: .78rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            max-width: 950px;
+            font-size: clamp(3.3rem, 8vw, 7rem);
+            line-height: .9;
+            font-weight: 950;
+            text-transform: uppercase;
+        }
+
+        h1 span {
+            color: var(--olive-light);
+        }
+
+        .hero p {
+            max-width: 720px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+
+        .stamp {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 9px 15px;
+            border: 1px solid var(--olive);
+            color: var(--olive-light);
+            font-size: .72rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 85px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--olive-light);
+        }
+
+        .section-intro {
+            max-width: 760px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 35px;
+            height: 3px;
+            background: var(--olive);
+        }
+
+        .card h3 {
+            color: var(--olive-light);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: .95rem;
+        }
+
+        /* PRINCIPLES */
+
+        .principles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .principle {
+            padding: 25px;
+            background: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .principle-number {
+            color: var(--gold);
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .principle h3 {
+            margin: 8px 0;
+        }
+
+        .principle p {
+            color: var(--gray);
+        }
+
+        /* TRAINING BLOCK */
+
+        .training {
+            margin-top: 45px;
+            background: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .training-header {
+            padding: 25px 30px;
+            background: #151815;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .training-header h3 {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            border: 1px solid var(--olive);
+            color: var(--olive-light);
+            padding: 6px 11px;
+            font-size: .7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .exercise {
+            display: grid;
+            grid-template-columns: 50px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exercise:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-number {
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        .exercise-name {
+            font-weight: 800;
+        }
+
+        .exercise-note {
+            color: var(--gray);
+            font-size: .85rem;
+        }
+
+        .exercise-target {
+            color: var(--olive-light);
+            font-weight: 800;
+            font-size: .85rem;
+            text-align: right;
+        }
+
+        /* WEEK */
+
+        .week {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 35px;
+        }
+
+        .day {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 20px 12px;
+            text-align: center;
+            min-height: 145px;
+        }
+
+        .day strong {
+            display: block;
+            color: var(--gold);
+            font-size: .75rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .day span {
+            color: var(--gray);
+            font-size: .8rem;
+        }
+
+        /* MARCH */
+
+        .march-box {
+            background:
+                linear-gradient(135deg, #121612, #0d0f0d);
+            border: 1px solid var(--olive);
+            padding: 35px;
+            margin-top: 35px;
+        }
+
+        .march-box h3 {
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .march-box p {
+            color: var(--gray);
+        }
+
+        .warning {
+            margin-top: 20px;
+            border-left: 3px solid var(--red);
+            padding: 12px 15px;
+            color: #aaa;
+            font-size: .88rem;
+        }
+
+        /* CHALLENGE */
+
+        .challenge {
+            background: var(--dark);
+            border: 1px solid var(--gold);
+            padding: 45px;
+            margin-top: 40px;
+        }
+
+        .challenge h3 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .challenge h3 span {
+            color: var(--gold);
+        }
+
+        .challenge-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .challenge-item {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 13px;
+            background: var(--dark2);
+        }
+
+        .check {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--olive-light);
+            flex-shrink: 0;
+        }
+
+        .challenge-item span {
+            color: var(--gray);
+        }
+
+        /* CTA */
+
+        .cta {
+            text-align: center;
+            padding: 110px 20px;
+            background:
+                linear-gradient(rgba(8,9,8,.94), rgba(8,9,8,.98)),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(104,115,90,.03) 8px,
+                    rgba(104,115,90,.03) 9px
+                );
+        }
+
+        .cta h2 {
+            max-width: 900px;
+            margin: auto;
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: .95;
+            text-transform: uppercase;
+        }
+
+        .cta h2 span {
+            color: var(--olive-light);
+        }
+
+        .cta p {
+            max-width: 680px;
+            margin: 25px auto 35px;
+            color: var(--gray);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 30px;
+            background: var(--gold);
+            color: #090909;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: .2s;
+        }
+
+        .button:hover {
+            background: #e0c35c;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 35px 0;
+            text-align: center;
+            color: #5f625d;
+            font-size: .8rem;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principles {
+                grid-template-columns: 1fr;
+            }
+
+            .week {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .exercise {
+                grid-template-columns: 40px 1fr;
+            }
+
+            .exercise-target {
+                grid-column: 2;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .training-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .exercise {
+                padding: 18px;
+            }
+
+            .challenge {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="container nav">
+
+        <div class="logo">
+            REVOKE<span>SYSTEM</span>
+        </div>
+
+        <div class="nav-tag">
+            FIELD FITNESS
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            Military-Inspired Training
+        </div>
+
+        <h1>
+            Train Like<br>
+            a <span>Soldier.</span>
+        </h1>
+
+        <p>
+            Stop training only for bigger muscles. Build a body that can run,
+            climb, push, pull, carry, endure and keep working when the workout
+            gets difficult.
+        </p>
+
+        <div class="stamp">
+            STRENGTH • ENDURANCE • DISCIPLINE • WORK CAPACITY
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONCEPT -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            The Concept
+        </div>
+
+        <h2 class="section-title">
+            Train for <span>capability.</span>
+        </h2>
+
+        <p class="section-intro">
+            Traditional fitness often focuses on individual muscles:
+            bigger chest, bigger arms, bigger legs. Those goals are valid,
+            but they are not the only way to train.
+        </p>
+
+        <p class="section-intro">
+            A military-inspired approach asks a different question:
+            <strong>What can your body actually do?</strong>
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Functional Strength</h3>
+                <p>
+                    Pull, push, carry and control your own body under demanding
+                    conditions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Endurance</h3>
+                <p>
+                    Keep moving and producing useful work without immediately
+                    running out of capacity.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Work Capacity</h3>
+                <p>
+                    Perform repeated efforts while maintaining reasonable
+                    technique and control.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Mobility</h3>
+                <p>
+                    Maintain the movement quality required for running,
+                    crawling, climbing and carrying.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Discipline</h3>
+                <p>
+                    Follow the training plan even when motivation isn't doing
+                    the work for you.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Resilience</h3>
+                <p>
+                    Learn to manage difficult training without turning every
+                    session into a test of exhaustion.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            The Difference
+        </div>
+
+        <h2 class="section-title">
+            You're not training a <span>muscle.</span><br>
+            You're training a <span>system.</span>
+        </h2>
+
+        <p class="section-intro">
+            A soldier-inspired physical preparation system combines multiple
+            qualities instead of making hypertrophy the only objective.
+        </p>
+
+        <div class="principles">
+
+            <div class="principle">
+                <div class="principle-number">01</div>
+                <h3>Relative Strength</h3>
+                <p>
+                    Your ability to control and move your own body matters.
+                    Pull-ups, push-ups, dips and loaded carries all build
+                    useful strength.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-number">02</div>
+                <h3>Conditioning</h3>
+                <p>
+                    Running, brisk walking, intervals and circuits can develop
+                    your cardiovascular and work capacity.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-number">03</div>
+                <h3>Movement</h3>
+                <p>
+                    Train different patterns: running, crawling, jumping,
+                    climbing, carrying, pushing and pulling.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-number">04</div>
+                <h3>Consistency</h3>
+                <p>
+                    Physical capability comes from repeated exposure, not one
+                    heroic workout.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOUNDATION -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            Phase 01
+        </div>
+
+        <h2 class="section-title">
+            Build the <span>foundation.</span>
+        </h2>
+
+        <p class="section-intro">
+            Before adding advanced conditioning, build a basic strength and
+            movement base.
+        </p>
+
+        <div class="training">
+
+            <div class="training-header">
+
+                <h3>Foundation Session</h3>
+
+                <div class="badge">
+                    45–60 MIN
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">01</div>
+
+                <div>
+                    <div class="exercise-name">Pull-Ups</div>
+                    <div class="exercise-note">
+                        Controlled full-range pulling
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    3–4 × 5–10
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">02</div>
+
+                <div>
+                    <div class="exercise-name">Push-Ups</div>
+                    <div class="exercise-note">
+                        Maintain a rigid body
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    3–4 × 10–20
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">03</div>
+
+                <div>
+                    <div class="exercise-name">Walking Lunges</div>
+                    <div class="exercise-note">
+                        Controlled unilateral leg work
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    3 × 10–20 / leg
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">04</div>
+
+                <div>
+                    <div class="exercise-name">Plank</div>
+                    <div class="exercise-note">
+                        Full-body tension
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    3 × 30–60 sec
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">05</div>
+
+                <div>
+                    <div class="exercise-name">Loaded Carry</div>
+                    <div class="exercise-note">
+                        Carry a challenging but manageable load
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    3–5 × 30–60 m
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOLDIER CIRCUIT -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            Phase 02
+        </div>
+
+        <h2 class="section-title">
+            Build your <span>work capacity.</span>
+        </h2>
+
+        <p class="section-intro">
+            Once you have a basic strength base, combine movements into
+            controlled circuits. The goal is not to sprint through everything
+            with terrible technique. The goal is to perform useful work while
+            managing fatigue.
+        </p>
+
+        <div class="training">
+
+            <div class="training-header">
+
+                <h3>Field Circuit</h3>
+
+                <div class="badge">
+                    3–5 ROUNDS
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">01</div>
+
+                <div>
+                    <div class="exercise-name">Push-Ups</div>
+                    <div class="exercise-note">
+                        Controlled repetitions
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    10–20
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">02</div>
+
+                <div>
+                    <div class="exercise-name">Pull-Ups</div>
+                    <div class="exercise-note">
+                        Use an easier variation if necessary
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    5–10
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">03</div>
+
+                <div>
+                    <div class="exercise-name">Walking Lunges</div>
+                    <div class="exercise-note">
+                        Maintain control
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    10 / leg
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">04</div>
+
+                <div>
+                    <div class="exercise-name">Burpees</div>
+                    <div class="exercise-note">
+                        Controlled conditioning movement
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    5–10
+                </div>
+
+            </div>
+
+            <div class="exercise">
+
+                <div class="exercise-number">05</div>
+
+                <div>
+                    <div class="exercise-name">Plank</div>
+                    <div class="exercise-note">
+                        Maintain body tension
+                    </div>
+                </div>
+
+                <div class="exercise-target">
+                    30–45 sec
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RUNNING -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            Conditioning
+        </div>
+
+        <h2 class="section-title">
+            Learn to <span>keep moving.</span>
+        </h2>
+
+        <p class="section-intro">
+            Cardiovascular conditioning is an important part of military-style
+            physical preparation. You don't need to destroy yourself every
+            day. Build your capacity progressively.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Base Run</h3>
+
+                <p>
+                    Easy continuous running where you can maintain a sustainable
+                    pace.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Intervals</h3>
+
+                <p>
+                    Alternate harder running with easier recovery periods.
+                    Increase volume gradually.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Rucking / Loaded Walking</h3>
+
+                <p>
+                    Walking with a load can develop work capacity, but increase
+                    load and distance progressively.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="march-box">
+
+            <h3>Example Conditioning Session</h3>
+
+            <p>
+                Warm up with easy movement → perform several controlled
+                running intervals → walk for recovery → finish with easy
+                movement and cooldown.
+            </p>
+
+            <div class="warning">
+                <strong>Progress gradually.</strong>
+                Running and loaded walking create impact and mechanical stress.
+                Increase distance, speed or load progressively rather than
+                trying to imitate extreme military selection workouts.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WEEK -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            Example Week
+        </div>
+
+        <h2 class="section-title">
+            A <span>soldier-inspired</span> week.
+        </h2>
+
+        <p class="section-intro">
+            This is an example structure, not a universal prescription.
+            Adjust volume and intensity according to your current training
+            level and recovery.
+        </p>
+
+        <div class="week">
+
+            <div class="day">
+                <strong>MON</strong>
+                <span>
+                    Strength<br><br>
+                    Pull + Push
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>TUE</strong>
+                <span>
+                    Conditioning<br><br>
+                    Running
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>WED</strong>
+                <span>
+                    Strength<br><br>
+                    Legs + Core
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>THU</strong>
+                <span>
+                    Recovery<br><br>
+                    Walking + Mobility
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>FRI</strong>
+                <span>
+                    Field Circuit<br><br>
+                    Full Body
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>SAT</strong>
+                <span>
+                    Conditioning<br><br>
+                    Easy Run
+                </span>
+            </div>
+
+            <div class="day">
+                <strong>SUN</strong>
+                <span>
+                    Recovery<br><br>
+                    Rest
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHYSICAL QUALITIES -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            The Objective
+        </div>
+
+        <h2 class="section-title">
+            Build a body that can <span>do things.</span>
+        </h2>
+
+        <p class="section-intro">
+            The aesthetic result is a potential side effect of developing
+            useful physical qualities. Your goal is not simply to look
+            athletic. It is to become more capable.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Can You Pull?</h3>
+                <p>
+                    Develop strong pull-ups and eventually weighted pulling
+                    strength.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Can You Push?</h3>
+                <p>
+                    Build strong push-ups, dips and overhead pressing ability.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Can You Run?</h3>
+                <p>
+                    Develop enough conditioning to run without immediately
+                    reaching exhaustion.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Can You Carry?</h3>
+                <p>
+                    Train your ability to move while carrying a manageable
+                    external load.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Can You Endure?</h3>
+                <p>
+                    Build the ability to perform repeated efforts while
+                    maintaining control.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Can You Recover?</h3>
+                <p>
+                    Recovery is part of performance. Sleep, nutrition and
+                    appropriate rest determine how much work you can sustain.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHALLENGE -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            REVOKESYSTEM Challenge
+        </div>
+
+        <h2 class="section-title">
+            30 days. <span>Become harder to stop.</span>
+        </h2>
+
+        <p class="section-intro">
+            Turn the concept into a challenge. Your mission is not to destroy
+            yourself. Your mission is to show up, complete the work and become
+            more capable over the next 30 days.
+        </p>
+
+        <div class="challenge">
+
+            <h3>
+                Your <span>orders:</span>
+            </h3>
+
+            <div class="challenge-list">
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Complete your scheduled training.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Perform regular conditioning.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Progress at least one physical quality.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Prioritize sleep and recovery.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Keep your training environment organized.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Track your workouts.</span>
+                </div>
+
+                <div class="challenge-item">
+                    <div class="check"></div>
+                    <span>Do not confuse exhaustion with progress.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            REVOKESYSTEM
+        </div>
+
+        <h2>
+            Don't just build a body that
+            <span>looks capable.</span>
+            Build one that is.
+        </h2>
+
+        <p>
+            Strength. Conditioning. Endurance. Discipline. Movement.
+            Train beyond aesthetics and develop physical capability you can
+            actually use.
+        </p>
+
+        <a
+            href="https://payhip.com/b/g9XR0"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            GET THE REVOKESYSTEM GUIDE
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="container">
+        © REVOKESYSTEM — TRAIN FOR CAPABILITY.
+    </div>
+
+</footer>
+
+
+</body>
+</html>

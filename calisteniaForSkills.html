@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How to Unlock Calisthenics Skills | REVOKESYSTEM</title>
+
+    <meta name="description" content="A practical step-by-step system for unlocking calisthenics skills including the muscle-up, front lever, planche, handstand, L-sit and handstand push-up.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #080808;
+            --dark: #111111;
+            --dark2: #181818;
+            --gold: #d4af37;
+            --gold-light: #f0d56b;
+            --white: #f5f5f5;
+            --gray: #a7a7a7;
+            --border: #292929;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 22px 0;
+            background: rgba(8, 8, 8, 0.96);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-link {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 7vw, 5.5rem);
+            line-height: 1;
+            max-width: 900px;
+            margin: auto;
+            font-weight: 900;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 28px auto 0;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .section-title span {
+            color: var(--gold);
+        }
+
+        .section-intro {
+            color: var(--gray);
+            max-width: 760px;
+            margin-bottom: 40px;
+        }
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: var(--gold-light);
+        }
+
+        .card p {
+            color: var(--gray);
+        }
+
+        /* SKILL SECTION */
+
+        .skill {
+            border-top: 1px solid var(--border);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .skill-number {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .skill-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1;
+        }
+
+        .difficulty {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* PROGRESSION */
+
+        .progression {
+            display: grid;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            gap: 20px;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            color: var(--gray);
+        }
+
+        .exercise {
+            color: var(--gold-light);
+            font-weight: 800;
+        }
+
+        /* WORKOUT BOX */
+
+        .workout {
+            margin-top: 30px;
+            background: #0d0d0d;
+            border: 1px solid var(--gold);
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .workout h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .exercise-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exercise-row:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-name {
+            font-weight: 700;
+        }
+
+        .exercise-detail {
+            color: var(--gray);
+            text-align: right;
+        }
+
+        /* UNLOCK TEST */
+
+        .unlock {
+            margin-top: 25px;
+            padding: 24px;
+            border-left: 4px solid var(--gold);
+            background: var(--dark2);
+        }
+
+        .unlock strong {
+            color: var(--gold);
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        th,
+        td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--gold);
+            background: #0d0d0d;
+        }
+
+        td {
+            color: var(--gray);
+        }
+
+        /* CTA */
+
+        .cta {
+            text-align: center;
+            padding: 100px 20px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.05;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .cta p {
+            color: var(--gray);
+            max-width: 650px;
+            margin: 22px auto 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            padding: 15px 28px;
+            border-radius: 8px;
+            font-weight: 900;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 35px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .exercise-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .exercise-detail {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            .step {
+                grid-template-columns: 45px 1fr;
+                gap: 12px;
+                padding: 18px;
+            }
+
+            .workout {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <div class="logo">REVOKE<span>SYSTEM</span></div>
+        <div class="nav-link">CALISTHENICS</div>
+    </div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">Skill Unlock System</div>
+
+        <h1>
+            Don't just train.<br>
+            <span>Unlock skills.</span>
+        </h1>
+
+        <p>
+            Calisthenics skills are not random tricks. They are the result of
+            specific strength, technique and progressions. Follow the right
+            steps and turn advanced movements into achievable targets.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- INTRO -->
+
+<section>
+    <div class="container">
+
+        <div class="eyebrow">The System</div>
+
+        <h2 class="section-title">
+            Every skill has a <span>path.</span>
+        </h2>
+
+        <p class="section-intro">
+            The mistake most people make is trying to perform the final skill
+            before building the abilities required for it. Instead, break the
+            movement into smaller pieces and progressively remove assistance.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>01 — Build Strength</h3>
+                <p>
+                    Strength is the foundation. Your body needs enough force
+                    production to control the movement.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>02 — Practice Technique</h3>
+                <p>
+                    Strength alone is not enough. You need to learn the exact
+                    positions, coordination and movement pattern.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>03 — Progress Gradually</h3>
+                <p>
+                    Move through increasingly difficult variations instead of
+                    repeatedly failing the final skill.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- MUSCLE UP -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 01</div>
+                <h2 class="skill-title">Muscle-Up</h2>
+            </div>
+
+            <div class="difficulty">ADVANCED</div>
+
+        </div>
+
+        <p class="section-intro">
+            The muscle-up combines a powerful pull with a transition and a
+            strong dip. Train each component separately before putting them
+            together.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Pull-Ups</h4>
+                    <p>
+                        Build a solid pulling base with strict
+                        <span class="exercise">pull-ups — 3–4 × 5–10</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Chest-to-Bar Pull-Ups</h4>
+                    <p>
+                        Pull higher than a normal pull-up.
+                        <span class="exercise">3–4 × 4–8</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Explosive Pull-Ups</h4>
+                    <p>
+                        Pull as explosively as possible toward the upper chest.
+                        <span class="exercise">4 × 3–5</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Straight-Bar Dips</h4>
+                    <p>
+                        Build the pushing strength needed after the transition.
+                        <span class="exercise">3–4 × 6–12</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Band-Assisted Muscle-Ups</h4>
+                    <p>
+                        Practice the complete movement while gradually reducing
+                        assistance.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div>
+                    <h4>Negative Muscle-Ups</h4>
+                    <p>
+                        Start above the bar and slowly control the transition
+                        downward. <span class="exercise">3–5 × 1–3</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">7</div>
+                <div>
+                    <h4>Muscle-Up Attempts</h4>
+                    <p>
+                        Combine your explosive pull and transition. Keep
+                        attempts controlled and high quality.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Unlock Test:</strong>
+            You should be able to perform strong chest-to-bar pull-ups,
+            explosive high pulls and controlled straight-bar dips before
+            expecting consistent muscle-ups.
+        </div>
+
+        <div class="workout">
+
+            <h3>Muscle-Up Session</h3>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Explosive Pull-Ups</span>
+                <span class="exercise-detail">4 × 3–5</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Chest-to-Bar Pull-Ups</span>
+                <span class="exercise-detail">3 × 4–8</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Straight-Bar Dips</span>
+                <span class="exercise-detail">3 × 6–12</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Band Muscle-Up</span>
+                <span class="exercise-detail">3 × 3–5</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FRONT LEVER -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 02</div>
+                <h2 class="skill-title">Front Lever</h2>
+            </div>
+
+            <div class="difficulty">ADVANCED</div>
+
+        </div>
+
+        <p class="section-intro">
+            The front lever requires enormous straight-arm pulling strength,
+            scapular control and full-body tension.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Scapular Pull-Ups</h4>
+                    <p>
+                        Learn to control your shoulder blades.
+                        <span class="exercise">3 × 8–12</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Tuck Front Lever</h4>
+                    <p>
+                        Bring your knees toward your chest and hold the body
+                        horizontal. <span class="exercise">4 × 8–15 seconds</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Advanced Tuck</h4>
+                    <p>
+                        Open the hips and move the knees farther away from the
+                        chest. <span class="exercise">4 × 8–15 seconds</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>One-Leg Front Lever</h4>
+                    <p>
+                        Extend one leg while keeping the other tucked.
+                        Alternate sides.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Straddle Front Lever</h4>
+                    <p>
+                        Extend both legs outward while maintaining a horizontal
+                        body position.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div>
+                    <h4>Full Front Lever</h4>
+                    <p>
+                        Progressively close the legs until you can maintain a
+                        straight horizontal body.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Unlock Rule:</strong>
+            Do not rush to the next progression. Aim to accumulate several
+            clean sets of controlled holds before making the variation harder.
+        </div>
+
+        <div class="workout">
+
+            <h3>Front Lever Session</h3>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Scapular Pull-Ups</span>
+                <span class="exercise-detail">3 × 8–12</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Front Lever Progression</span>
+                <span class="exercise-detail">4 × 8–15 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Tuck Front Lever Rows</span>
+                <span class="exercise-detail">3 × 5–8</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Hollow Body Hold</span>
+                <span class="exercise-detail">3 × 20–40 sec</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- PLANCHE -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 03</div>
+                <h2 class="skill-title">Planche</h2>
+            </div>
+
+            <div class="difficulty">VERY ADVANCED</div>
+
+        </div>
+
+        <p class="section-intro">
+            The planche is primarily a straight-arm pushing skill. Your wrists,
+            shoulders, chest, triceps and core all need to adapt progressively.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Pseudo Planche Push-Ups</h4>
+                    <p>
+                        Lean your shoulders forward over your hands while
+                        performing controlled push-ups.
+                        <span class="exercise">3–4 × 5–10</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Planche Lean</h4>
+                    <p>
+                        Lock your elbows and gradually lean forward.
+                        <span class="exercise">4 × 10–20 seconds</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Tuck Planche</h4>
+                    <p>
+                        Lift the feet and keep the knees tucked close to the
+                        chest. <span class="exercise">4 × 5–12 seconds</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Advanced Tuck</h4>
+                    <p>
+                        Slowly open the hips while keeping the legs tucked.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Straddle Planche</h4>
+                    <p>
+                        Extend the legs outward to reduce the leverage
+                        requirement before attempting a full planche.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div>
+                    <h4>Full Planche</h4>
+                    <p>
+                        Gradually bring the legs together while maintaining
+                        straight arms and body control.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Important:</strong>
+            Planche training places substantial stress on the wrists, elbows
+            and shoulders. Progress slowly and stop if you experience sharp
+            or persistent pain.
+        </div>
+
+        <div class="workout">
+
+            <h3>Planche Session</h3>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Planche Lean</span>
+                <span class="exercise-detail">4 × 10–20 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Pseudo Planche Push-Ups</span>
+                <span class="exercise-detail">3 × 5–10</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Tuck Planche</span>
+                <span class="exercise-detail">4 × 5–12 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Hollow Body Hold</span>
+                <span class="exercise-detail">3 × 20–40 sec</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- HANDSTAND -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 04</div>
+                <h2 class="skill-title">Handstand</h2>
+            </div>
+
+            <div class="difficulty">INTERMEDIATE</div>
+
+        </div>
+
+        <p class="section-intro">
+            The handstand is less about brute strength than many people think.
+            You need shoulder mobility, balance, body alignment and enough
+            pushing strength to maintain the position.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Pike Push-Ups</h4>
+                    <p>
+                        Build basic overhead pressing strength.
+                        <span class="exercise">3–4 × 6–12</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Wall Handstand</h4>
+                    <p>
+                        Start with your feet against a wall and become
+                        comfortable supporting your body upside down.
+                        <span class="exercise">3–5 × 20–40 sec</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Chest-to-Wall Handstand</h4>
+                    <p>
+                        Practice a straighter body position and active shoulders.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Heel Pulls</h4>
+                    <p>
+                        Briefly remove your feet from the wall and learn how to
+                        balance over your hands.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Freestanding Attempts</h4>
+                    <p>
+                        Practice controlled kick-ups and accumulate short,
+                        high-quality attempts.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Unlock Goal:</strong>
+            The objective is not one lucky second. Build the ability to
+            repeatedly control your balance and return to the position.
+        </div>
+
+        <div class="workout">
+
+            <h3>Handstand Session</h3>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Pike Push-Ups</span>
+                <span class="exercise-detail">3 × 6–12</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Chest-to-Wall Handstand</span>
+                <span class="exercise-detail">4 × 20–40 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Heel Pulls</span>
+                <span class="exercise-detail">3 × 5–10</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Freestanding Attempts</span>
+                <span class="exercise-detail">5–10 quality attempts</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- L-SIT -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 05</div>
+                <h2 class="skill-title">L-Sit</h2>
+            </div>
+
+            <div class="difficulty">BEGINNER → INTERMEDIATE</div>
+
+        </div>
+
+        <p class="section-intro">
+            The L-sit is one of the best skills for developing compression,
+            core strength, hip flexor strength and straight-arm support.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Support Hold</h4>
+                    <p>
+                        Press down through your hands and lift your body from
+                        the floor. <span class="exercise">3 × 15–30 sec</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Tuck L-Sit</h4>
+                    <p>
+                        Bring your knees toward your chest while keeping your
+                        arms straight. <span class="exercise">4 × 10–20 sec</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>One-Leg L-Sit</h4>
+                    <p>
+                        Extend one leg while keeping the other tucked. Alternate
+                        sides.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Full L-Sit</h4>
+                    <p>
+                        Extend both legs and hold them parallel to the floor.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Unlock Test:</strong>
+            When you can repeatedly hold your current progression with clean
+            technique, increase the difficulty rather than simply adding
+            endless hold time.
+        </div>
+
+        <div class="workout">
+
+            <h3>L-Sit Session</h3>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Support Hold</span>
+                <span class="exercise-detail">3 × 20–30 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Tuck L-Sit</span>
+                <span class="exercise-detail">4 × 10–20 sec</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Compression Raises</span>
+                <span class="exercise-detail">3 × 8–15</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Hollow Body Hold</span>
+                <span class="exercise-detail">3 × 20–40 sec</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- HANDSTAND PUSH UP -->
+
+<section class="skill">
+    <div class="container">
+
+        <div class="skill-header">
+
+            <div>
+                <div class="skill-number">SKILL 06</div>
+                <h2 class="skill-title">Handstand Push-Up</h2>
+            </div>
+
+            <div class="difficulty">ADVANCED</div>
+
+        </div>
+
+        <p class="section-intro">
+            The handstand push-up combines the balance requirements of a
+            handstand with substantial overhead pressing strength.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Pike Push-Ups</h4>
+                    <p>
+                        Start building vertical pressing strength.
+                        <span class="exercise">3–4 × 6–12</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Elevated Pike Push-Ups</h4>
+                    <p>
+                        Elevate your feet to increase the shoulder-loading
+                        demand.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Wall Handstand Holds</h4>
+                    <p>
+                        Build the ability to support your body upside down.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Negative HSPU</h4>
+                    <p>
+                        Start at the top and slowly lower yourself.
+                        <span class="exercise">3–5 × 1–5</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Partial ROM HSPU</h4>
+                    <p>
+                        Perform repetitions using a limited range of motion,
+                        gradually increasing depth.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div>
+                    <h4>Full HSPU</h4>
+                    <p>
+                        Progress toward controlled repetitions through your
+                        available range of motion.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="unlock">
+            <strong>Unlock Test:</strong>
+            Your progression should be controlled. If you cannot control the
+            negative phase, continue building strength before increasing the
+            range of motion.
+        </div>
+
+    </div>
+</section>
+
+
+<!-- HOW TO PROGRAM -->
+
+<section>
+    <div class="container">
+
+        <div class="eyebrow">Programming</div>
+
+        <h2 class="section-title">
+            How to train <span>skills</span>
+        </h2>
+
+        <p class="section-intro">
+            Skill training works best when your nervous system and muscles are
+            relatively fresh. Put technical skill work near the beginning of
+            your session rather than after exhausting yourself.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>1. Warm Up</h3>
+                <p>
+                    Prepare your wrists, shoulders, elbows and the specific
+                    joints involved in the skill.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>2. Practice the Skill</h3>
+                <p>
+                    Perform your current progression first while you are fresh.
+                    Prioritize quality over fatigue.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>3. Build Strength</h3>
+                <p>
+                    Follow the skill work with exercises that strengthen the
+                    exact muscles and positions required.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Goal</th>
+                        <th>Main Work</th>
+                        <th>Typical Focus</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Muscle-Up</td>
+                        <td>Explosive pulling + transition</td>
+                        <td>Power</td>
+                    </tr>
+
+                    <tr>
+                        <td>Front Lever</td>
+                        <td>Lever holds + pulling</td>
+                        <td>Straight-arm strength</td>
+                    </tr>
+
+                    <tr>
+                        <td>Planche</td>
+                        <td>Leans + planche variations</td>
+                        <td>Straight-arm pushing</td>
+                    </tr>
+
+                    <tr>
+                        <td>Handstand</td>
+                        <td>Balance + holds</td>
+                        <td>Technique</td>
+                    </tr>
+
+                    <tr>
+                        <td>L-Sit</td>
+                        <td>Compression + support</td>
+                        <td>Core / hip flexors</td>
+                    </tr>
+
+                    <tr>
+                        <td>HSPU</td>
+                        <td>Pike work + negatives</td>
+                        <td>Vertical pressing</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- PROGRESSION RULES -->
+
+<section>
+    <div class="container">
+
+        <div class="eyebrow">Progression Rules</div>
+
+        <h2 class="section-title">
+            When should you <span>move up?</span>
+        </h2>
+
+        <p class="section-intro">
+            Do not change progressions simply because you are bored. Change
+            them when the current variation becomes sufficiently controlled.
+        </p>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Own the Position</h4>
+                    <p>
+                        You can hold or perform the variation without losing
+                        the essential body position.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Control the Movement</h4>
+                    <p>
+                        You can control both the concentric and eccentric parts
+                        where applicable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Repeat It</h4>
+                    <p>
+                        One lucky repetition does not mean you have unlocked
+                        the progression. You need repeatable performance.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Increase Difficulty</h4>
+                    <p>
+                        Extend the lever, reduce assistance, increase range of
+                        motion or move to the next progression.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- COMMON MISTAKES -->
+
+<section>
+    <div class="container">
+
+        <div class="eyebrow">Avoid These</div>
+
+        <h2 class="section-title">
+            Why people stay <span>stuck</span>
+        </h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Skipping Prerequisites</h3>
+                <p>
+                    Trying to muscle-up without enough pulling power or trying
+                    a planche without adequate straight-arm strength usually
+                    turns into poor technique.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Training to Failure</h3>
+                <p>
+                    Constantly failing difficult skill attempts creates a lot
+                    of fatigue without necessarily producing better technique.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Changing Progressions Constantly</h3>
+                <p>
+                    Give a progression enough time to develop instead of
+                    jumping between variations every workout.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Ignoring Recovery</h3>
+                <p>
+                    Tendons and connective tissues can require substantial time
+                    to adapt, especially with straight-arm skills.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Only Practicing the Final Skill</h3>
+                <p>
+                    The final movement is often too difficult to provide enough
+                    productive practice. Use easier variations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Rushing the Timeline</h3>
+                <p>
+                    Advanced calisthenics skills can take months or years to
+                    develop. Progress is more important than speed.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FINAL SYSTEM -->
+
+<section>
+    <div class="container">
+
+        <div class="eyebrow">The REVOKESYSTEM Method</div>
+
+        <h2 class="section-title">
+            Your skill progression is simple:
+        </h2>
+
+        <div class="progression">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Choose One Skill</h4>
+                    <p>
+                        Pick the movement you want to unlock.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Identify the Weak Link</h4>
+                    <p>
+                        Is your problem pulling strength, pushing strength,
+                        mobility, balance, technique or body control?
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Choose the Right Progression</h4>
+                    <p>
+                        Pick the hardest variation you can perform with
+                        controlled technique.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Train It Consistently</h4>
+                    <p>
+                        Repeat the progression and build strength over time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Unlock the Next Level</h4>
+                    <p>
+                        Once the variation becomes controlled, increase the
+                        difficulty.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="eyebrow">Go Further</div>
+
+        <h2>
+            Stop guessing.<br>
+            <span style="color: var(--gold);">Start progressing.</span>
+        </h2>
+
+        <p>
+            Build your calisthenics foundation, develop strength and work
+            toward advanced skills with a structured system.
+        </p>
+
+        <a
+            href="https://payhip.com/b/t5wRH"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            GET THE CALISTHENICS GUIDE
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="container">
+        © REVOKESYSTEM — Train. Progress. Unlock.
+    </div>
+
+</footer>
+
+</body>
+</html>

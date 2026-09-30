@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calisthenics: Build Strength With Your Own Body | REVOKESYSTEM</title>
+
+    <meta name="description" content="Learn how to build strength, muscle, control, and impressive calisthenics skills using your own bodyweight.">
+
+    <link rel="icon" href="images/logo-RS.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080808;
+            color: #eeeeee;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            padding: 25px 0;
+            border-bottom: 1px solid #242424;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #d6a43a;
+        }
+
+        .nav-link {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid #3b3b3b;
+            color: #d6a43a;
+            padding: 7px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 7vw, 5.5rem);
+            line-height: 1;
+            max-width: 950px;
+            margin: auto;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #d6a43a;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 30px auto 0;
+            color: #a7a7a7;
+            font-size: 1.15rem;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 35px;
+            background: #d6a43a;
+            color: #080808;
+            padding: 15px 28px;
+            border-radius: 6px;
+            font-weight: 900;
+            transition: 0.2s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+            background: #efc15b;
+        }
+
+        /* ARTICLE */
+
+        article {
+            padding-bottom: 100px;
+        }
+
+        section {
+            margin-bottom: 75px;
+        }
+
+        .section-number {
+            color: #d6a43a;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        p {
+            color: #b7b7b7;
+            margin-bottom: 18px;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        /* INTRO */
+
+        .intro-box {
+            border-left: 3px solid #d6a43a;
+            background: #111111;
+            padding: 30px;
+            margin: 35px 0;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #111111;
+            border: 1px solid #242424;
+            padding: 28px;
+            border-radius: 10px;
+        }
+
+        .card-number {
+            color: #d6a43a;
+            font-size: 0.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: linear-gradient(135deg, #151515, #0d0d0d);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 50px 35px;
+            text-align: center;
+            margin: 70px 0;
+        }
+
+        .cta h2 {
+            max-width: 700px;
+            margin: 0 auto 18px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d6a43a;
+            color: #080808;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-weight: 900;
+        }
+
+        /* PROGRESSION */
+
+        .progression {
+            margin-top: 30px;
+        }
+
+        .progress-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #111111;
+            border: 1px solid #242424;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 7px;
+        }
+
+        .progress-number {
+            min-width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #d6a43a;
+            color: #080808;
+            font-weight: 900;
+            border-radius: 50%;
+        }
+
+        .progress-row strong {
+            display: block;
+        }
+
+        .progress-row span {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* PRINCIPLES */
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .principle {
+            padding: 25px;
+            background: #111;
+            border: 1px solid #252525;
+            border-radius: 8px;
+        }
+
+        .principle h3 {
+            color: #d6a43a;
+        }
+
+        /* MISTAKES */
+
+        .mistakes {
+            counter-reset: mistakes;
+        }
+
+        .mistake {
+            counter-increment: mistakes;
+            position: relative;
+            padding: 25px 25px 25px 75px;
+            background: #111;
+            border: 1px solid #242424;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .mistake::before {
+            content: counter(mistakes);
+            position: absolute;
+            left: 22px;
+            top: 23px;
+            color: #d6a43a;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        /* TRAINING SPLIT */
+
+        .training-table {
+            margin-top: 30px;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .training-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            border-bottom: 1px solid #292929;
+        }
+
+        .training-row:last-child {
+            border-bottom: none;
+        }
+
+        .training-row div {
+            padding: 18px;
+        }
+
+        .training-row div:first-child {
+            background: #111;
+            font-weight: 800;
+            color: #d6a43a;
+        }
+
+        /* QUOTE */
+
+        .quote {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 70px 0;
+        }
+
+        .quote p {
+            font-size: clamp(1.5rem, 3vw, 2.4rem);
+            color: #fff;
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
+        .quote span {
+            color: #d6a43a;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #242424;
+            padding: 30px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .cards,
+            .principles {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 70px 0 60px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .progress-row {
+                align-items: flex-start;
+            }
+
+            .training-row {
+                grid-template-columns: 1fr;
+            }
+
+            .training-row div:first-child {
+                border-bottom: 1px solid #292929;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .intro-box,
+            .cta {
+                padding: 25px;
+            }
+
+            .mistake {
+                padding-left: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <div class="logo">REVOKE<span>SYSTEM</span></div>
+        <a href="https://revokesystem.store" class="nav-link">REVOKESYSTEM</a>
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="container">
+
+            <div class="badge">
+                Strength • Control • Discipline
+            </div>
+
+            <h1>
+                Build a body that can <span>control itself.</span>
+            </h1>
+
+            <p>
+                Calisthenics is more than doing push-ups and pull-ups.
+                It is the process of developing strength, body control,
+                coordination, endurance and physical confidence using your own body.
+            </p>
+
+            <a href="#start" class="hero-button">
+                START HERE
+            </a>
+
+        </div>
+    </section>
+
+
+    <article class="container">
+
+        <!-- INTRO -->
+
+        <section id="start">
+
+            <div class="section-number">01 — The idea</div>
+
+            <h2>What makes calisthenics different?</h2>
+
+            <p>
+                Most people think training means going to a gym, choosing a machine,
+                moving some weight and repeating the process.
+            </p>
+
+            <p>
+                Calisthenics approaches the problem differently:
+                <strong>your body becomes the equipment.</strong>
+            </p>
+
+            <p>
+                A push-up teaches you to move your body through space.
+                A pull-up requires you to control your entire body against gravity.
+                A handstand demands balance, coordination and strength.
+                Advanced skills such as the front lever or planche take this concept even further.
+            </p>
+
+            <div class="intro-box">
+
+                <p>
+                    The goal isn't simply to become capable of performing more repetitions.
+                </p>
+
+                <p>
+                    The goal is to progressively increase what your body is capable of controlling.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFITS -->
+
+        <section>
+
+            <div class="section-number">02 — Why train this way?</div>
+
+            <h2>What can calisthenics develop?</h2>
+
+            <p>
+                A well-designed calisthenics program can train much more than individual muscles.
+                You are constantly dealing with leverage, stability, balance and body positioning.
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3>Strength</h3>
+                    <p>
+                        Progressive exercises can develop significant relative strength,
+                        especially in movements such as pull-ups, dips, push-ups and holds.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3>Body Control</h3>
+                    <p>
+                        You learn how to control your position in space instead of simply
+                        moving an external object.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3>Skill</h3>
+                    <p>
+                        Handstands, muscle-ups, levers and other skills combine strength,
+                        technique and coordination.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">04</div>
+                    <h3>Relative Strength</h3>
+                    <p>
+                        Your strength is directly related to the body you need to control,
+                        making bodyweight movements especially useful for developing relative strength.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">05</div>
+                    <h3>Minimal Equipment</h3>
+                    <p>
+                        Many effective movements require nothing more than the floor,
+                        a pull-up bar or parallel bars.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">06</div>
+                    <h3>Progression</h3>
+                    <p>
+                        Almost every movement can be modified to make it easier or harder,
+                        allowing you to progress over time.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESSION -->
+
+        <section>
+
+            <div class="section-number">03 — Progression</div>
+
+            <h2>You don't need to start advanced.</h2>
+
+            <p>
+                One of the biggest mistakes beginners make is comparing their current ability
+                to someone who has trained for years.
+            </p>
+
+            <p>
+                You don't need to perform a muscle-up on your first week.
+                You need a progression that matches your current ability.
+            </p>
+
+            <div class="progression">
+
+                <div class="progress-row">
+                    <div class="progress-number">1</div>
+                    <div>
+                        <strong>Push</strong>
+                        <span>Wall push-up → incline push-up → push-up → harder variations</span>
+                    </div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-number">2</div>
+                    <div>
+                        <strong>Pull</strong>
+                        <span>Dead hang → assisted pull-up → pull-up → weighted pull-up</span>
+                    </div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-number">3</div>
+                    <div>
+                        <strong>Dip</strong>
+                        <span>Assisted dip → bodyweight dip → controlled weighted dip</span>
+                    </div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-number">4</div>
+                    <div>
+                        <strong>Core</strong>
+                        <span>Dead bug → plank → hanging knee raise → leg raise → advanced holds</span>
+                    </div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-number">5</div>
+                    <div>
+                        <strong>Skills</strong>
+                        <span>Basic strength → prerequisites → progressions → full skill</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <div class="cta">
+
+            <h2>
+                Stop guessing what to train.
+            </h2>
+
+            <p>
+                A structured system makes progression easier to understand.
+                Learn how to organize exercises, progress them and build your training around your goals.
+            </p>
+
+            <a href="https://payhip.com/b/t5wRH" class="cta-button">
+                GET THE CALISTHENICS GUIDE
+            </a>
+
+        </div>
+
+
+        <!-- PRINCIPLES -->
+
+        <section>
+
+            <div class="section-number">04 — The fundamentals</div>
+
+            <h2>The principles that actually matter</h2>
+
+            <p>
+                You don't need hundreds of exercises.
+                You need to understand the principles behind your training.
+            </p>
+
+            <div class="principles">
+
+                <div class="principle">
+                    <h3>Progressive Overload</h3>
+                    <p>
+                        Over time, your training needs to become more challenging.
+                        You can increase repetitions, resistance, range of motion,
+                        leverage, difficulty or control.
+                    </p>
+                </div>
+
+                <div class="principle">
+                    <h3>Technique</h3>
+                    <p>
+                        Repetitions only become useful when you can perform them with
+                        controlled and consistent technique.
+                    </p>
+                </div>
+
+                <div class="principle">
+                    <h3>Consistency</h3>
+                    <p>
+                        A great workout performed occasionally cannot compete with
+                        a sustainable program followed consistently.
+                    </p>
+                </div>
+
+                <div class="principle">
+                    <h3>Recovery</h3>
+                    <p>
+                        Training provides the stimulus. Recovery gives your body the
+                        opportunity to adapt to it.
+                    </p>
+                </div>
+
+                <div class="principle">
+                    <h3>Specificity</h3>
+                    <p>
+                        If you want to improve a particular skill, you need to train
+                        the qualities and progressions that contribute to that skill.
+                    </p>
+                </div>
+
+                <div class="principle">
+                    <h3>Patience</h3>
+                    <p>
+                        Advanced calisthenics skills can take months or years.
+                        The process itself is part of the training.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STRENGTH -->
+
+        <section>
+
+            <div class="section-number">05 — Strength</div>
+
+            <h2>Build strength before chasing impressive skills.</h2>
+
+            <p>
+                Skills are exciting. Strength fundamentals are less glamorous.
+                But they provide the foundation that makes advanced movements possible.
+            </p>
+
+            <p>
+                A strong calisthenics foundation typically includes movements such as:
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Pull-ups</h3>
+                    <p>
+                        Build pulling strength through the back, arms and grip while
+                        learning to control your bodyweight.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Push-ups</h3>
+                    <p>
+                        Develop pressing strength while learning to maintain whole-body tension.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Dips</h3>
+                    <p>
+                        A demanding pressing movement that can be progressed from
+                        assisted variations to added resistance.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Squats</h3>
+                    <p>
+                        Lower-body training remains important even in a primarily
+                        upper-body-focused calisthenics routine.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Rows</h3>
+                    <p>
+                        Horizontal pulling provides another way to build the muscles
+                        involved in pulling and improve control.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Core Work</h3>
+                    <p>
+                        Strong trunk control helps you transfer force and maintain
+                        position during many calisthenics movements.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section>
+
+            <div class="section-number">06 — Skills</div>
+
+            <h2>Turn strength into control.</h2>
+
+            <p>
+                Once you develop a foundation, calisthenics becomes much more interesting.
+                You can begin working toward skills that require a combination of strength,
+                balance, coordination and technique.
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Handstand</h3>
+                    <p>
+                        Requires balance, shoulder control, wrist tolerance and the ability
+                        to maintain a stable body position.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Muscle-Up</h3>
+                    <p>
+                        Combines a strong pull with the ability to transition efficiently
+                        from pulling to pushing.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Front Lever</h3>
+                    <p>
+                        A demanding horizontal pulling position that requires substantial
+                        back, core and shoulder strength.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Planche</h3>
+                    <p>
+                        An advanced straight-arm pushing skill requiring significant strength,
+                        balance and progressive preparation.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRAINING -->
+
+        <section>
+
+            <div class="section-number">07 — Training</div>
+
+            <h2>How should a calisthenics session look?</h2>
+
+            <p>
+                You don't need to spend two hours training.
+                What matters is having a clear purpose for the session.
+            </p>
+
+            <div class="training-table">
+
+                <div class="training-row">
+                    <div>1. Warm-up</div>
+                    <div>
+                        Prepare the joints and movement patterns you are about to train.
+                    </div>
+                </div>
+
+                <div class="training-row">
+                    <div>2. Skill Work</div>
+                    <div>
+                        Practice technically demanding skills while you are relatively fresh.
+                    </div>
+                </div>
+
+                <div class="training-row">
+                    <div>3. Main Strength</div>
+                    <div>
+                        Focus on your primary push, pull or strength movement.
+                    </div>
+                </div>
+
+                <div class="training-row">
+                    <div>4. Assistance</div>
+                    <div>
+                        Add movements that train muscles or qualities not sufficiently
+                        covered by the main exercises.
+                    </div>
+                </div>
+
+                <div class="training-row">
+                    <div>5. Core</div>
+                    <div>
+                        Finish with targeted trunk work when appropriate.
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MISTAKES -->
+
+        <section>
+
+            <div class="section-number">08 — Mistakes</div>
+
+            <h2>Stop making these mistakes.</h2>
+
+            <div class="mistakes">
+
+                <div class="mistake">
+                    <h3>Training randomly</h3>
+                    <p>
+                        Doing whatever exercise looks impressive that day makes progression
+                        difficult to measure.
+                    </p>
+                </div>
+
+                <div class="mistake">
+                    <h3>Chasing advanced skills too early</h3>
+                    <p>
+                        A skill progression should match your current strength and control.
+                    </p>
+                </div>
+
+                <div class="mistake">
+                    <h3>Ignoring the lower body</h3>
+                    <p>
+                        Calisthenics does not mean ignoring your legs. A balanced body
+                        requires lower-body training too.
+                    </p>
+                </div>
+
+                <div class="mistake">
+                    <h3>Doing endless repetitions</h3>
+                    <p>
+                        More repetitions are not automatically better. Eventually you need
+                        to increase the difficulty if strength is the goal.
+                    </p>
+                </div>
+
+                <div class="mistake">
+                    <h3>Ignoring recovery</h3>
+                    <p>
+                        More training is not always more progress. Fatigue needs to be managed.
+                    </p>
+                </div>
+
+                <div class="mistake">
+                    <h3>Comparing your chapter to someone else's</h3>
+                    <p>
+                        Someone else's advanced skill represents their training history.
+                        Your job is to improve your own starting point.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BODY COMPOSITION -->
+
+        <section>
+
+            <div class="section-number">09 — Your physique</div>
+
+            <h2>Calisthenics can build an athletic physique.</h2>
+
+            <p>
+                Your training is only one part of how your physique develops.
+                Nutrition, recovery, body composition and genetics also influence the result.
+            </p>
+
+            <p>
+                If your goal is to look more defined, becoming stronger while managing
+                your body composition can make your existing muscular structure more visible.
+            </p>
+
+            <p>
+                But don't reduce calisthenics to aesthetics.
+                The real advantage is that your appearance can become a side effect of
+                developing something more fundamental:
+                <strong>physical capability.</strong>
+            </p>
+
+        </section>
+
+
+        <!-- QUOTE -->
+
+        <div class="quote">
+
+            <p>
+                Don't train just to <span>look strong.</span><br>
+                Train until your body can prove it.
+            </p>
+
+        </div>
+
+
+        <!-- SYSTEM -->
+
+        <section>
+
+            <div class="section-number">10 — The system</div>
+
+            <h2>Build your own progression.</h2>
+
+            <p>
+                The best calisthenics routine is not the one with the most exercises.
+                It is the one you can execute consistently while progressively becoming stronger.
+            </p>
+
+            <p>
+                Start with your current ability.
+                Choose movements that match it.
+                Track your performance.
+                Increase difficulty gradually.
+                Recover.
+                Repeat.
+            </p>
+
+            <div class="intro-box">
+
+                <p>
+                    <strong>Assess → Train → Progress → Recover → Repeat.</strong>
+                </p>
+
+                <p>
+                    That's the foundation of a sustainable calisthenics system.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL CTA -->
+
+        <div class="cta">
+
+            <h2>
+                Ready to take calisthenics seriously?
+            </h2>
+
+            <p>
+                The REVOKESYSTEM Calisthenics Guide goes deeper into exercises,
+                progressions, training structure, strength development and how to
+                organize your training instead of guessing every workout.
+            </p>
+
+            <a href="https://payhip.com/b/t5wRH" class="cta-button">
+                GET THE CALISTHENICS GUIDE
+            </a>
+
+        </div>
+
+    </article>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        © 2026 REVOKESYSTEM — Train with purpose.
+    </div>
+</footer>
+
+</body>
+</html>
